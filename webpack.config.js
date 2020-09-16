@@ -21,7 +21,15 @@ module.exports = {
 			{
 				test: /\.css$/,
 				use: ['style-loader', 'css-loader']
-			}
+			},
+			{
+				test: /\.svg$/,
+				loader: 'svg-inline-loader'
+			},
+			{
+                test: /\.(png|jpe?g|svg)$/,
+                loader: 'file-loader'
+            }
 		]
 	},
 	devServer: {
