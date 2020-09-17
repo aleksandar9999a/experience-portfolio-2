@@ -21,6 +21,14 @@ export class Overlay extends Component {
 		return (
 			<div className="overlay">
 				<exf-navbar />
+
+                <exf-router>
+                    <exf-route route="/">
+                      <exf-hero />
+                    </exf-route>
+                </exf-router>
+
+                <exf-footer />
 			</div>
 		)
 	}
