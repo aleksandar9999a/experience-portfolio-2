@@ -3,73 +3,58 @@ import tabsConfig from '../config/navbar';
 import ITab from '../interfaces/interfaces';
 
 @CustomElement({
-	selector: 'exf-navbar-tab'
+    selector: 'exf-navbar-tab'
 })
 export class NavbarTab extends Component {
-	@State('state') tabs: ITab[] = [];
-	@Prop('state') route!: string;
-	@Prop('state') name!: string;
-	@Prop('state') image!: string;
+    @Prop('state') name!: string;
+    @Prop('state') image!: string;
 
-	onCreate() {
-		this.tabs = tabsConfig;
-	}
+    stylize() {
+        return (
+            <style>
+                div {
+                    {
+                        'color': '#08fdd8',
+                        'text-decoration': 'none',
+                        'font-size': '15px',
 
-	stylize() {
-		return (
-			<style>
-				li {
-					{
-						'position': 'relative',
-						'min-width': '60px'
-					}
-				}
+                        'span': {
+                            'opacity': '0',
+                            'position': 'absolute',
+                            'top': '5px',
+                            'left': '-6px',
+                            'transition': 'opacity 0.15s',
+                        },
 
-                a {
-					{
-						'color': '#08fdd8',
-						'text-decoration': 'none',
-						'font-size': '15px',
+                        'img': {
+                            'width': '25px',
+                            'transition': 'opacity 0.15s',
+                        }
+                    }
+                }
 
-						'span': {
-							'opacity': '0',
-							'position': 'absolute',
-							'top': '5px',
-							'left': '-6px',
-							'transition': 'opacity 0.15s',
-						},
+                div:hover {
+                    {
+                        'span': {
+                            'opacity': '1'
+                        },
 
-						'img': {
-							'width': '25px',
-							'transition': 'opacity 0.15s',
-						}
-					}
-				}
+                        'img': {
+                            'opacity': '0'
+                        }
+                    }
+                }
+            </style>
+        )
+    }
 
-                a:hover {
-					{
-						'span': {
-							'opacity': '1'
-						},
+    render() {
+        return (
+            <div>
+                <span>{this.name}</span>
 
-						'img': {
-							'opacity': '0'
-						}
-					}
-				}
-			</style>
-		)
-	}
-
-	render() {
-		return (
-			<li className="navbar__tab">
-				<a href={this.route}>
-					<span>{this.name}</span>
-
-					<img src={this.image} alt="settings" />
-				</a>
-			</li>
-		)
-	}
+                <img src={this.image} alt="settings" />
+            </div>
+        )
+    }
 }
