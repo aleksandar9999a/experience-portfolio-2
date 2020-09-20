@@ -35,6 +35,10 @@ export class Overlay extends Component {
 					<exf-route route="/about">
 						<exf-about />
 					</exf-route>
+
+					<exf-route route="/contacts">
+						<exf-contacts />
+					</exf-route>
 				</exf-router>
 
 				<exf-footer />

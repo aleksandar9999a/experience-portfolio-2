@@ -19,6 +19,7 @@ import { Socials } from './components/Socials';
 import { Skills } from './components/Skills';
 import { Timeline } from './components/Timeline';
 import { About } from './components/About';
+import { Contacts } from './components/Contacts';
 
 
 ExFModule({
@@ -37,7 +38,8 @@ ExFModule({
         Socials,
         Skills,
         Timeline,
-        About
+        About,
+        Contacts
     ],
     bootstraps: [
         App
