@@ -1,7 +1,7 @@
 import 'core-js';
 import './interfaces/interfaces';
 
-import './App.css';
+import './index.css';
 
 import { ExFModule } from 'exf-ts';
 import { App } from './App';

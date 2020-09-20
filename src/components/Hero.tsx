@@ -20,7 +20,9 @@ export class Hero extends Component {
                         'min-height': '85vh',
 
                         h1: {
-                            'color': '#fff'
+                            'color': '#fff',
+                            'font-size': '50px',
+                            'font-weight': '400'
                         },
 
                         hr: {
@@ -69,28 +71,24 @@ export class Hero extends Component {
 
         return (
             <div className="hero">
-                <div className="shell">
-                    <div className="hero__inner">
-                        <div className="hero__content">
-                            <h1>
-                                Hello friends,<br />
+                <div className="hero__inner">
+                    <h1>
+                        Hello friends,<br />
                                 My name is {firstName} {lastName}.
                             </h1>
 
-                            <hr />
+                    <hr />
 
-                            <div className="hero__headline">
-                                <p>{devType}</p>
+                    <div className="hero__headline">
+                        <p>{devType}</p>
 
-                                <exf-router-link route="/login">
-                                    <p>Are you my owner?</p>
-                                </exf-router-link>
-                            </div>
+                        <exf-router-link route="/login">
+                            <p>Are you my owner?</p>
+                        </exf-router-link>
+                    </div>
 
-                            <div className="hero__socials">
-                                <exf-socials />
-                            </div>
-                        </div>
+                    <div className="hero__socials">
+                        <exf-socials />
                     </div>
                 </div>
             </div>
