@@ -50,6 +50,7 @@ export class Timeline extends Component {
                                 'width': '200px',
                                 'padding': '15px 15px 55px',
                                 'box-shadow': '1px 1px 6px #08fdd841',
+                                'transition': 'box-shadow .15s'
                             },
 
                             '.timeline__panel:hover': {
