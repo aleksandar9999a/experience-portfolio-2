@@ -1,10 +1,8 @@
 import insta from './../assets/instagram.png';
 import git from './../assets/git.png';
 import linkedin from './../assets/linkedin.png';
+import { TIconsOptions } from '../interfaces/interfaces';
 
-type TIconsOptions = {
-    [key: string]: string
-}
 
 const icons: TIconsOptions = {
     instagram: insta,

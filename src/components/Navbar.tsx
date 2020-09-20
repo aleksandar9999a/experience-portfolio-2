@@ -1,6 +1,6 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
 import tabsConfig from '../config/navbar';
-import ITab from '../interfaces/interfaces';
+import { ITab } from '../interfaces/interfaces';
 
 
 @CustomElement({

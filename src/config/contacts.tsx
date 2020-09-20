@@ -1,9 +1,4 @@
-interface IContact {
-    id: number | string,
-    alt: string,
-    icon: string,
-    href: string
-}
+import { IContact } from "../interfaces/interfaces";
 
 const contacts: IContact[] = [
     { id: 1, alt: 'instagram', icon: 'instagram', href: 'https://www.instagram.com/sandi9999a/' },

@@ -23,10 +23,27 @@ export interface IStarCoords {
     radius: number;
 }
 
-export default interface ITab {
+export interface ITab {
     id: number,
     name: string,
     route: string,
     icon: string,
     auth?: boolean
+}
+
+export interface IUser {
+    firstName: string,
+    lastName: string,
+    devType: string
+}
+
+export interface IContact {
+    id: number | string,
+    alt: string,
+    icon: string,
+    href: string
+}
+
+export type TIconsOptions = {
+    [key: string]: string
 }

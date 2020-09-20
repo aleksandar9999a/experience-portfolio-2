@@ -1,4 +1,4 @@
-import ITab from '../interfaces/interfaces';
+import { ITab } from '../interfaces/interfaces';
 import chat from './../assets/chat.png';
 import arrow from './../assets/arrow-bar-right.png';
 import code from './../assets/code-slash.png';

@@ -1,10 +1,5 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
-
-interface IUser {
-    firstName: string,
-    lastName: string,
-    devType: string
-}
+import { IUser } from '../interfaces/interfaces';
 
 
 @CustomElement({

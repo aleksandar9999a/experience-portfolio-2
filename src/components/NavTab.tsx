@@ -1,6 +1,4 @@
-import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
-import tabsConfig from '../config/navbar';
-import ITab from '../interfaces/interfaces';
+import ExF, { Component, CustomElement, Prop } from 'exf-ts';
 
 @CustomElement({
     selector: 'exf-navbar-tab'
