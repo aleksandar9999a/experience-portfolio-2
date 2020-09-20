@@ -16,6 +16,8 @@ import { Route } from './Router/Route';
 import { RouterLink } from './Router/RouterLink';
 import { Router } from './Router/Router';
 import { Socials } from './components/Socials';
+import { Skills } from './components/Skills';
+import { Timeline } from './components/Timeline';
 
 
 ExFModule({
@@ -31,7 +33,9 @@ ExFModule({
         Route,
         RouterLink,
         Router,
-        Socials
+        Socials,
+        Skills,
+        Timeline
     ],
     bootstraps: [
         App

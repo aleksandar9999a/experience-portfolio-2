@@ -1,5 +1,6 @@
 import ExF, { Component, CustomElement } from 'exf-ts';
 
+
 @CustomElement({
 	selector: 'exf-overlay'
 })
@@ -22,13 +23,17 @@ export class Overlay extends Component {
 			<div className="overlay">
 				<exf-navbar />
 
-                <exf-router>
-                    <exf-route route="/">
-                      <exf-hero />
-                    </exf-route>
-                </exf-router>
+				<exf-router>
+					<exf-route route="/">
+						<exf-hero />
+					</exf-route>
 
-                <exf-footer />
+					<exf-route route="/skills">
+						<exf-skills />
+					</exf-route>
+				</exf-router>
+
+				<exf-footer />
 			</div>
 		)
 	}
