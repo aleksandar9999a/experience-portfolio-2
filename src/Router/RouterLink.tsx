@@ -14,6 +14,19 @@ export class RouterLink extends Component {
         window.dispatchEvent(new Event('locationchange'))
     }
 
+    stylize() {
+        return (
+            <style>
+                a {
+                    {
+                        'text-decoration': 'none',
+                        'color': 'inherit'
+                    }
+                }
+            </style>
+        )
+    }
+
 	render() {
 		return (
 			<a href={this.route} onClick={this.stopRefresh}>

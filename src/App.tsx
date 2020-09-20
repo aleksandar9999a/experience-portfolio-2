@@ -1,5 +1,4 @@
 import ExF, { Component, CustomElement } from 'exf-ts';
-import './App.css';
 
 @CustomElement({
 	selector: 'exf-app'

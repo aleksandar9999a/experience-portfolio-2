@@ -1444,9 +1444,9 @@ execa@^1.0.0:
     strip-eof "^1.0.0"
 
 exf-ts@^1.1.7:
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/exf-ts/-/exf-ts-1.1.8.tgz#a19aae23e9bc371a7fa2940e94db40c5218e9f88"
-  integrity sha512-fOrdGvzOhIOb2ML0+XhdB6yCdrXkKt+UkzLh8Nhb3Oz4X3bFnTrQoSQm1MA2ToZUNqLqqYRPmWt818G3SV4s1Q==
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/exf-ts/-/exf-ts-1.1.9.tgz#853397d32d4ec422e92213ee48a825c0f37a8eec"
+  integrity sha512-UvCb91q/8OaXe5rPuwOfUbSuGnLXVhzwLjph8+j6POgLf7dJeflRwJOu5PX8QFfD8NkuQs+FeTOHhSOv4jH9jQ==
   dependencies:
     "@webcomponents/webcomponentsjs" "^2.4.3"
     custom-elements-es5-adapter "^1.0.0"

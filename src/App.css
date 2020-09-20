@@ -7,4 +7,15 @@ body {
     font-family: Chivo, serif;
     font-weight: 300;
     font-size: 20px;
+    color: #08fdd8;
+}
+
+h1 {
+    font-size: 50px;
+    color: #fff;
+}
+
+.shell {
+    max-width: 80%;
+    margin: 0 auto;
 }
