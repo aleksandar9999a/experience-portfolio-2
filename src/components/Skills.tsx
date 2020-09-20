@@ -45,12 +45,9 @@ export class Skills extends Component {
 
                         '.skills__head': {
                             'max-width': '1200px',
-                            'margin-bottom': '80px'
-                        },
-
-                        p: {
+                            'margin': '0 auto 80px',
                             'color': '#fff'
-                        }
+                        },
                     }
                 }
             </style>
