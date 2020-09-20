@@ -27,7 +27,7 @@ export class Navbar extends Component {
                             'position': 'absolute',
                             'left': '0',
                             'top': '0',
-                            'width': '100%',
+                            'right': '0',
                             'list-style-type': 'none',
                             'justify-content': 'center',
 
