@@ -56,3 +56,17 @@ export interface ITimelineItems {
     start?: string,
     end?: string
 }
+
+export interface IUploadedImage {
+    _id: string,
+    url: string
+}
+
+export interface IProject {
+    _id?: string,
+    title: string,
+    description: string, 
+    link: string,
+    creatorId?: string,
+    images: IUploadedImage[]
+}
