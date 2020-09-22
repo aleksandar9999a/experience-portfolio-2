@@ -70,3 +70,12 @@ export interface IProject {
     creatorId?: string,
     images: IUploadedImage[]
 }
+
+export interface IEmail {
+    _id?: string,
+    isAnswered?: boolean,
+    name: string,
+    email: string,
+    subject: string,
+    message: string
+}
