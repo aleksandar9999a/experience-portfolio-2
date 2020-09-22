@@ -8,32 +8,7 @@ import { IEmail, ITimelineItems } from '../interfaces/interfaces';
 export class Settings extends Component {
     @State('state') skillsTimeline: ITimelineItems[] = [];
     @State('state') aboutTimeline: ITimelineItems[] = [];
-    @State('state') contacts: IEmail[] = [
-        {
-            _id: '',
-            isAnswered: false,
-            name: 'Test',
-            email: 'test@gmail.com',
-            subject: 'test',
-            message: 'testtesttesttest'
-        },
-        {
-            _id: '',
-            isAnswered: false,
-            name: 'Test',
-            email: 'test@gmail.com',
-            subject: 'test',
-            message: 'testtesttesttest'
-        },
-        {
-            _id: '',
-            isAnswered: false,
-            name: 'Test',
-            email: 'test@gmail.com',
-            subject: 'test',
-            message: 'testtesttesttest'
-        }
-    ];
+    @State('state') contacts: IEmail[] = [];
 
     stylize() {
         return (

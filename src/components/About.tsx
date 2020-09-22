@@ -58,8 +58,8 @@ const timelineDemo = [
     selector: 'exf-about'
 })
 export class About extends Component {
-    @State('state') timeline: ITimelineItems[] = timelineDemo;
-    @State('state') description: string = descDemo;
+    @State('state') timeline: ITimelineItems[] = [];
+    @State('state') description: string = '';
 
     stylize() {
         return (

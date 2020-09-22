@@ -1,33 +1,13 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { ITimelineItems } from '../interfaces/interfaces';
 
-const descDemo = 'My field of work is in Full-Stack Development. I have experience in developing small and medium projects with the help of Angular, React, VueJS, NodeJS, Express, MongoDB, Mongoose, Bootstrap, Material Design and etc. I also have experience with Vanilla JS.';
-
-const timelineDemo = [
-    {
-        id: 1,
-        title: 'Montupet Bulgaria',
-        desc: 'Casting of engine heads.',
-        link: 'https://montupet.bg/',
-        start: '2017',
-        end: '2018'
-    },
-    {
-        id: 2,
-        title: 'Time Assistants',
-        desc: 'Time Assistant is a Sales Representative of Econt. We made deliveries of postal, courier and cargo shipments.',
-        link: '',
-        start: '20178',
-        end: '2020'
-    }
-]
 
 @CustomElement({
     selector: 'exf-skills'
 })
 export class Skills extends Component {
-    @State('state') timeline: ITimelineItems[] = timelineDemo;
-    @State('state') description: string = descDemo;
+    @State('state') timeline: ITimelineItems[] = [];
+    @State('state') description: string = '';
 
     stylize() {
         return (

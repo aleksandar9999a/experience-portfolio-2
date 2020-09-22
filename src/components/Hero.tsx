@@ -6,7 +6,7 @@ import { IUser } from '../interfaces/interfaces';
     selector: 'exf-hero'
 })
 export class Hero extends Component {
-    @State('state') user: IUser = { firstName: 'Alexander', lastName: 'Todorov', devType: 'Web Developer' };
+    @State('state') user: IUser = { firstName: '', lastName: '', devType: '' };
 
     stylize() {
         return (
