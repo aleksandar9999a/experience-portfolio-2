@@ -1,5 +1,15 @@
 import ExF, { Component, CustomElement } from 'exf-ts';
 
+const routes = [
+	{ component: 'exf-hero', path: '/' },
+	{ component: 'exf-skills', path: '/skills' },
+	{ component: 'exf-about', path: '/about' },
+	{ component: 'exf-contacts', path: '/contacts' },
+	{ component: 'exf-projects', path: '/projects' },
+	{ component: 'exf-settings', path: '/settings' },
+	{ component: 'exf-details', path: '/details/:id' },
+]
+
 
 @CustomElement({
 	selector: 'exf-overlay'
@@ -28,31 +38,7 @@ export class Overlay extends Component {
 				<exf-navbar />
 
 				<div className="container">
-					<exf-router>
-						<exf-route route="/">
-							<exf-hero />
-						</exf-route>
-
-						<exf-route route="/skills">
-							<exf-skills />
-						</exf-route>
-
-						<exf-route route="/about">
-							<exf-about />
-						</exf-route>
-
-						<exf-route route="/contacts">
-							<exf-contacts />
-						</exf-route>
-
-						<exf-route route="/projects">
-							<exf-projects />
-						</exf-route>
-
-						<exf-route route="/settings">
-							<exf-settings />
-						</exf-route>
-					</exf-router>
+					<exf-router routes={routes} />
 				</div>
 
 				<exf-footer />

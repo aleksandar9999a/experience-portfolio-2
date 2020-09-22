@@ -54,7 +54,7 @@ const p: any[] = [
     selector: 'exf-projects'
 })
 export class Projects extends Component {
-    @State('state') projects: any[] = [];
+    @State('state') projects: any[] = p;
 
     stylize() {
         return (

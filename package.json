@@ -16,6 +16,7 @@
     "exf-ts": "^1.1.7",
     "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.4.1",
+    "path-to-regexp": "^6.1.0",
     "style-loader": "^1.2.1",
     "svg-inline-loader": "^0.8.2",
     "ts-loader": "^8.0.3",
