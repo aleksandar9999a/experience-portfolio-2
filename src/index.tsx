@@ -20,6 +20,7 @@ import { Skills } from './components/Skills';
 import { Timeline } from './components/Timeline';
 import { About } from './components/About';
 import { Contacts } from './components/Contacts';
+import { Projects } from './components/Projects';
 
 
 ExFModule({
@@ -39,7 +40,8 @@ ExFModule({
         Skills,
         Timeline,
         About,
-        Contacts
+        Contacts,
+        Projects
     ],
     bootstraps: [
         App
