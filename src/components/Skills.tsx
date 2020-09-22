@@ -39,6 +39,11 @@ export class Skills extends Component {
                         'text-align': 'center',
                         'min-height': '85vh',
 
+                        'h2': {
+                            'font-size': '40px',
+                            'color': '#08fdd8'
+						},
+
                         '.skills__inner': {
                             'margin-top': '50px'
                         },
@@ -59,7 +64,7 @@ export class Skills extends Component {
             <div className="skills">
                 <div className="skills__inner">
                     <div className="skills__head">
-                        <h1>Skills</h1>
+                        <h2>Skills</h2>
 
                         <p>{this.description}</p>  
                     </div>

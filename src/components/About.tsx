@@ -71,6 +71,11 @@ export class About extends Component {
                         'text-align': 'center',
                         'min-height': '85vh',
 
+                        'h2': {
+                            'font-size': '40px',
+                            'color': '#08fdd8'
+                        },
+
                         '.about__inner': {
                             'margin-top': '50px'
                         },
@@ -91,11 +96,11 @@ export class About extends Component {
             <div className="about">
                 <div className="about__inner">
                     <div className="about__head">
-                        <h1>About</h1>
+                        <h2>About</h2>
 
-                        <p>{this.description}</p>  
+                        <p>{this.description}</p>
                     </div>
-                    
+
                     <div className="about__body">
                         <exf-timeline items={this.timeline} />
                     </div>
