@@ -5,7 +5,8 @@ module.exports = {
 	entry: path.resolve(__dirname, 'src', 'index.tsx'),
 	output: {
 		path: path.join(__dirname, '/dist'),
-		filename: '[name].bundle.js'
+		filename: '[name].bundle.js',
+		publicPath: '/',
 	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js']
