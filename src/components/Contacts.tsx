@@ -77,6 +77,7 @@ export class Contacts extends Component {
 							'text-transform': 'uppercase',
 							'padding': '15px 35px',
 							'transition': 'box-shadow .15s',
+							'cursor': 'pointer'
 						},
 
 						'button:hover': {
