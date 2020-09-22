@@ -17,7 +17,7 @@ export class Hero extends Component {
                         'justify-content': 'center',
                         'text-align': 'center',
                         'align-items': 'center',
-                        'min-height': '85vh',
+                        'padding': '200px 0',
 
                         h1: {
                             'color': '#fff',

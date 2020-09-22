@@ -37,7 +37,6 @@ export class Skills extends Component {
                         'display': 'flex',
                         'justify-content': 'center',
                         'text-align': 'center',
-                        'min-height': '85vh',
 
                         'h2': {
                             'font-size': '40px',

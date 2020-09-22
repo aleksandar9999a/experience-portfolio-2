@@ -11,7 +11,11 @@ export class Overlay extends Component {
 			<style>
 				.overlay {
 					{
-						position: 'relative'
+						position: 'relative',
+
+						'.container': {
+							'min-height': '86vh'
+						}
 					}
 				}
 			</style>
@@ -23,27 +27,29 @@ export class Overlay extends Component {
 			<div className="overlay">
 				<exf-navbar />
 
-				<exf-router>
-					<exf-route route="/">
-						<exf-hero />
-					</exf-route>
+				<div className="container">
+					<exf-router>
+						<exf-route route="/">
+							<exf-hero />
+						</exf-route>
 
-					<exf-route route="/skills">
-						<exf-skills />
-					</exf-route>
+						<exf-route route="/skills">
+							<exf-skills />
+						</exf-route>
 
-					<exf-route route="/about">
-						<exf-about />
-					</exf-route>
+						<exf-route route="/about">
+							<exf-about />
+						</exf-route>
 
-					<exf-route route="/contacts">
-						<exf-contacts />
-					</exf-route>
+						<exf-route route="/contacts">
+							<exf-contacts />
+						</exf-route>
 
-					<exf-route route="/projects">
-						<exf-projects />
-					</exf-route>
-				</exf-router>
+						<exf-route route="/projects">
+							<exf-projects />
+						</exf-route>
+					</exf-router>
+				</div>
 
 				<exf-footer />
 			</div>

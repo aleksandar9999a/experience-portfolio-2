@@ -13,7 +13,6 @@ export class Contacts extends Component {
 					{
 						'padding': '50px 0 10px',
 						'text-align': 'center',
-						'min-height': '80vh',
 						'h2': {
 							'font-size': '40px'
 						},
