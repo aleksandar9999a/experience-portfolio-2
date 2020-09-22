@@ -8,9 +8,12 @@ import { ITab } from '../interfaces/interfaces';
 })
 export class Navbar extends Component {
     @State('state') tabs: ITab[] = [];
+    @State('state') isAuth: boolean = false;
 
     onCreate() {
-        this.tabs = tabsConfig;
+        this.tabs = this.isAuth
+            ? tabsConfig
+            : tabsConfig.filter(tab => !tab.auth)
     }
 
     stylize() {
@@ -38,7 +41,7 @@ export class Navbar extends Component {
                         },
 
                         'li + li': {
-                            'margin-left': '30px'
+                            'margin-left': '50px'
                         }
                     }
                 }
