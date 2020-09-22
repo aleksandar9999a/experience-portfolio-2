@@ -25,6 +25,7 @@ import { Settings } from './components/Settings';
 import { Project } from './components/Project';
 import { ContactsList } from './components/ContactsList';
 import { Details } from './components/Details';
+import { Slideshow } from './components/SlideShow';
 
 
 ExFModule({
@@ -49,7 +50,8 @@ ExFModule({
         Settings,
         Project,
         ContactsList,
-        Details
+        Details,
+        Slideshow
     ],
     bootstraps: [
         App
