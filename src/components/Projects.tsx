@@ -1,60 +1,10 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
-import img from './../assets/exf.png';
-
-const p: any[] = [
-    {
-        id: '1',
-        title: 'ExF-TS',
-        description: 'Web Components on Steroids. This is a small Web Components compiler that allows you to easily create reusable, dynamic, and easy-to-use components.',
-        link: 'https://github.com/aleksandar9999a/exf-ts',
-        creatorId: '',
-        cover: img,
-        images: []
-    },
-
-    {
-        id: '1',
-        title: 'ExF-TS',
-        description: 'Web Components on Steroids. This is a small Web Components compiler that allows you to easily create reusable, dynamic, and easy-to-use components.',
-        link: 'https://github.com/aleksandar9999a/exf-ts',
-        creatorId: '',
-        cover: img,
-        images: []
-    },
-    {
-        id: '1',
-        title: 'ExF-TS',
-        description: 'Web Components on Steroids. This is a small Web Components compiler that allows you to easily create reusable, dynamic, and easy-to-use components.',
-        link: 'https://github.com/aleksandar9999a/exf-ts',
-        creatorId: '',
-        cover: img,
-        images: []
-    },
-    {
-        id: '1',
-        title: 'ExF-TS',
-        description: 'Web Components on Steroids. This is a small Web Components compiler that allows you to easily create reusable, dynamic, and easy-to-use components.',
-        link: 'https://github.com/aleksandar9999a/exf-ts',
-        creatorId: '',
-        cover: img,
-        images: []
-    },
-    {
-        id: '1',
-        title: 'ExF-TS',
-        description: 'Web Components on Steroids. This is a small Web Components compiler that allows you to easily create reusable, dynamic, and easy-to-use components.',
-        link: 'https://github.com/aleksandar9999a/exf-ts',
-        creatorId: '',
-        cover: img,
-        images: []
-    },
-];
 
 @CustomElement({
     selector: 'exf-projects'
 })
 export class Projects extends Component {
-    @State('state') projects: any[] = p;
+    @State('state') projects: any[] = [];
 
     stylize() {
         return (

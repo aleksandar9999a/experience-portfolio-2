@@ -92,7 +92,7 @@ export class Timeline extends Component {
                 }
 
                 .timeline::-webkit-scrollbar {
-                    { height: '8px' }
+                    { 'height': '8px' }
                 }
 
                 .timeline::-webkit-scrollbar-track {

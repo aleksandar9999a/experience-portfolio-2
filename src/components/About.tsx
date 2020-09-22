@@ -1,8 +1,6 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { ITimelineItems } from '../interfaces/interfaces';
 
-const descDemo = 'Hello, My name is Alexander Velichkov Todorov. I am a native of Ruse, Bulgaria, 22 years old. I have loved computer technology since I was a child and for this reason I am involved in programming. I graduated in computer engineering and technology at PGEE Apostol Arnaudov in Ruse, and now I study programming at SoftUni, Sofia. So far I have one second place and two first places in applied electronics competitions, as well as a few certificates, which you can see below. There will be many more in the future!';
-
 const timelineDemo = [
     {
         id: 1,

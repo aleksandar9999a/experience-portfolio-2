@@ -11,15 +11,15 @@ export class Socials extends Component {
             <style>
                 .socials {
                     {
-                        a: {
-                            img: {
+                        'a': {
+                            'img': {
                                 'height': '40px',
                                 'transition': 'transform .15s'
                             }
                         },
 
                         'a:hover': {
-                            img: {
+                            'img': {
                                 'transform': 'scale(1.1)'
                             }
                         },

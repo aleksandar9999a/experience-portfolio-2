@@ -9,15 +9,15 @@ export class App extends Component {
 		return (
 			<style>
 				.wrapper {
-                    {
-                        'background-position': 'center',
-                        'background-repeat': 'no-repeat',
-                        'background-size': 'cover',
-                        'background-color': '#1d1d1d',
-                        'position': 'relative',
-                        'min-height': '100vh'
-                    }
-                }
+					{
+						'background-position': 'center',
+						'background-repeat': 'no-repeat',
+						'background-size': 'cover',
+						'background-color': '#1d1d1d',
+						'position': 'relative',
+						'min-height': '100vh'
+					}
+				}
 			</style>
 		)
 	}
@@ -26,6 +26,7 @@ export class App extends Component {
 		return (
 			<div className="wrapper">
 				<exf-constellation />
+
 				<exf-overlay />
 			</div>
 		)

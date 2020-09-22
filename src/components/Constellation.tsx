@@ -20,11 +20,15 @@ export class Constellation extends Component {
 		this.constellation_config = constellation_config;
 		this.canvas.width = this.constellation_config.width;
 		this.canvas.height = this.constellation_config.height;
+
 		this.init();
 	}
 
 	private setContext() {
-		if (!this.context) { return; }
+		if (!this.context) { 
+			return; 
+		}
+		
 		this.context.fillStyle = this.constellation_config.star.color;
 		this.context.strokeStyle = this.constellation_config.line.color;
 		this.context.lineWidth = this.constellation_config.line.width;

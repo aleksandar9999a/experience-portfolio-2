@@ -1,6 +1,4 @@
 import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
-import img from './../assets/exf.png';
-import img2 from './../assets/chat.png';
 
 
 @CustomElement({
@@ -9,13 +7,13 @@ import img2 from './../assets/chat.png';
 export class Details extends Component {
     @Prop('id') id!: string;
     @State('state') project = {
-        id: '1',
-        title: 'ExF-TS',
-        description: 'Web Components on Steroids. This is a small Web Components compiler that allows you to easily create reusable, dynamic, and easy-to-use components.',
-        link: 'https://github.com/aleksandar9999a/exf-ts',
+        id: '',
+        title: '',
+        description: '',
+        link: '',
         creatorId: '',
-        cover: img,
-        images: [img2, img2, img]
+        cover: '',
+        images: []
     }
 
     onCreate() {

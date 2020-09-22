@@ -1,4 +1,4 @@
-import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
+import ExF, { Component, CustomElement, Prop } from 'exf-ts';
 import { match } from 'path-to-regexp';
 import { IRoute } from './interfaces';
 

@@ -6,7 +6,7 @@ import { IUser } from '../interfaces/interfaces';
     selector: 'exf-hero'
 })
 export class Hero extends Component {
-    @State('state') user: IUser = { firstName: '', lastName: '', devType: 'Web Developer' };
+    @State('state') user: IUser = { firstName: '', lastName: '', devType: '' };
 
     stylize() {
         return (
@@ -19,13 +19,13 @@ export class Hero extends Component {
                         'align-items': 'center',
                         'padding': '200px 0',
 
-                        h1: {
+                        'h1': {
                             'color': '#fff',
                             'font-size': '50px',
                             'font-weight': '400'
                         },
 
-                        hr: {
+                        'hr': {
                             'background': '#08fdd8',
                             'height': '1px',
                             'border': '0',
@@ -57,7 +57,7 @@ export class Hero extends Component {
                             'exf-router-link': {
                                 'opacity': '100%',
                                 'pointer-events': 'auto',
-                                'z-index': 2
+                                'z-index': '2'
                             }
                         }
                     }
