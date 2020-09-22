@@ -48,6 +48,10 @@ export class Overlay extends Component {
 						<exf-route route="/projects">
 							<exf-projects />
 						</exf-route>
+
+						<exf-route route="/settings">
+							<exf-settings />
+						</exf-route>
 					</exf-router>
 				</div>
 
