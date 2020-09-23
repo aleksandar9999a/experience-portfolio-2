@@ -40,6 +40,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+src/config/firebase_config.ts
 
 # TypeScript v1 declaration files
 typings/
@@ -71,6 +72,8 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
+src/config/firebase_config.ts
+
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -102,6 +105,3 @@ dist
 
 # TernJS port file
 .tern-port
-
-#Configs
-src/config/firebase_config.ts

@@ -1,5 +1,6 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { IUser } from '../interfaces/interfaces';
+import { store } from '../redux/store';
 
 
 @CustomElement({
@@ -7,6 +8,14 @@ import { IUser } from '../interfaces/interfaces';
 })
 export class Hero extends Component {
     @State('state') user: IUser = { firstName: '', lastName: '', devType: '' };
+
+    onCreate() {
+        store.subscribe(() => {
+            this.user = store.getState().mainInfo;
+        })
+
+        store.dispatch({ type: 'GET_MAININFO' });
+    }
 
     stylize() {
         return (

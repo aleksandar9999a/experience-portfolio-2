@@ -1,5 +1,6 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { ITimelineItems } from '../interfaces/interfaces';
+import { store } from '../redux/store';
 
 
 @CustomElement({
@@ -8,6 +9,16 @@ import { ITimelineItems } from '../interfaces/interfaces';
 export class Skills extends Component {
     @State('state') timeline: ITimelineItems[] = [];
     @State('state') description: string = '';
+
+    onCreate() {
+        store.subscribe(() => {
+            const { skills } = store.getState();
+            this.description = skills.description;
+            this.timeline = skills.timeline;
+        })
+
+        store.dispatch({ type: 'GET_SKILLS' });
+    }
 
     stylize() {
         return (

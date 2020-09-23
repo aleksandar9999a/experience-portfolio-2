@@ -1,10 +1,26 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
+import { IProject } from '../interfaces/interfaces';
+import { store } from '../redux/store';
 
 @CustomElement({
     selector: 'exf-projects'
 })
 export class Projects extends Component {
     @State('state') projects: any[] = [];
+
+    onCreate() {
+        store.subscribe(() => {
+            const projects = store.getState().projects;
+
+            const arr = Object.keys(projects).reduce((acc: IProject[], key) => {
+                return [...acc, projects[key]];
+            }, [])
+
+            this.projects = arr;
+        })
+
+        store.dispatch({ type: 'GET_PROJECTS' })
+    }
 
     stylize() {
         return (

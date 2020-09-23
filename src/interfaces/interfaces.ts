@@ -63,7 +63,7 @@ export interface IUploadedImage {
 }
 
 export interface IProject {
-    _id?: string,
+    id: string,
     title: string,
     description: string, 
     link: string,
@@ -78,4 +78,9 @@ export interface IEmail {
     email: string,
     subject: string,
     message: string
+}
+
+export interface IBaseData {
+    description: string,
+    timeline: ITimelineItems[]
 }

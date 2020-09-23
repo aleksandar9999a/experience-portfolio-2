@@ -1,5 +1,6 @@
 import 'core-js';
 import './interfaces/interfaces';
+import './firebase';
 
 import './index.css';
 
