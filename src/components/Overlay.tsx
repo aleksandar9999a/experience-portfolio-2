@@ -1,4 +1,5 @@
-import ExF, { Component, CustomElement } from 'exf-ts';
+import ExF, { Component, CustomElement, State } from 'exf-ts';
+import { store } from '../redux/store';
 
 const routes = [
 	{ component: 'exf-hero', path: '/' },
@@ -16,6 +17,13 @@ const routes = [
 	selector: 'exf-overlay'
 })
 export class Overlay extends Component {
+	@State('state') isAuth: boolean = false;
+
+	onCreate() {
+		store.subscribe(() => {
+			this.isAuth = !!store.getState().user;
+		})
+	}
 
 	stylize() {
 		return (
@@ -36,7 +44,7 @@ export class Overlay extends Component {
 	render() {
 		return (
 			<div className="overlay">
-				<exf-navbar />
+				<exf-navbar isAuth={this.isAuth} />
 
 				<div className="container">
 					<exf-router routes={routes} />

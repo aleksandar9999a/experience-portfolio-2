@@ -1,6 +1,7 @@
 export const update_maininfo = Symbol('UPDATE_MAININFO');
 
 export const update_user = Symbol('UPDATE_USER');
+export const remove_user = Symbol('REMOVE_USER');
 
 export const update_skills = Symbol('UPDATE_SKILLS');
 

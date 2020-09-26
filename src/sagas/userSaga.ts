@@ -1,8 +1,15 @@
-import { put, takeEvery, call } from 'redux-saga/effects'
+import { put, takeEvery, call, take } from 'redux-saga/effects'
 import { auth } from '../firebase'
 import isEmail from 'validator/lib/isEmail';
-import { update_user } from '../redux/symbols';
+import { remove_user, update_user } from '../redux/symbols';
 
+/**
+ * User Login
+ * 
+ * @param {ReduxAction} action 
+ * 
+ * @return {Void}
+ */
 function* userLogin({ payload }: { type: string, payload: { email: string, password: string } }) {
     const { email, password } = payload;
 
@@ -24,6 +31,57 @@ function* userLogin({ payload }: { type: string, payload: { email: string, passw
     }
 }
 
+/**
+ * Handle User Login
+ */
 export function* handleUserLogin() {
     yield takeEvery('USER_LOGIN', userLogin)
+}
+
+/**
+ * Auth Change
+ * 
+ * @returns {Void}
+ */
+function* authChange() {
+    const channel = yield call(auth.channel);
+    const { error, user } = yield take(channel);
+
+    if (error) {
+        yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
+    } else {
+        yield put({ type: update_user, payload: user });
+    }
+}
+
+/**
+ * Handle auth change
+ */
+export function* handleAuthChange() {
+    yield takeEvery('AUTH_CHANGE', authChange)
+}
+
+/**
+ * Logout
+ * 
+ * @returns {Void}
+ */
+function* logout() {
+    try {
+        const data = yield call(auth.signOut);
+        yield put({ type: remove_user });
+        yield put({ type: 'ADD_SUCCESS_NOTIFICATION', payload: 'Successful logout!' });
+        window.history.pushState(null, '', '/');
+        window.dispatchEvent(new Event('locationchange'));
+    }
+    catch (error) {
+        yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
+    }
+}
+
+/**
+ * Handle Logout
+ */
+export function* handleLogout() {
+    yield takeEvery('USER_LOGOUT', logout)
 }

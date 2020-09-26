@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { update_user } from './symbols';
+import { remove_user, update_user } from './symbols';
 
 const initialState: null | { [key: string]: any } = null;
 
@@ -8,7 +8,8 @@ const userReducer = createReducer(initialState, {
         return !!state
             ? { ...state as any, ...payload }
             : payload
-    }
+    },
+    [remove_user]: (state, payload) => null
 })
 
 export default userReducer;

@@ -10,6 +10,8 @@ export class App extends Component {
 	@State('state') notifications: INotification[] = [];
 
 	onCreate() {
+		store.dispatch({ type: 'AUTH_CHANGE' });
+		
         store.subscribe(() => {
 			const { load, notifications } = store.getState();
 			this.isLoading = load;

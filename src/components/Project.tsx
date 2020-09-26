@@ -1,10 +1,10 @@
-import ExF, { Component, CustomElement, State } from 'exf-ts';
+import ExF, { Component, CustomElement, Prop } from 'exf-ts';
 
 @CustomElement({
     selector: 'exf-project'
 })
 export class Project extends Component {
-    @State('state') details = {
+    @Prop('state') details = {
         id: '',
         title: '',
         description: '',

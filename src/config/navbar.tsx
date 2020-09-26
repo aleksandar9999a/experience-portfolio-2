@@ -1,6 +1,5 @@
 import { ITab } from '../interfaces/interfaces';
 import chat from './../assets/chat.png';
-import arrow from './../assets/arrow-bar-right.png';
 import code from './../assets/code-slash.png';
 import column from './../assets/column-gap.png';
 import gear from './../assets/gear.png';
@@ -14,8 +13,7 @@ const tabsConfig: ITab[] = [
     { id: 3, name: 'Home', route: '/', icon: house },
     { id: 4, name: 'About', route: '/about', icon: person },
     { id: 5, name: 'Contacts', route: '/contacts', icon: chat },
-    { id: 6, name: 'Settings', route: '/settings', auth: true, icon: gear },
-    { id: 7, name: 'Log Out', route: '/logout', auth: true, icon: arrow }
+    { id: 6, name: 'Settings', route: '/settings', auth: true, icon: gear }
 ]
 
 export default tabsConfig;

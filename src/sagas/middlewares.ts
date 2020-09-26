@@ -2,7 +2,13 @@ import { handleGetMainInfo } from './mainInfoSaga';
 import { handleGetProjects } from './projectsSaga';
 import { handleGetAbout } from './aboutSaga';
 import { handleGetSkills } from './skillsSaga';
-import { handleUserLogin } from './userSaga';
+
+import {
+    handleAuthChange,
+    handleLogout,
+    handleUserLogin
+} from './userSaga';
+
 import {
     handleAddErrorNotification,
     handleAddSuccessNotification,
@@ -17,5 +23,7 @@ export default [
     handleUserLogin,
     handleAddWarningNotification,
     handleAddErrorNotification,
-    handleAddSuccessNotification
+    handleAddSuccessNotification,
+    handleAuthChange,
+    handleLogout
 ]

@@ -1,19 +1,17 @@
-import ExF, { Component, CustomElement, State } from 'exf-ts';
+import ExF, { Component, CustomElement, Prop } from 'exf-ts';
 import tabsConfig from '../config/navbar';
-import { ITab } from '../interfaces/interfaces';
+import { store } from '../redux/store';
+import arrow from './../assets/arrow-bar-right.png'
 
 
 @CustomElement({
     selector: 'exf-navbar'
 })
 export class Navbar extends Component {
-    @State('state') tabs: ITab[] = [];
-    @State('state') isAuth: boolean = false;
+    @Prop('state') isAuth: boolean = false;
 
-    onCreate() {
-        this.tabs = this.isAuth
-            ? tabsConfig
-            : tabsConfig.filter(tab => !tab.auth)
+    handleLogOut = () => {
+        store.dispatch({ type: 'USER_LOGOUT' });
     }
 
     stylize() {
@@ -42,6 +40,14 @@ export class Navbar extends Component {
 
                         'li + li': {
                             'margin-left': '50px'
+                        },
+
+                        '.navbar__logout': {
+                            'position': 'absolute',
+                            'top': '20px',
+                            'right': '6px',
+                            'min-width': '60px',
+                            'cursor': 'pointer'
                         }
                     }
                 }
@@ -50,12 +56,16 @@ export class Navbar extends Component {
     }
 
     render() {
+        const tabs = this.isAuth
+            ? tabsConfig
+            : tabsConfig.filter(tab => !tab.auth)
+
         return (
             <div className="navbar">
                 <exf-logo />
 
                 <ul>
-                    {this.tabs.map(({ route, name, icon }) => {
+                    {tabs.map(({ route, name, icon }) => {
                         return (
                             <li>
                                 <exf-router-link route={route}>
@@ -65,6 +75,16 @@ export class Navbar extends Component {
                         )
                     })}
                 </ul>
+
+                {
+                    this.isAuth
+                        ? (
+                            <div className="navbar__logout" onClick={this.handleLogOut}>
+                                <exf-navbar-tab name={'Log Out'} image={arrow} />
+                            </div>
+                        )
+                        : null
+                }
             </div>
         )
     }

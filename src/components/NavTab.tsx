@@ -15,6 +15,7 @@ export class NavbarTab extends Component {
                         'color': '#08fdd8',
                         'text-decoration': 'none',
                         'font-size': '15px',
+                        'position': 'relative',
 
                         'span': {
                             'opacity': '0',
