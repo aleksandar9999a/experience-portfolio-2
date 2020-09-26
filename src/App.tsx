@@ -11,7 +11,9 @@ export class App extends Component {
 
 	onCreate() {
         store.subscribe(() => {
-            this.isLoading = store.getState().load;
+			const { load, notifications } = store.getState();
+			this.isLoading = load;
+			this.notifications = notifications;
         })
     }
 
@@ -38,7 +40,7 @@ export class App extends Component {
 						'exf-notifications': {
 							'position': 'absolute',
 							'bottom': '10%',
-							'right': '0'
+							'right': '2%'
 						}
 					}
 				}

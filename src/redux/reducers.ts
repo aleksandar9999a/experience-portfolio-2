@@ -5,6 +5,7 @@ import skillsReducer from './skillsReducer';
 import aboutReducer from './aboutReducer';
 import userReducer from './userReducer';
 import loadReducer from './loadReducer';
+import notificationsReducer from './notificationsReducer';
 
 export const allReducers = combineReducers({
     mainInfo: mainInfoReducer,
@@ -12,5 +13,6 @@ export const allReducers = combineReducers({
     skills: skillsReducer,
     about: aboutReducer,
     user: userReducer,
-    load: loadReducer
+    load: loadReducer,
+    notifications: notificationsReducer
 })

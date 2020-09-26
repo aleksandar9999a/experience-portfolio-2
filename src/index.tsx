@@ -29,6 +29,7 @@ import { Slideshow } from './components/SlideShow';
 import { Login } from './components/Login';
 import { Load } from './components/Load';
 import { Notifications } from './components/Notifications';
+import { Notification } from './components/Notification';
 
 
 ExFModule({
@@ -56,7 +57,8 @@ ExFModule({
         Slideshow,
         Login,
         Load,
-        Notifications
+        Notifications,
+        Notification
     ],
     bootstraps: [
         App

@@ -1,14 +1,17 @@
 import { INotification } from "../interfaces/interfaces";
-import { createReducer, createAction } from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
+import { add_notification, remove_notification } from "./symbols";
 
 const initialState: INotification[] = []
 
-const addSymbol = Symbol('ADD_NOTIFICATION');
-// const add = createAction('ADD_NOTIFICATION')
-
-const aboutReducer = createReducer(initialState, {
-    [addSymbol]: (state, { payload }) => [...state, payload as any as INotification]
+const notificationsReducer = createReducer(initialState, {
+    [add_notification]: (state, { payload }) => [payload, ...state],
+    [remove_notification]: (state, { payload }) => {
+        return state.filter(not => {
+            return not.id !== payload;
+        })
+    }
 })
 
 
-export default aboutReducer;
+export default notificationsReducer;
