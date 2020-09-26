@@ -17,10 +17,6 @@ export class Hero extends Component {
         store.dispatch({ type: 'GET_MAININFO' });
     }
 
-    handleNotification(type: string) {
-        store.dispatch({ type: `ADD_${type}_NOTIFICATION`, payload: type })
-    }
-
     stylize() {
         return (
             <style>
@@ -102,12 +98,6 @@ export class Hero extends Component {
 
                     <div className="hero__socials">
                         <exf-socials />
-                    </div>
-
-                    <div>
-                        <button onClick={() => this.handleNotification('WARNING')}>warning</button>
-                        <button onClick={() => this.handleNotification('ERROR')}>error</button>
-                        <button onClick={() => this.handleNotification('SUCCESS')}>success</button>
                     </div>
                 </div>
             </div>
