@@ -1,10 +1,32 @@
-import ExF, { Component, CustomElement } from 'exf-ts';
+import ExF, { Component, CustomElement, State } from 'exf-ts';
+import { store } from '../redux/store';
 
 
 @CustomElement({
 	selector: 'exf-contacts'
 })
 export class Contacts extends Component {
+	@State('state') name: string = '';
+	@State('state') email: string = '';
+	@State('state') subject: string = '';
+	@State('state') message: string = '';
+
+	handleInput(e: any, type: 'name' | 'email' | 'subject' | 'message') {
+		(this as any)[type] = e.target.value;
+	}
+
+	handleSubmit = (e: any) => {
+		e.preventDefault();
+
+		const payload = {
+			email: this.email,
+			name: this.email,
+			subject: this.subject,
+			message: this.message
+		}
+
+		store.dispatch({ type: 'SEND_EMAIL', payload });
+	}
 
 	stylize() {
 		return (
@@ -52,7 +74,7 @@ export class Contacts extends Component {
 							'border-color': '#08fdd8'
 						},
 
-						'.field:focus ~ label': {
+						'.field:focus ~ label, .field:valid ~ label': {
 							'top': '-15px',
 							'left': '10px',
 							'color': '#08fdd8'
@@ -93,7 +115,7 @@ export class Contacts extends Component {
 		return (
 			<div className="contacts-form">
 				<div className="form__inner">
-					<form>
+					<form onSubmit={this.handleSubmit}>
 						<div className="form__head">
 							<h2>Contact with me!</h2>
 						</div>
@@ -101,7 +123,14 @@ export class Contacts extends Component {
 						<div className="form__body">
 							<div className="form__row">
 								<div className="form__controls">
-									<input id="name" type="text" className="field" />
+									<input
+										id="name"
+										type="text"
+										className="field"
+										value={this.name}
+										onInput={(e: any) => this.handleInput(e, 'name')}
+										required
+									/>
 
 									<label htmlFor="name">Name</label>
 								</div>
@@ -109,7 +138,14 @@ export class Contacts extends Component {
 
 							<div className="form__row">
 								<div className="form__controls">
-									<input id="email" type="email" className="field" />
+									<input
+										id="email"
+										type="email"
+										className="field"
+										value={this.email}
+										onInput={(e: any) => this.handleInput(e, 'email')}
+										required
+									/>
 
 									<label htmlFor="email">Email</label>
 								</div>
@@ -117,7 +153,14 @@ export class Contacts extends Component {
 
 							<div className="form__row">
 								<div className="form__controls">
-									<input id="subject" type="text" className="field" />
+									<input
+										id="subject"
+										type="text"
+										className="field"
+										value={this.subject}
+										onInput={(e: any) => this.handleInput(e, 'subject')}
+										required
+									/>
 
 									<label htmlFor="subject">Subject</label>
 								</div>
@@ -125,7 +168,13 @@ export class Contacts extends Component {
 
 							<div className="form__row">
 								<div className="form__controls">
-									<textarea id="message" className="field field--textarea" />
+									<textarea
+										id="message"
+										className="field field--textarea"
+										value={this.message}
+										onInput={(e: any) => this.handleInput(e, 'message')}
+										required
+									/>
 
 									<label htmlFor="message">Message</label>
 								</div>

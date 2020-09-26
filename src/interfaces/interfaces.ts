@@ -1,18 +1,18 @@
 export interface IConstellationConfig {
-	star: IConfigDefault,
-	line: IConfigDefault,
-	width: number,
-	height: number,
-	velocity: number,
-	length: number,
-	distance: number,
-	radius: number
+    star: IConfigDefault,
+    line: IConfigDefault,
+    width: number,
+    height: number,
+    velocity: number,
+    length: number,
+    distance: number,
+    radius: number
 }
 
 interface IConfigDefault {
-	color: string,
-	width: number,
-	randomWidth: boolean
+    color: string,
+    width: number,
+    randomWidth: boolean
 }
 
 export interface IStarCoords {
@@ -73,20 +73,11 @@ export interface IUploadedImage {
 export interface IProject {
     id: string,
     title: string,
-    description: string, 
+    description: string,
     link: string,
     creatorId?: string,
     images: IUploadedImage[],
     cover: string
-}
-
-export interface IEmail {
-    _id?: string,
-    isAnswered?: boolean,
-    name: string,
-    email: string,
-    subject: string,
-    message: string
 }
 
 export interface IBaseData {
@@ -98,4 +89,13 @@ export interface INotification {
     id: string,
     message: string,
     type: 'success' | 'warning' | 'error'
+}
+
+export interface IEmail {
+    id?: string,
+    isAnswered?: boolean,
+    email: string,
+    name: string,
+    subject: string,
+    message: string
 }

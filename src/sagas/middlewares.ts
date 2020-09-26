@@ -14,6 +14,7 @@ import {
     handleAddSuccessNotification,
     handleAddWarningNotification
 } from './notificationsSaga';
+import { handleSendEmail } from './emailSaga';
 
 export default [
     handleGetMainInfo,
@@ -26,5 +27,6 @@ export default [
     handleAddErrorNotification,
     handleAddSuccessNotification,
     handleAuthChange,
-    handleLogout
+    handleLogout,
+    handleSendEmail
 ]
