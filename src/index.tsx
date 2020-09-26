@@ -30,6 +30,8 @@ import { Login } from './components/Login';
 import { Load } from './components/Load';
 import { Notifications } from './components/Notifications';
 import { Notification } from './components/Notification';
+import { CreateProjectTile } from './components/CreateProjectTile';
+import { CreateProject } from './components/CreateProject';
 
 
 ExFModule({
@@ -58,7 +60,9 @@ ExFModule({
         Login,
         Load,
         Notifications,
-        Notification
+        Notification,
+        CreateProjectTile,
+        CreateProject
     ],
     bootstraps: [
         App

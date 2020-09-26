@@ -10,6 +10,7 @@ const routes = [
 	{ component: 'exf-settings', path: '/settings' },
 	{ component: 'exf-login', path: '/login' },
 	{ component: 'exf-details', path: '/details/:id' },
+	{ component: 'exf-create-project', path: '/create-project' }
 ]
 
 

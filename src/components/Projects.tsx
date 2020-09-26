@@ -5,17 +5,22 @@ import { store } from '../redux/store';
     selector: 'exf-projects'
 })
 export class Projects extends Component {
-    @State('state') projects: any[] = [];
+    @State() projects: any[] = [];
+    @State('user') user: any = null;
 
     onCreate() {
         store.subscribe(() => {
-            this.projects = store.getState().projects;
+            const { projects, user } = store.getState();
+            this.projects = projects;
+            this.user = user;
         })
 
         store.dispatch({ type: 'GET_PROJECTS' })
     }
 
     stylize() {
+        const flex = this.projects.length !== 1 ? '0 0 calc(25% - 20px)' : '0';
+
         return (
             <style>
                 .projects {
@@ -42,13 +47,20 @@ export class Projects extends Component {
                         '.projects__body': {
                             'display': 'flex',
                             'flex-wrap': 'wrap',
+                            'justify-content': 'center',
                             'width': '1200px',
                             'margin': '0 -10px',
 
                             '.projects__item': {
-                                'flex': '0 0 calc(25% - 20px)',
+                                'flex': flex,
                                 'margin': '20px 10px'
                             }
+                        },
+
+                        '.projects__actions': {
+                            'display': 'flex',
+                            'margin': '35px 0',
+                            'justify-content': 'center'
                         }
                     }
                 }
@@ -69,11 +81,21 @@ export class Projects extends Component {
                             return (
                                 <div className="projects__item">
                                     <exf-router-link route={`/details/${project.id}`}>
-                                        <exf-project details={project}/>
+                                        <exf-project details={project} />
                                     </exf-router-link>
                                 </div>
                             )
                         })}
+                    </div>
+
+                    <div className="projects__actions">
+                        {!!this.user
+                            ? (
+                                <exf-router-link route="/create-project">
+                                    <exf-create-project-tile />
+                                </exf-router-link>
+                            )
+                            : null}
                     </div>
                 </div>
             </div>
