@@ -1,5 +1,5 @@
 import { handleGetMainInfo } from './mainInfoSaga';
-import { handleGetProjects } from './projectsSaga';
+import { handleGetProject, handleGetProjects } from './projectsSaga';
 import { handleGetAbout } from './aboutSaga';
 import { handleGetSkills } from './skillsSaga';
 
@@ -18,6 +18,7 @@ import {
 export default [
     handleGetMainInfo,
     handleGetProjects,
+    handleGetProject,
     handleGetAbout,
     handleGetSkills,
     handleUserLogin,

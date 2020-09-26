@@ -68,7 +68,8 @@ export interface IProject {
     description: string, 
     link: string,
     creatorId?: string,
-    images: IUploadedImage[]
+    images: IUploadedImage[],
+    cover: string
 }
 
 export interface IEmail {

@@ -65,7 +65,7 @@ export class Slideshow extends Component {
         return (
             <div className="slideshow">
                 <div className="slideshow__image">
-                    <img src={currImage} alt="Slideshow image" />
+                    {!!currImage ? <img src={currImage} alt="Slideshow image" /> : null}
                 </div>
 
                 <div className="slideshow__tiles">

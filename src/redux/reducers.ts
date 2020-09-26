@@ -6,6 +6,7 @@ import aboutReducer from './aboutReducer';
 import userReducer from './userReducer';
 import loadReducer from './loadReducer';
 import notificationsReducer from './notificationsReducer';
+import projectReducer from './projectReducer';
 
 export const allReducers = combineReducers({
     mainInfo: mainInfoReducer,
@@ -14,5 +15,6 @@ export const allReducers = combineReducers({
     about: aboutReducer,
     user: userReducer,
     load: loadReducer,
-    notifications: notificationsReducer
+    notifications: notificationsReducer,
+    currentProject: projectReducer
 })

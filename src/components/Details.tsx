@@ -1,4 +1,6 @@
 import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
+import { IProject } from '../interfaces/interfaces';
+import { store } from '../redux/store';
 
 
 @CustomElement({
@@ -6,7 +8,8 @@ import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
 })
 export class Details extends Component {
     @Prop('id') id!: string;
-    @State('state') project = {
+    @State('state') currentUser: any = null;
+    @State('state') project: IProject = {
         id: '',
         title: '',
         description: '',
@@ -17,6 +20,13 @@ export class Details extends Component {
     }
 
     onCreate() {
+        store.subscribe(() => {
+            const { currentProject, user } = store.getState();
+            this.project = currentProject;
+            this.currentUser = user;
+        })
+
+        store.dispatch({ type: 'GET_PROJECT', payload: this.id })
     }
 
     stylize() {
@@ -106,7 +116,9 @@ export class Details extends Component {
                     </div>
 
                     <div className="details__slideshow">
-                        <exf-slideshow images={[cover, ...images]} />
+                        {!!this.project.cover
+                            ? <exf-slideshow images={[cover, ...images]} />
+                            : null}
                     </div>
 
                     <div className="details__body">
@@ -117,13 +129,17 @@ export class Details extends Component {
                         <a href={link}>{link}</a>
                     </div>
 
-                    <div className="details__actions">
-                        <div className="details__btn-link">
-                            <exf-router-link>Edit</exf-router-link>
-                        </div>
+                    {!!this.currentUser && this.currentUser.uid === this.project.creatorId
+                        ? (
+                            <div className="details__actions">
+                                <div className="details__btn-link">
+                                    <exf-router-link>Edit</exf-router-link>
+                                </div>
 
-                        <button>Delete</button>
-                    </div>
+                                <button>Delete</button>
+                            </div>
+                        )
+                        : null}
                 </div>
             </div>
         )
