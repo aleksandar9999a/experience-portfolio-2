@@ -66,7 +66,7 @@ export interface ITimelineItems {
 }
 
 export interface IUploadedImage {
-    _id: string,
+    id: string,
     url: string
 }
 
