@@ -21,9 +21,6 @@ export class Login extends Component {
         e.preventDefault();
 
         store.dispatch({ type: 'USER_LOGIN', payload: { email: this.email, password: this.password }});
-
-        this.email = '';
-        this.password = '';
     }
 
     render() {
