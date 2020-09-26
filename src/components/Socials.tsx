@@ -1,11 +1,12 @@
-import ExF, { Component, CustomElement } from 'exf-ts';
-import contacts from '../config/contacts';
-import icons from '../config/icons';
+import ExF, { Component, CustomElement, Prop } from 'exf-ts';
+import { ISocials } from '../interfaces/interfaces';
 
 @CustomElement({
     selector: 'exf-socials'
 })
 export class Socials extends Component {
+    @Prop('state') contacts: ISocials[] = [];
+
     stylize() {
         return (
             <style>
@@ -37,10 +38,10 @@ export class Socials extends Component {
 
         return (
             <div className="socials">
-                {contacts.map(({ alt, icon, href }) => {
+                {this.contacts.map(({ link, image, name }) => {
                     return (
-                        <a href={href} target="_blank" rel="noopener noreferrer">
-                            <img src={icons[icon]} alt={alt}/>
+                        <a href={link} target="_blank" rel="noopener noreferrer">
+                            <img src={image} alt={name}/>
                         </a>
                     )
                 })}

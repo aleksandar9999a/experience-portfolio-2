@@ -34,7 +34,15 @@ export interface ITab {
 export interface IUser {
     firstName: string,
     lastName: string,
-    devType: string
+    devType: string,
+    socials: ISocials[]
+}
+
+export interface ISocials {
+    id: string,
+    link: string,
+    image: string,
+    name: string
 }
 
 export interface IContact {

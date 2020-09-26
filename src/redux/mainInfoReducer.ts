@@ -5,7 +5,8 @@ import { update_maininfo } from './symbols';
 const initialState: IUser = {
     firstName: '',
     lastName: '',
-    devType: ''
+    devType: '',
+    socials: []
 }
 
 const mainInfoReducer = createReducer(initialState, {

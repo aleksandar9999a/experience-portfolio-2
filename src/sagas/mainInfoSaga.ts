@@ -10,8 +10,19 @@ import { update_loader, update_maininfo } from '../redux/symbols';
 function* getMainInfo() {
     yield put({ type: update_loader, payload: true });
 
-    const snapshot = yield call(firestore.getDocument, `users/${defaultUser}`);
-    const payload = snapshot.data();
+    const infoShot = yield call(firestore.getDocument, `users/${defaultUser}`);
+    const socialsShot = yield call(firestore.getCollection, `users/${defaultUser}/socials`);
+    const info = infoShot.data();
+
+    const payload = {
+        ...info,
+        socials: []
+    }
+
+    socialsShot.forEach((shot: any) => {
+        const data = shot.data();
+        payload.socials.push(data);
+    })
 
     yield put({ type: update_maininfo, payload });
     

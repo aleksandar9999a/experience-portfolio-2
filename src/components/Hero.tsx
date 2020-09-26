@@ -7,7 +7,7 @@ import { store } from '../redux/store';
     selector: 'exf-hero'
 })
 export class Hero extends Component {
-    @State('state') user: IUser = { firstName: '', lastName: '', devType: '' };
+    @State('state') user: IUser = { firstName: '', lastName: '', devType: '', socials: [] };
 
     onCreate() {
         store.subscribe(() => {
@@ -76,7 +76,7 @@ export class Hero extends Component {
     }
 
     render() {
-        const { firstName, lastName, devType } = this.user;
+        const { firstName, lastName, devType, socials } = this.user;
 
         return (
             <div className="hero">
@@ -97,7 +97,7 @@ export class Hero extends Component {
                     </div>
 
                     <div className="hero__socials">
-                        <exf-socials />
+                        <exf-socials contacts={socials} />
                     </div>
                 </div>
             </div>
