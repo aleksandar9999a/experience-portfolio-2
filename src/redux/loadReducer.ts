@@ -1,13 +1,10 @@
-import { createReducer, createAction } from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
+import { update_loader } from './symbols';
 
 const initialState: boolean = false;
 
-const update = createAction('UPDATE_LOAD')
-
-const loadReducer = createReducer(initialState, (builder) => {
-    builder.addCase(update, (_, action) => {
-        return action.payload
-    })
+const loadReducer = createReducer(initialState, {
+    [update_loader]: (_, { payload }) => payload
 })
 
 export default loadReducer;
