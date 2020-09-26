@@ -13,6 +13,7 @@ export class Skills extends Component {
     onCreate() {
         store.subscribe(() => {
             const { skills } = store.getState();
+            
             this.description = skills.description;
             this.timeline = skills.timeline;
         })

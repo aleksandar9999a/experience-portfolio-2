@@ -51,7 +51,7 @@ export type TIconsOptions = {
 export interface ITimelineItems {
     id: number,
     title: string,
-    desc: string,
+    description: string,
     link?: string,
     start?: string,
     end?: string

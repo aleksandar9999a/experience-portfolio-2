@@ -7,10 +7,14 @@ import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
 export class Slideshow extends Component {
     @Prop('state') images!: string[];
     @State('state') index: number = 0;
-    @State('state') isShowModal: boolean = false;
+    @State('style') isShowModal: boolean = false;
 
     handleChange(index: number) {
         this.index = index;
+    }
+
+    handleOpenCloseModal = () => {
+        this.isShowModal = !this.isShowModal;
     }
 
     stylize() {
@@ -34,7 +38,11 @@ export class Slideshow extends Component {
 
                         '.slideshow__tiles': {
                             'display': 'flex',
-                            'justify-content': 'center'
+                            'justify-content': 'center',
+                            'margin': '0 auto',
+                            'max-width': '500px',
+                            'overflow': 'hidden',
+                            'overflow-x': 'auto'
                         },
 
                         '.slideshow__tile': {
@@ -46,6 +54,31 @@ export class Slideshow extends Component {
 
                         '.slideshow__tile:hover': {
                             'transform': 'scale(1.02)'
+                        },
+
+                        '.slideshow__modal': {
+                            'position': 'absolute',
+                            'display': this.isShowModal ? 'block' : 'none',
+                            'top': '0',
+                            'bottom': '0',
+                            'left': '0',
+                            'right': '0',
+                            'background': 'rgba(0,0,0,0.8)',
+
+                            '.slideshow__modal-image': {
+                                'position': 'relative',
+                                'width': '700px',
+                                'height': '700px',
+                                'margin': '5% auto 0'
+                            },
+
+                            'span': {
+                                'display': 'inline-block',
+                                'position': 'absolute',
+                                'top': '2%',
+                                'right': '2%',
+                                'cursor': 'pointer'
+                            }
                         },
 
                         'img': {
@@ -60,11 +93,11 @@ export class Slideshow extends Component {
     }
 
     render() {
-        const currImage = this.images[this.index]
+        const currImage = this.images[this.index];
 
         return (
             <div className="slideshow">
-                <div className="slideshow__image">
+                <div className="slideshow__image" onClick={this.handleOpenCloseModal}>
                     {!!currImage ? <img src={currImage} alt="Slideshow image" /> : null}
                 </div>
 
@@ -78,19 +111,13 @@ export class Slideshow extends Component {
                     })}
                 </div>
 
-                {
-                    this.isShowModal
-                        ? (
-                            <div className="slideshow__modal">
-                                <div className="slideshow__modal-image">
-                                    <img src={currImage} alt="Modal image" />
-                                </div>
+                <div className="slideshow__modal">
+                    <div className="slideshow__modal-image">
+                        <img src={currImage} alt="Modal image" />
+                    </div>
 
-                                <span>&times;</span>
-                            </div>
-                        )
-                        : null
-                }
+                    <span onClick={this.handleOpenCloseModal}>&times;</span>
+                </div>
             </div>
         )
     }

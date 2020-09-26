@@ -112,7 +112,7 @@ export class Timeline extends Component {
     render() {
         return (
             <ul className="timeline">
-                {this.items.map(({ link, title, desc, start, end }: ITimelineItems) => {
+                {this.items.map(({ link, title, description, start, end }: ITimelineItems) => {
                     return (
                         <li>
                             <div className="timeline__badge"></div>
@@ -122,7 +122,7 @@ export class Timeline extends Component {
                                     <a href={link} target="_blank">{title}</a>
                                 </h4>
 
-                                <p>{desc}</p>
+                                <p>{description}</p>
 
                                 <div className="timeline__foot">
                                     <p>Start: <span>{start}</span></p>
