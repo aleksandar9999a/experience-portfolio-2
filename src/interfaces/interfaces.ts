@@ -84,3 +84,9 @@ export interface IBaseData {
     description: string,
     timeline: ITimelineItems[]
 }
+
+export interface INotification {
+    id: string,
+    message: string,
+    type: 'success' | 'warning' | 'error'
+}

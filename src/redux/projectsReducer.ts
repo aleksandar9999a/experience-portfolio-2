@@ -1,13 +1,12 @@
-import { createReducer, createAction } from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
+import { update_projects } from './symbols';
 
 const initialState: any = {};
 
-const update = createAction('UPDATE_PROJECTS')
-
-const projectsReducer = createReducer(initialState, (builder) => {
-    builder.addCase(update, (state, action) => {
-        return action.payload
-    })
+const projectsReducer = createReducer(initialState, {
+    [update_projects]: (_, { payload }) => {
+        return payload;
+    }
 })
 
 export default projectsReducer;

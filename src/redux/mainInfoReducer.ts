@@ -1,5 +1,6 @@
 import { IUser } from "../interfaces/interfaces";
-import { createReducer, createAction } from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
+import { update_maininfo } from './symbols';
 
 const initialState: IUser = {
     firstName: '',
@@ -7,12 +8,10 @@ const initialState: IUser = {
     devType: ''
 }
 
-const update = createAction('UPDATE_MAININFO')
-
-const mainInfoReducer = createReducer(initialState, (builder) => {
-    builder.addCase(update, (state, action) => {
-        return { ...state, ...action.payload as any as IUser }
-    })
+const mainInfoReducer = createReducer(initialState, {
+    [update_maininfo]: (state, { payload }) => { 
+        return { ...state, ...payload } 
+    }
 })
 
 export default mainInfoReducer;

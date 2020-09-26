@@ -1,17 +1,16 @@
 import { IBaseData } from "../interfaces/interfaces";
-import { createReducer, createAction } from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
+import { update_about } from "./symbols";
 
 const initialState: IBaseData = {
     description: '',
     timeline: [],
 }
 
-const update = createAction('UPDATE_ABOUT')
-
-const aboutReducer = createReducer(initialState, (builder) => {
-    builder.addCase(update, (state, action) => {
-        return { ...state, ...action.payload as any as IBaseData }
-    })
+const aboutReducer = createReducer(initialState, {
+    [update_about]: (state, { payload }) => {
+        return { ...state, ...payload }
+    }
 })
 
 export default aboutReducer;
