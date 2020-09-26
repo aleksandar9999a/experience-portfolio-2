@@ -4,6 +4,9 @@ import { firestore } from '../firebase'
 import { IProject } from '../interfaces/interfaces';
 import { update_projects } from '../redux/symbols';
 
+/**
+ * Get Projects Information 
+ */
 function* getProjects() {
     const snapshot = yield call(firestore.getDocument, `projects/${defaultUser}`);
     const data = snapshot.data();
@@ -15,6 +18,9 @@ function* getProjects() {
     yield put({ type: update_projects, payload })
 }
 
+/**
+ * Handle Get Projects Information 
+ */
 export function* handleGetProjects() {
     yield takeEvery('GET_PROJECTS', getProjects)
 }
