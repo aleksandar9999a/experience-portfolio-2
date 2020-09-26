@@ -8,3 +8,4 @@ import ReduxSagaFirebase from 'redux-saga-firebase'
 export const firebaseApp = firebase.initializeApp(firebaseConfig);
 export const rsf = new ReduxSagaFirebase(firebaseApp);
 export const firestore = rsf.firestore;
+export const auth = rsf.auth;
