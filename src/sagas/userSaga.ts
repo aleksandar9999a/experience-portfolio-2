@@ -1,7 +1,7 @@
 import { put, takeEvery, call, take } from 'redux-saga/effects'
 import { auth } from '../firebase'
 import isEmail from 'validator/lib/isEmail';
-import { remove_user, update_user } from '../redux/symbols';
+import { remove_user, update_loader, update_user } from '../redux/symbols';
 
 /**
  * User Login
@@ -11,6 +11,8 @@ import { remove_user, update_user } from '../redux/symbols';
  * @return {Void}
  */
 function* userLogin({ payload }: { type: string, payload: { email: string, password: string } }) {
+    yield put({ type: update_loader, payload: true });
+
     const { email, password } = payload;
 
     if (!isEmail(email)) {
@@ -29,6 +31,8 @@ function* userLogin({ payload }: { type: string, payload: { email: string, passw
             yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: err.message });
         }
     }
+
+    yield put({ type: update_loader, payload: false });
 }
 
 /**
@@ -67,15 +71,19 @@ export function* handleAuthChange() {
  * @returns {Void}
  */
 function* logout() {
+    yield put({ type: update_loader, payload: true });
+
     try {
-        const data = yield call(auth.signOut);
+        yield call(auth.signOut);
         yield put({ type: remove_user });
         yield put({ type: 'ADD_SUCCESS_NOTIFICATION', payload: 'Successful logout!' });
         window.history.pushState(null, '', '/');
         window.dispatchEvent(new Event('locationchange'));
+        yield put({ type: update_loader, payload: false });
     }
     catch (error) {
         yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
+        yield put({ type: update_loader, payload: false });
     }
 }
 
