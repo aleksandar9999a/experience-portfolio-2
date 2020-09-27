@@ -32,6 +32,10 @@ import { Notifications } from './components/Notifications';
 import { Notification } from './components/Notification';
 import { CreateProjectTile } from './components/CreateProjectTile';
 import { CreateProject } from './components/CreateProject';
+import { store } from './redux/store';
+
+
+store.dispatch({ type: 'AUTH_CHANGE' });
 
 
 ExFModule({
