@@ -1,6 +1,6 @@
 import { put, takeEvery, call } from 'redux-saga/effects'
 import { firestore } from '../firebase'
-import { IBaseUserInfo } from '../interfaces/interfaces';
+import { IBaseUserInfo, ITimelineItems } from '../interfaces/interfaces';
 import { store } from '../redux/store';
 import { update_loader, update_mydata } from '../redux/symbols';
 
@@ -106,4 +106,66 @@ function* submitUserdata({ payload }: { type: string, payload: IBaseUserInfo }) 
  */
 export function* handleSubmitUserdata() {
     yield takeEvery('SUBMIT_USERDATA', submitUserdata);
+}
+
+/**
+ * Submit Skills Timeline
+ * 
+ * @param {ReduxAction} action
+ */
+function* submitSkillsTimeline({ payload }: { type: string, payload: ITimelineItems[] }) {
+    yield put({ type: update_loader, payload: true });
+
+    const uid = (store as any).getState().user.uid;
+    const ref = `users/${uid}/skillsTimeline`;
+
+    for (let i = 0; i < payload.length; i++) {
+        const element = payload[i];
+        try {
+            yield call(firestore.setDocument, `${ref}/${element.id}`, element, {});
+        } catch(error) {
+            yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
+        }
+    }
+
+    yield put({ type: 'ADD_SUCCESS_NOTIFICATION', payload: 'Successful submited!' });
+    yield put({ type: update_loader, payload: false });
+}
+
+/**
+ * Submit About Timeline
+ * 
+ * @param {ReduxAction} action
+ */
+function* submitAboutTimeline({ payload }: { type: string, payload: ITimelineItems[] }) {
+    yield put({ type: update_loader, payload: true });
+
+    const uid = (store as any).getState().user.uid;
+    const ref = `users/${uid}/aboutTimeline`;
+
+    for (let i = 0; i < payload.length; i++) {
+        const element = payload[i];
+        try {
+            yield call(firestore.setDocument, `${ref}/${element.id}`, element, {});
+        } catch(error) {
+            yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
+        }
+    }
+
+    yield put({ type: 'ADD_SUCCESS_NOTIFICATION', payload: 'Successful submited!' });
+    yield put({ type: update_loader, payload: false });
+}
+
+/**
+ * Handle Submit Skills Timeline
+ */
+export function* handleSubmitSkillsTimeline() {
+    yield takeEvery('SKILLS_TIMELINE_SUBMIT', submitSkillsTimeline);
+}
+
+/**
+ * Handle Submit About Timeline
+ */
+export function* handleSubmitAboutTimeline() {
+    yield takeEvery('ABOUT_TIMELINE_SUBMIT', submitAboutTimeline);
 }

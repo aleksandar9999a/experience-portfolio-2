@@ -76,12 +76,12 @@ export type TIconsOptions = {
 }
 
 export interface ITimelineItems {
-    id: number,
+    id: string,
     title: string,
     description: string,
-    link?: string,
-    start?: string,
-    end?: string
+    link: string,
+    start: string,
+    end: string
 }
 
 export interface IUploadedImage {

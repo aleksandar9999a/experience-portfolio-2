@@ -1,7 +1,7 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { IEmail, IProject, ISocials, ITimelineItems } from '../interfaces/interfaces';
 import { store } from '../redux/store';
-import { update_mydata } from '../redux/symbols';
+import { update_about_timeline, update_mydata, update_skills_timeline } from '../redux/symbols';
 
 
 @CustomElement({
@@ -46,13 +46,13 @@ export class Settings extends Component {
             this.contacts = contacts;
         })
 
-        if(!!store.getState().user) {
+        if (!!store.getState().user) {
             store.dispatch({ type: 'GET_MY_DATA' });
         }
     }
 
     handleInput(e: any, type: 'firstName' | 'lastName' | 'devType' | 'about' | 'skills') {
-        store.dispatch({ type: update_mydata, payload: { [type]: e.target.value }});
+        store.dispatch({ type: update_mydata, payload: { [type]: e.target.value } });
     }
 
     handleSubmit = (e: any) => {
@@ -67,6 +67,22 @@ export class Settings extends Component {
         }
 
         store.dispatch({ type: 'SUBMIT_USERDATA', payload });
+    }
+
+    handleSkillsChange = (data: ITimelineItems[]) => {
+        store.dispatch({ type: update_skills_timeline, payload: data });
+    }
+
+    handleAboutChange = (data: ITimelineItems[]) => {
+        store.dispatch({ type: update_about_timeline, payload: data });
+    }
+
+    handleSkillsSubmit = () => {
+        store.dispatch({ type: 'SKILLS_TIMELINE_SUBMIT', payload: this.skillsTimeline });
+    }
+
+    handleAboutSubmit = () => {
+        store.dispatch({ type: 'ABOUT_TIMELINE_SUBMIT', payload: this.aboutTimeline });
     }
 
     stylize() {
@@ -273,18 +289,22 @@ export class Settings extends Component {
 
                     <div className="settings__section">
                         <div className="settings__head">
-                            <h2>Skills</h2>
+                            <h2>Skills Timeline</h2>
                         </div>
 
                         <div className="settings__form">
                             <div className="form__body">
                                 <div className="form__row">
-                                    <exf-timeline items={this.skillsTimeline} />
+                                    <exf-timeline
+                                        items={this.skillsTimeline}
+                                        editable={true}
+                                        onChange={this.handleSkillsChange}
+                                    />
                                 </div>
                             </div>
 
                             <div className="form__actions">
-                                <button>Update</button>
+                                <button onClick={this.handleSkillsSubmit}>Update</button>
                             </div>
                         </div>
                     </div>
@@ -297,12 +317,16 @@ export class Settings extends Component {
                         <div className="settings__form">
                             <div className="form__body">
                                 <div className="form__row">
-                                    <exf-timeline items={this.aboutTimeline} />
+                                    <exf-timeline
+                                        items={this.aboutTimeline}
+                                        editable={true}
+                                        onChange={this.handleAboutChange}
+                                    />
                                 </div>
                             </div>
 
                             <div className="form__actions">
-                                <button>Update</button>
+                                <button onClick={this.handleAboutSubmit}>Update</button>
                             </div>
                         </div>
                     </div>

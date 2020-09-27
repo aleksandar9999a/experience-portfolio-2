@@ -17,3 +17,5 @@ export const remove_images_create_project = Symbol('REMOVE_IMAGES_CREATE_PROJECT
 export const set_cover_create_project = Symbol('SET_COVER_CREATE_PROJECT');
 
 export const update_mydata = Symbol('UPDATE_MY_DATA');
+export const update_skills_timeline = Symbol('UPDATE_SKILLS_TIMELINE');
+export const update_about_timeline = Symbol('UPDATE_ABOUT_TIMELINE');
