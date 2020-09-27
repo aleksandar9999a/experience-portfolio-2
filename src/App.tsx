@@ -24,8 +24,8 @@ export class App extends Component {
 
 						'exf-constellation': {
 							'position': 'fixed',
-							'left': '0px',
-							'top': '0px'
+							'left': '0',
+							'top': '0',
 						},
 
 						'exf-notifications': {

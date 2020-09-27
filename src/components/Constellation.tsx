@@ -37,7 +37,7 @@ export class Constellation extends Component {
 
 	private subscribeForResize(star: Star) {
 		window.addEventListener('resize', () => {
-			this.canvas.width = window.innerWidth - 20;
+			this.canvas.width = window.innerWidth;
 			this.canvas.height = window.innerHeight;
 			this.setContext();
 			star.setWindowSize(window.innerWidth, window.innerHeight);

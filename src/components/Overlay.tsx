@@ -23,13 +23,29 @@ export class Overlay extends Component {
 			<style>
 				.overlay {
 					{
-						position: 'relative',
+						'position': 'relative',
 
 						'.container': {
-							'min-height': '86vh'
+							'min-height': '86vh',
+							'max-width': '80vw',
+							'margin': '0 auto'
 						}
 					}
 				}
+
+				{`
+					@media screen and (max-width: 1300px) {
+						.overlay .container {
+							max-width: 90vw;
+						}
+					}
+
+					@media screen and (max-width: 700px) {
+						.overlay .container {
+							max-width: 1000vw;
+						}
+					}
+				`}
 			</style>
 		)
 	}
