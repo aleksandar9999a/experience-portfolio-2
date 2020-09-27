@@ -1,9 +1,8 @@
 import { put, takeEvery, call } from 'redux-saga/effects';
-import { defaultUser } from '../config/firebase_config';
 import uid from 'uid';;
 import { firestore, storage } from '../firebase';
 import { IProject } from '../interfaces/interfaces';
-import { add_images_create_project, update_loader, update_project, update_projects } from '../redux/symbols';
+import { add_images_create_project, update_loader, update_project } from '../redux/symbols';
 import { eventChannel } from 'redux-saga';
 import { store } from '../redux/store';
 
@@ -24,7 +23,7 @@ function* getProjects() {
         projects = [...projects, data];
     })
 
-    yield put({ type: update_projects, payload: projects });
+    // yield put({ type: update_projects, payload: projects });
 
     yield put({ type: update_loader, payload: false });
 }
