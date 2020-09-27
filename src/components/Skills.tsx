@@ -12,13 +12,12 @@ export class Skills extends Component {
 
     onCreate() {
         store.subscribe(() => {
-            const { skills } = store.getState();
-            
-            this.description = skills.description;
-            this.timeline = skills.timeline;
+            const { skills, skillsTimeline } = store.getState().mainInfo;
+            this.description = skills;
+            this.timeline = skillsTimeline;
         })
 
-        store.dispatch({ type: 'GET_SKILLS' });
+        store.dispatch({ type: 'GET_MAININFO' });
     }
 
     stylize() {

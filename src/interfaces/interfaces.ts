@@ -35,6 +35,18 @@ export interface IUser {
     firstName: string,
     lastName: string,
     devType: string,
+    about: string,
+    skills: string,
+    socials: ISocials[],
+    aboutTimeline: ITimelineItems[],
+    skillsTimeline: ITimelineItems[],
+    projects: IProject[]
+}
+
+export interface IHeroContent {
+    firstName: string,
+    lastName: string,
+    devType: string,
     socials: ISocials[]
 }
 

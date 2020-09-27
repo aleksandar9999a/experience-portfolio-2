@@ -7,7 +7,8 @@ import { store } from '../redux/store';
     selector: 'exf-details'
 })
 export class Details extends Component {
-    @Prop('id') id!: string;
+    @Prop('state') id!: string;
+    @Prop('state') creatorId!: string;
     @State('state') currentUser: any = null;
     @State('state') project: IProject = {
         id: '',
@@ -26,7 +27,7 @@ export class Details extends Component {
             this.currentUser = user;
         })
 
-        store.dispatch({ type: 'GET_PROJECT', payload: this.id })
+        store.dispatch({ type: 'GET_PROJECT', payload: { creatorId: this.creatorId, id: this.id } })
     }
 
     stylize() {
@@ -106,7 +107,7 @@ export class Details extends Component {
     }
 
     render() {
-        const { title, description, link, cover, images } = this.project;
+        const { title, description, link, images } = this.project;
 
         return (
             <div className="details">
@@ -116,9 +117,7 @@ export class Details extends Component {
                     </div>
 
                     <div className="details__slideshow">
-                        {!!this.project.cover
-                            ? <exf-slideshow images={[cover, ...images]} />
-                            : null}
+                        <exf-slideshow images={images} />
                     </div>
 
                     <div className="details__body">

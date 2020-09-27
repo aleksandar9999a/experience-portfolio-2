@@ -13,7 +13,9 @@ import { store } from '../redux/store';
 function* getProjects() {
     yield put({ type: update_loader, payload: true });
 
-    const snapshot = yield call(firestore.getCollection, `users/${defaultUser}/projects`);
+    const uid = (store as any).getState().user.uid;
+
+    const snapshot = yield call(firestore.getCollection, `users/${uid}/projects`);
 
     let projects: IProject[] = [];
 
@@ -37,10 +39,10 @@ export function* handleGetProjects() {
 /**
  * Get Project
  */
-function* getProject({ payload }: { type: string, payload: string }) {
+function* getProject({ payload }: { type: string, payload: { creatorId: string, id: string } }) {
     yield put({ type: update_loader, payload: true });
 
-    const snapshot = yield call(firestore.getDocument, `users/${defaultUser}/projects/${payload}`);
+    const snapshot = yield call(firestore.getDocument, `users/${payload.creatorId}/projects/${payload.id}`);
     const data = snapshot.data();
 
     yield put({ type: update_project, payload: data });

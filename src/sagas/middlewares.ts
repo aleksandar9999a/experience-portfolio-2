@@ -1,6 +1,4 @@
 import { handleGetMainInfo } from './mainInfoSaga';
-import { handleGetAbout } from './aboutSaga';
-import { handleGetSkills } from './skillsSaga';
 import { handleSendEmail } from './emailSaga';
 
 import {
@@ -26,8 +24,6 @@ export default [
     handleGetMainInfo,
     handleGetProjects,
     handleGetProject,
-    handleGetAbout,
-    handleGetSkills,
     handleUserLogin,
     handleAddWarningNotification,
     handleAddErrorNotification,

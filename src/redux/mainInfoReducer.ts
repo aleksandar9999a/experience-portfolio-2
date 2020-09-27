@@ -6,12 +6,17 @@ const initialState: IUser = {
     firstName: '',
     lastName: '',
     devType: '',
-    socials: []
+    about: '',
+    skills: '',
+    socials: [],
+    aboutTimeline: [],
+    skillsTimeline: [],
+    projects: []
 }
 
 const mainInfoReducer = createReducer(initialState, {
-    [update_maininfo]: (state, { payload }) => { 
-        return { ...state, ...payload } 
+    [update_maininfo]: (state, { payload }) => {
+        return { ...state, ...payload }
     }
 })
 

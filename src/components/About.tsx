@@ -62,12 +62,12 @@ export class About extends Component {
 
     onCreate() {
         store.subscribe(() => {
-            const { about } = store.getState();
-            this.description = about.description;
-            this.timeline = about.timeline;
+            const { about, aboutTimeline } = store.getState().mainInfo;
+            this.description = about;
+            this.timeline = aboutTimeline;
         })
 
-        store.dispatch({ type: 'GET_ABOUT' });
+        store.dispatch({ type: 'GET_MAININFO' });
     }
 
     stylize() {

@@ -1,21 +1,22 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
+import { IProject } from '../interfaces/interfaces';
 import { store } from '../redux/store';
 
 @CustomElement({
     selector: 'exf-projects'
 })
 export class Projects extends Component {
-    @State() projects: any[] = [];
+    @State() projects: IProject[] = [];
     @State('user') user: any = null;
 
     onCreate() {
         store.subscribe(() => {
-            const { projects, user } = store.getState();
-            this.projects = projects;
+            const { mainInfo, user } = store.getState();
+            this.projects = mainInfo.projects;
             this.user = user;
         })
 
-        store.dispatch({ type: 'GET_PROJECTS' })
+        store.dispatch({ type: 'GET_MAININFO' })
     }
 
     stylize() {
@@ -80,7 +81,7 @@ export class Projects extends Component {
                         {this.projects.map(project => {
                             return (
                                 <div className="projects__item">
-                                    <exf-router-link route={`/details/${project.id}`}>
+                                    <exf-router-link route={`/details/${project.creatorId}/${project.id}`}>
                                         <exf-project details={project} />
                                     </exf-router-link>
                                 </div>

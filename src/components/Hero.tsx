@@ -1,5 +1,5 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
-import { IUser } from '../interfaces/interfaces';
+import { IHeroContent } from '../interfaces/interfaces';
 import { store } from '../redux/store';
 
 
@@ -7,11 +7,17 @@ import { store } from '../redux/store';
     selector: 'exf-hero'
 })
 export class Hero extends Component {
-    @State('state') user: IUser = { firstName: '', lastName: '', devType: '', socials: [] };
+    @State('state') user: IHeroContent = {
+        firstName: '',
+        lastName: '',
+        devType: '',
+        socials: []
+    };
 
     onCreate() {
         store.subscribe(() => {
-            this.user = store.getState().mainInfo;
+            const { firstName, lastName, devType, socials } = store.getState().mainInfo;
+            this.user = { firstName, lastName, devType, socials };
         })
 
         store.dispatch({ type: 'GET_MAININFO' });

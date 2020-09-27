@@ -6,6 +6,6 @@ export const routes = [
 	{ component: 'exf-projects', path: '/projects' },
 	{ component: 'exf-settings', path: '/settings' },
 	{ component: 'exf-login', path: '/login' },
-	{ component: 'exf-details', path: '/details/:id' },
+	{ component: 'exf-details', path: '/details/:creatorId/:id' },
 	{ component: 'exf-create-project', path: '/create-project' }
 ]

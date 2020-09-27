@@ -1,10 +1,11 @@
 import ExF, { Component, CustomElement, Prop } from 'exf-ts';
+import { IProject } from '../interfaces/interfaces';
 
 @CustomElement({
     selector: 'exf-project'
 })
 export class Project extends Component {
-    @Prop('state') details = {
+    @Prop('state') details: IProject = {
         id: '',
         title: '',
         description: '',
@@ -63,14 +64,14 @@ export class Project extends Component {
     }
 
     render() {
-        const { cover, title, description } = this.details;
+        const { cover, title, description, images } = this.details;
         const slicedDesc = description.split(' ').slice(0, 11).join(' ');
         const desc = `${slicedDesc}${slicedDesc.length < description.length ? '...' : ''}`
 
         return (
             <div className="project">
                 <div className="project__image">
-                    <img src={cover} alt="" />
+                    <img src={cover || images[0].url} alt="" />
                 </div>
 
                 <div className="project__head">

@@ -1,16 +1,18 @@
 import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
+import { IUploadedImage } from '../interfaces/interfaces';
 
 
 @CustomElement({
     selector: 'exf-slideshow'
 })
 export class Slideshow extends Component {
-    @Prop('state') images!: string[];
-    @State('state') index: number = 0;
+    @Prop('state') images!: IUploadedImage[];
+    @Prop('state') cover!: string[];
+    @State('state') id!: string;
     @State('style') isShowModal: boolean = false;
 
-    handleChange(index: number) {
-        this.index = index;
+    handleChange(id: string) {
+        this.id = id;
     }
 
     handleOpenCloseModal = () => {
@@ -93,31 +95,43 @@ export class Slideshow extends Component {
     }
 
     render() {
-        const currImage = this.images[this.index];
+        const currImage = !!this.id
+            ? this.images.find(img => {
+                return img.id === this.id;
+            })
+            : this.images[0]
 
         return (
             <div className="slideshow">
-                <div className="slideshow__image" onClick={this.handleOpenCloseModal}>
-                    {!!currImage ? <img src={currImage} alt="Slideshow image" /> : null}
-                </div>
+                {!currImage
+                    ? null
+                    : (
+                        <div className="slideshow__image" >
+                            <img onClick={this.handleOpenCloseModal} src={currImage.url} alt="Slideshow image" />
+                        </div>
+                    )}
 
                 <div className="slideshow__tiles">
-                    {this.images.map((img, i) => {
+                    {this.images.map(img => {
                         return (
-                            <div className="slideshow__tile" onClick={() => this.handleChange(i)}>
-                                <img src={img} alt="Slideshow tile" />
+                            <div id={img.id} className="slideshow__tile" onClick={() => this.handleChange(img.id)}>
+                                <img src={img.url} alt="Slideshow tile" />
                             </div>
                         )
                     })}
                 </div>
 
-                <div className="slideshow__modal">
-                    <div className="slideshow__modal-image">
-                        <img src={currImage} alt="Modal image" />
-                    </div>
+                {!currImage
+                    ? null
+                    : (
+                        <div className="slideshow__modal">
+                            <div className="slideshow__modal-image">
+                                <img src={currImage.url} alt="Modal image" />
+                            </div>
 
-                    <span onClick={this.handleOpenCloseModal}>&times;</span>
-                </div>
+                            <span onClick={this.handleOpenCloseModal}>&times;</span>
+                        </div>
+                    )}
             </div>
         )
     }

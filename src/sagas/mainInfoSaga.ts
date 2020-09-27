@@ -12,16 +12,37 @@ function* getMainInfo() {
 
     const infoShot = yield call(firestore.getDocument, `users/${defaultUser}`);
     const socialsShot = yield call(firestore.getCollection, `users/${defaultUser}/socials`);
+    const aboutTimelineShot = yield call(firestore.getCollection, `users/${defaultUser}/aboutTimeline`);
+    const skillsTimelineShot = yield call(firestore.getCollection, `users/${defaultUser}/skillsTimeline`);
+    const projectsShot = yield call(firestore.getCollection, `users/${defaultUser}/projects`);
     const info = infoShot.data();
 
     const payload = {
         ...info,
-        socials: []
+        socials: [],
+        aboutTimeline: [],
+        skillsTimeline: [],
+        projects: []
     }
 
     socialsShot.forEach((shot: any) => {
         const data = shot.data();
         payload.socials.push(data);
+    })
+
+    aboutTimelineShot.forEach((shot: any) => {
+        const data = shot.data();
+        payload.aboutTimeline.push(data);
+    })
+
+    skillsTimelineShot.forEach((shot: any) => {
+        const data = shot.data();
+        payload.skillsTimeline.push(data);
+    })
+
+    projectsShot.forEach((shot: any) => {
+        const data = shot.data();
+        payload.projects.push(data);
     })
 
     yield put({ type: update_maininfo, payload });
