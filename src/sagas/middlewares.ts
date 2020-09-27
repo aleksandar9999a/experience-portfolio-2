@@ -6,6 +6,7 @@ import { handleSendEmail } from './emailSaga';
 import {
     handleGetProject,
     handleGetProjects,
+    handleSubmitProject,
     handleUploadImages
 } from './projectsSaga';
 
@@ -34,5 +35,6 @@ export default [
     handleAuthChange,
     handleLogout,
     handleSendEmail,
-    handleUploadImages
+    handleUploadImages,
+    handleSubmitProject
 ]

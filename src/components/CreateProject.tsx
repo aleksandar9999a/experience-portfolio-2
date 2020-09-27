@@ -25,7 +25,7 @@ export class CreateProject extends Component {
 
         store.dispatch({ type: clear_create_project });
 
-        if(this.id !== '') {
+        if (this.id !== '') {
             store.dispatch({ type: 'LOAD_CREATE_PROJECT', payload: this.id });
         }
     }
@@ -36,6 +36,9 @@ export class CreateProject extends Component {
 
     handleSubmit = (e: any) => {
         e.preventDefault();
+
+        const payload = store.getState().createProject;
+        store.dispatch({ type: 'SUBMIT_PROJECT', payload });
     }
 
     handleAddImage = (e: any) => {
