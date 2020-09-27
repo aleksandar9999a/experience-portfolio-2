@@ -1,18 +1,37 @@
-import ExF, { Component, CustomElement, State } from 'exf-ts';
+import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
 import { IUploadedImage } from '../interfaces/interfaces';
+import { store } from '../redux/store';
+import { clear_create_project, update_create_project } from '../redux/symbols';
 
 
 @CustomElement({
     selector: 'exf-create-project'
 })
 export class CreateProject extends Component {
+    @Prop('state') id: string = '';
     @State('state') title: string = '';
     @State('state') description: string = '';
     @State('state') link: string = '';
-    @State('state') images: IUploadedImage[] = [{ id: '5', url: 'https://firebasestorage.googleapis.com/v0/b/experience-portfolio-2.appspot.com/o/instagram.png?alt=media&token=d676ae54-32d8-4fca-901a-6da0fe1e578f' }];
+    @State('state') images: IUploadedImage[] = [];
+
+    onCreate() {
+        store.subscribe(() => {
+            const { title, description, link, images } = store.getState().createProject;
+            this.title = title;
+            this.description = description;
+            this.link = link;
+            this.images = images;
+        })
+
+        store.dispatch({ type: clear_create_project });
+
+        if(this.id !== '') {
+            store.dispatch({ type: 'LOAD_CREATE_PROJECT', payload: this.id });
+        }
+    }
 
     handleInput(e: any, type: 'title' | 'description' | 'link') {
-        (this as any)[type] = e.target.value;
+        store.dispatch({ type: update_create_project, payload: { [type]: e.target.value } });
     }
 
     handleSubmit = (e: any) => {
@@ -20,7 +39,9 @@ export class CreateProject extends Component {
     }
 
     handleAddImage = (e: any) => {
+        const files = Array.from(e.target.files);
 
+        store.dispatch({ type: 'UPLOAD_IMAGES', payload: files });
     }
 
     handleRemoveImage = (id: string) => {

@@ -14,3 +14,7 @@ export const update_loader = Symbol('UPDATE_LOAD');
 
 export const add_notification = Symbol('ADD_NOTIFICATION');
 export const remove_notification = Symbol('REMOVE_NOTIFICATION');
+
+export const update_create_project = Symbol('UPDATE_CREATE_PROJECT');
+export const clear_create_project = Symbol('CLEAR_CREATE_PROJECT');
+export const add_images_create_project = Symbol('ADD_IMAGES_CREATE_PROJECT');

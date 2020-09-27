@@ -75,7 +75,7 @@ export interface IProject {
     title: string,
     description: string,
     link: string,
-    creatorId?: string,
+    creatorId: string,
     images: IUploadedImage[],
     cover: string
 }

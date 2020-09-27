@@ -1,7 +1,13 @@
 import { handleGetMainInfo } from './mainInfoSaga';
-import { handleGetProject, handleGetProjects } from './projectsSaga';
 import { handleGetAbout } from './aboutSaga';
 import { handleGetSkills } from './skillsSaga';
+import { handleSendEmail } from './emailSaga';
+
+import {
+    handleGetProject,
+    handleGetProjects,
+    handleUploadImages
+} from './projectsSaga';
 
 import {
     handleAuthChange,
@@ -14,7 +20,6 @@ import {
     handleAddSuccessNotification,
     handleAddWarningNotification
 } from './notificationsSaga';
-import { handleSendEmail } from './emailSaga';
 
 export default [
     handleGetMainInfo,
@@ -28,5 +33,6 @@ export default [
     handleAddSuccessNotification,
     handleAuthChange,
     handleLogout,
-    handleSendEmail
+    handleSendEmail,
+    handleUploadImages
 ]
