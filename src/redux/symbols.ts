@@ -15,3 +15,5 @@ export const clear_create_project = Symbol('CLEAR_CREATE_PROJECT');
 export const add_images_create_project = Symbol('ADD_IMAGES_CREATE_PROJECT');
 export const remove_images_create_project = Symbol('REMOVE_IMAGES_CREATE_PROJECT');
 export const set_cover_create_project = Symbol('SET_COVER_CREATE_PROJECT');
+
+export const update_mydata = Symbol('UPDATE_MY_DATA');

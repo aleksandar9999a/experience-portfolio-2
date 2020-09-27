@@ -31,16 +31,23 @@ export interface ITab {
     auth?: boolean
 }
 
-export interface IUser {
+export interface IBaseUserInfo {
     firstName: string,
     lastName: string,
     devType: string,
     about: string,
-    skills: string,
+    skills: string
+}
+
+export interface IUser extends IBaseUserInfo {
     socials: ISocials[],
     aboutTimeline: ITimelineItems[],
     skillsTimeline: ITimelineItems[],
     projects: IProject[]
+}
+
+export interface IAuthUser extends IUser {
+    contacts: IEmail[]
 }
 
 export interface IHeroContent {

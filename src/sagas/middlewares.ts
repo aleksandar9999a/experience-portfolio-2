@@ -19,6 +19,7 @@ import {
     handleAddSuccessNotification,
     handleAddWarningNotification
 } from './notificationsSaga';
+import { handleGetMyData, handleSubmitUserdata } from './myDataSaga';
 
 export default [
     handleGetMainInfo,
@@ -32,5 +33,7 @@ export default [
     handleLogout,
     handleSendEmail,
     handleUploadImages,
-    handleSubmitProject
+    handleSubmitProject,
+    handleGetMyData,
+    handleSubmitUserdata
 ]

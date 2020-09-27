@@ -55,6 +55,10 @@ function* authChange() {
         yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
     } else {
         yield put({ type: update_user, payload: user });
+
+        if (!!user) {
+            yield put({ type: 'GET_MY_DATA' });
+        }
     }
 }
 
