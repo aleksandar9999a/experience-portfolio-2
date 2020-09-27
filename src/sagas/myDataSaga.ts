@@ -15,8 +15,6 @@ function* getMyData() {
 
     const infoShot = yield call(firestore.getDocument, `users/${uid}`);
     const socialsShot = yield call(firestore.getCollection, `users/${uid}/socials`);
-    const aboutTimelineShot = yield call(firestore.getCollection, `users/${uid}/aboutTimeline`);
-    const skillsTimelineShot = yield call(firestore.getCollection, `users/${uid}/skillsTimeline`);
     const projectsShot = yield call(firestore.getCollection, `users/${uid}/projects`);
     const contactsShot = yield call(firestore.getCollection, `users/${uid}/emails`);
     const info = infoShot.data();
@@ -24,8 +22,6 @@ function* getMyData() {
     const payload = {
         ...info,
         socials: [],
-        aboutTimeline: [],
-        skillsTimeline: [],
         projects: [],
         contacts: []
     }
@@ -33,16 +29,6 @@ function* getMyData() {
     socialsShot.forEach((shot: any) => {
         const data = shot.data();
         payload.socials.push(data);
-    })
-
-    aboutTimelineShot.forEach((shot: any) => {
-        const data = shot.data();
-        payload.aboutTimeline.push(data);
-    })
-
-    skillsTimelineShot.forEach((shot: any) => {
-        const data = shot.data();
-        payload.skillsTimeline.push(data);
     })
 
     projectsShot.forEach((shot: any) => {
@@ -91,7 +77,7 @@ function* submitUserdata({ payload }: { type: string, payload: IBaseUserInfo }) 
         yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: 'Invalid Developer Type! Minimum length is 4 characters, max - 20.' });
     } else {
         try {
-            yield call(firestore.setDocument, `users/${uid}`, payload, {});
+            yield call(firestore.setDocument, `users/${uid}`, payload, { merge: true });
             yield put({ type: 'ADD_SUCCESS_NOTIFICATION', payload: 'Successful submited!' });
         } catch (error) {
             yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
@@ -117,15 +103,11 @@ function* submitSkillsTimeline({ payload }: { type: string, payload: ITimelineIt
     yield put({ type: update_loader, payload: true });
 
     const uid = (store as any).getState().user.uid;
-    const ref = `users/${uid}/skillsTimeline`;
 
-    for (let i = 0; i < payload.length; i++) {
-        const element = payload[i];
-        try {
-            yield call(firestore.setDocument, `${ref}/${element.id}`, element, {});
-        } catch(error) {
-            yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
-        }
+    try {
+        yield call(firestore.setDocument, `users/${uid}`, { skillsTimeline: payload }, { merge: true });
+    } catch(error) {
+        yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
     }
 
     yield put({ type: 'ADD_SUCCESS_NOTIFICATION', payload: 'Successful submited!' });
@@ -141,15 +123,11 @@ function* submitAboutTimeline({ payload }: { type: string, payload: ITimelineIte
     yield put({ type: update_loader, payload: true });
 
     const uid = (store as any).getState().user.uid;
-    const ref = `users/${uid}/aboutTimeline`;
 
-    for (let i = 0; i < payload.length; i++) {
-        const element = payload[i];
-        try {
-            yield call(firestore.setDocument, `${ref}/${element.id}`, element, {});
-        } catch(error) {
-            yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
-        }
+    try {
+        yield call(firestore.setDocument, `users/${uid}`, { aboutTimeline: payload }, { merge: true });
+    } catch(error) {
+        yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
     }
 
     yield put({ type: 'ADD_SUCCESS_NOTIFICATION', payload: 'Successful submited!' });
