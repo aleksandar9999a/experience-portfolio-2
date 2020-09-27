@@ -25,13 +25,9 @@ export class Constellation extends Component {
 	}
 
 	private setContext() {
-		if (!this.context) { 
-			return; 
-		}
-		
-		this.context.fillStyle = this.constellation_config.star.color;
-		this.context.strokeStyle = this.constellation_config.line.color;
-		this.context.lineWidth = this.constellation_config.line.width;
+		this.context!.fillStyle = this.constellation_config.star.color;
+		this.context!.strokeStyle = this.constellation_config.line.color;
+		this.context!.lineWidth = this.constellation_config.line.width;
 	};
 
 	private loop(callback: Function) {
@@ -51,10 +47,8 @@ export class Constellation extends Component {
 	init() {
 		this.setContext();
 		const star = createStar(this.context as CanvasRenderingContext2D, this.canvas.width, this.canvas.height);
-		star.create();
 		this.subscribeForResize(star);
 		this.loop(star.animate.bind(star));
-		this.loop(star.line.bind(star));
 	};
 
 	render() {
