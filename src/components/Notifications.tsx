@@ -1,4 +1,4 @@
-import ExF, { Component, CustomElement, Prop } from 'exf-ts';
+import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { INotification } from '../interfaces/interfaces';
 import { store } from '../redux/store';
 import { remove_notification } from '../redux/symbols';
@@ -8,7 +8,14 @@ import { remove_notification } from '../redux/symbols';
 	selector: 'exf-notifications'
 })
 export class Notifications extends Component {
-	@Prop('state') notifications: INotification[] = [];
+	@State('state') notifications: INotification[] = [];
+
+	onCreate() {
+		store.subscribe(() => {
+			const { notifications } = store.getState();
+			this.notifications = notifications;
+		})
+	}
 
 	handleRemove(id: string) {
 		store.dispatch({ type: remove_notification, payload: id })

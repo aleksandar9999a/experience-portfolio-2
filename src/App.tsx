@@ -1,24 +1,9 @@
-import ExF, { Component, CustomElement, State } from 'exf-ts';
-import { INotification } from './interfaces/interfaces';
-import { store } from './redux/store';
+import ExF, { Component, CustomElement } from 'exf-ts';
 
 @CustomElement({
 	selector: 'exf-app'
 })
 export class App extends Component {
-	@State('state') isLoading: boolean = false;
-	@State('state') notifications: INotification[] = [];
-
-	onCreate() {
-		store.dispatch({ type: 'AUTH_CHANGE' });
-		
-        store.subscribe(() => {
-			const { load, notifications } = store.getState();
-			this.isLoading = load;
-			this.notifications = notifications;
-        })
-    }
-
 	stylize() {
 		return (
 			<style>
@@ -32,15 +17,19 @@ export class App extends Component {
 						'min-height': '100vh',
 
 						'exf-load': {
-							'position': 'absolute',
+							'position': 'fixed',
 							'top': '0',
 							'left': '0',
-							'height': '100vh',
-							'right': '0'
+						},
+
+						'exf-constellation': {
+							'position': 'fixed',
+							'left': '0px',
+							'top': '0px'
 						},
 
 						'exf-notifications': {
-							'position': 'absolute',
+							'position': 'fixed',
 							'bottom': '10%',
 							'right': '2%'
 						}
@@ -57,9 +46,9 @@ export class App extends Component {
 
 				<exf-overlay />
 
-				{ this.isLoading ? <exf-load /> : null }
+				<exf-load />
 
-				<exf-notifications notifications={this.notifications} />
+				<exf-notifications />
 			</div>
 		)
 	}

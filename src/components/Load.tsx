@@ -1,10 +1,20 @@
-import ExF, { Component, CustomElement } from 'exf-ts';
+import ExF, { Component, CustomElement, State } from 'exf-ts';
+import { store } from '../redux/store';
 
 
 @CustomElement({
     selector: 'exf-load'
 })
 export class Load extends Component {
+    @State('style') isLoading: boolean = false;
+
+    onCreate() {
+        store.subscribe(() => {
+			const { load } = store.getState();
+			this.isLoading = load;
+        })
+    }
+    
     stylize() {
         return (
             <style>
@@ -20,7 +30,8 @@ export class Load extends Component {
                 .load {
                     {
                         'height': '100vh',
-                        'display': 'flex',
+                        'display': this.isLoading ? 'flex' : 'none',
+                        'width': this.isLoading ? '100vw' : '0',
                         'background': 'rgba(0,0,0,0.5)',
 
                         '.load__inner': {

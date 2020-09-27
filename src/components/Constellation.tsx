@@ -57,20 +57,6 @@ export class Constellation extends Component {
 		this.loop(star.line.bind(star));
 	};
 
-	stylize() {
-		return (
-			<style>
-				canvas {
-					{ 
-						position: 'absolute',
-						left: '0px',
-						top: '0px'
-					}
-				}
-			</style>
-		)
-	}
-
 	render() {
 		return <canvas id="constellation"></canvas>
 	}

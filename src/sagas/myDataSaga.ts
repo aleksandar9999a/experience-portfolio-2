@@ -83,10 +83,10 @@ function* submitUserdata({ payload }: { type: string, payload: IBaseUserInfo }) 
         yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: 'Invalid first name! Minimum length is 4 characters, max - 20.' });
     } else if (payload.lastName.length < 4 || payload.lastName.length > 21) {
         yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: 'Invalid last name! Minimum length is 4 characters, max - 20.' });
-    } else if (payload.about.length < 20 || payload.about.length > 401) {
-        yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: 'Invalid About! Minimum length is 20 characters, max - 400.' });
-    } else if (payload.skills.length < 20 || payload.skills.length > 401) {
-        yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: 'Invalid Skills! Minimum length is 20 characters, max - 400.' });
+    } else if (payload.about.length < 20 || payload.about.length > 601) {
+        yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: 'Invalid About! Minimum length is 20 characters, max - 600.' });
+    } else if (payload.skills.length < 20 || payload.skills.length > 601) {
+        yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: 'Invalid Skills! Minimum length is 20 characters, max - 600.' });
     } else if (payload.devType.length < 4 || payload.devType.length > 21) {
         yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: 'Invalid Developer Type! Minimum length is 4 characters, max - 20.' });
     } else {
