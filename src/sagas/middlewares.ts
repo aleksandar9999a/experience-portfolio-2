@@ -22,9 +22,11 @@ import {
 
 import {
     handleGetMyData,
+    handleRemoveContact,
     handleSubmitAboutTimeline,
     handleSubmitSkillsTimeline,
-    handleSubmitUserdata
+    handleSubmitUserdata,
+    handleUpdateContact
 } from './myDataSaga';
 
 export default [
@@ -43,5 +45,7 @@ export default [
     handleGetMyData,
     handleSubmitUserdata,
     handleSubmitSkillsTimeline,
-    handleSubmitAboutTimeline
+    handleSubmitAboutTimeline,
+    handleUpdateContact,
+    handleRemoveContact
 ]

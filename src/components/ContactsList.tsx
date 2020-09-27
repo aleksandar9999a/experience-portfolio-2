@@ -6,6 +6,20 @@ import { IEmail } from '../interfaces/interfaces';
 })
 export class ContactsList extends Component {
     @Prop('state') items: IEmail[] = [];
+    @Prop('state') onChange!: (item: object) => void;
+    @Prop('state') onRemove!: (id: string) => void;
+
+    handleChange = (id: string, isAnswered: boolean) => {
+        if (!!this.onChange) {
+            this.onChange({ id, isAnswered });
+        }
+    }
+
+    handleRemove = (id: string) => {
+        if (!!this.onRemove) {
+            this.onRemove(id);
+        }
+    }
 
     stylize() {
         return (
@@ -70,9 +84,9 @@ export class ContactsList extends Component {
     render() {
         return (
             <div className="contacts-list">
-                {this.items.map(({ subject, message, email, name, isAnswered }) => {
+                {this.items.map(({ id, subject, message, email, name, isAnswered }) => {
                     return (
-                        <details>
+                        <details id={id}>
                             <summary>{subject}</summary>
 
                             <div className="list__content">
@@ -85,13 +99,13 @@ export class ContactsList extends Component {
                                 <div className="list__body">
                                     <p>{message}</p>
 
-                                    <p>Is Answered: <span>{isAnswered}</span></p>
+                                    <p>Is Answered: <span>{!!isAnswered}</span></p>
                                 </div>
 
                                 <div className="list__actions">
-                                    <button>Answered</button>
+                                    <button onClick={() => this.handleChange(id as string, !isAnswered)}>Answered</button>
 
-                                    <button>Delete</button>
+                                    <button onClick={() => this.handleRemove(id as string)}>Delete</button>
                                 </div>
                             </div>
                         </details>

@@ -85,6 +85,14 @@ export class Settings extends Component {
         store.dispatch({ type: 'ABOUT_TIMELINE_SUBMIT', payload: this.aboutTimeline });
     }
 
+    handleContactsChange = (contact: object) => {
+        store.dispatch({ type: 'UPDATE_CONTACT', payload: contact });
+    }
+
+    handleContactRemove = (id: string) => {
+        store.dispatch({ type: 'REMOVE_CONTACT', payload: id });
+    }
+
     stylize() {
         return (
             <style>
@@ -337,7 +345,11 @@ export class Settings extends Component {
                         </div>
 
                         <div className="settings__form">
-                            <exf-contacts-list items={this.contacts} />
+                            <exf-contacts-list 
+                            items={this.contacts} 
+                            onChange={this.handleContactsChange}
+                            onRemove={this.handleContactRemove}
+                            />
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 import { put, takeEvery, call } from 'redux-saga/effects'
 import { firestore } from '../firebase'
-import { IBaseUserInfo, ITimelineItems } from '../interfaces/interfaces';
+import { IBaseUserInfo, IEmail, ITimelineItems } from '../interfaces/interfaces';
 import { store } from '../redux/store';
 import { update_loader, update_mydata } from '../redux/symbols';
 
@@ -106,7 +106,7 @@ function* submitSkillsTimeline({ payload }: { type: string, payload: ITimelineIt
 
     try {
         yield call(firestore.setDocument, `users/${uid}`, { skillsTimeline: payload }, { merge: true });
-    } catch(error) {
+    } catch (error) {
         yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
     }
 
@@ -126,7 +126,7 @@ function* submitAboutTimeline({ payload }: { type: string, payload: ITimelineIte
 
     try {
         yield call(firestore.setDocument, `users/${uid}`, { aboutTimeline: payload }, { merge: true });
-    } catch(error) {
+    } catch (error) {
         yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
     }
 
@@ -146,4 +146,64 @@ export function* handleSubmitSkillsTimeline() {
  */
 export function* handleSubmitAboutTimeline() {
     yield takeEvery('ABOUT_TIMELINE_SUBMIT', submitAboutTimeline);
+}
+
+/**
+ * Update Contact
+ * 
+ * @param {ReduxAction}
+ * 
+ * @return {Void}
+ */
+function* updateContact({ payload }: { type: string, payload: IEmail }) {
+    yield put({ type: update_loader, payload: true });
+
+    const uid = (store as any).getState().user.uid;
+
+    try {
+        yield call(firestore.setDocument, `users/${uid}/emails/${payload.id}`, payload, { merge: true });
+        yield put({ type: 'ADD_SUCCESS_NOTIFICATION', payload: 'Successful Updated!' });
+        yield put({ type: 'GET_MY_DATA' });
+    } catch (error) {
+        yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
+    }
+
+    yield put({ type: update_loader, payload: false });
+}
+
+/**
+ * Remove Contact
+ * 
+ * @param {ReduxAction}
+ * 
+ * @return {Void}
+ */
+function* removeContact({ payload }: { type: string, payload: string }) {
+    yield put({ type: update_loader, payload: true });
+
+    const uid = (store as any).getState().user.uid;
+
+    try {
+        yield call(firestore.deleteDocument, `users/${uid}/emails/${payload}`);
+        yield put({ type: 'ADD_SUCCESS_NOTIFICATION', payload: 'Successful Deleted!' });
+        yield put({ type: 'GET_MY_DATA' });
+    } catch (error) {
+        yield put({ type: 'ADD_ERROR_NOTIFICATION', payload: error.message });
+    }
+
+    yield put({ type: update_loader, payload: false });
+}
+
+/**
+ * Handle Update Contact
+ */
+export function* handleUpdateContact() {
+    yield takeEvery('UPDATE_CONTACT', updateContact);
+}
+
+/**
+ * Handle Remove Contact
+ */
+export function* handleRemoveContact() {
+    yield takeEvery('REMOVE_CONTACT', removeContact);
 }
