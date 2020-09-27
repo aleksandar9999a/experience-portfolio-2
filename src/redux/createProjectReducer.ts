@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { IProject } from '../interfaces/interfaces';
-import { add_images_create_project, clear_create_project, update_create_project, } from './symbols';
+import { add_images_create_project, clear_create_project, remove_images_create_project, set_cover_create_project, update_create_project, } from './symbols';
 
 const initialState: IProject = {
     id: '',
@@ -21,6 +21,26 @@ const createProjectReducer = createReducer(initialState, {
         return {
             ...state,
             images: [...state.images, payload]
+        }
+    },
+    [remove_images_create_project]: (state, { payload }) => {
+        const images = state.images.filter(img => {
+            return img.id !== payload;
+        });
+
+        return {
+            ...state,
+            images
+        }
+    },
+    [set_cover_create_project]: (state, { payload }) => {
+        const cover = state.images.find(img => {
+            return img.id === payload;
+        });
+
+        return {
+            ...state,
+            cover: cover!.url
         }
     }
 })

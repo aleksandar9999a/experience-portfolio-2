@@ -1,7 +1,7 @@
 import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
 import { IUploadedImage } from '../interfaces/interfaces';
 import { store } from '../redux/store';
-import { clear_create_project, update_create_project } from '../redux/symbols';
+import { clear_create_project, remove_images_create_project, set_cover_create_project, update_create_project } from '../redux/symbols';
 
 
 @CustomElement({
@@ -45,11 +45,11 @@ export class CreateProject extends Component {
     }
 
     handleRemoveImage = (id: string) => {
-
+        store.dispatch({ type: remove_images_create_project, payload: id });
     }
 
     handleSetCover = (id: string) => {
-
+        store.dispatch({ type: set_cover_create_project, payload: id });
     }
 
     render() {
@@ -119,14 +119,14 @@ export class CreateProject extends Component {
                                                 <div className="form__image-actions">
                                                     <button
                                                         type="button"
-                                                        onClick={() => this.handleRemoveImage(id)}
+                                                        onClick={() => this.handleSetCover(id)}
                                                     >
                                                         Set Cover
                                                     </button>
 
                                                     <button
                                                         type="button"
-                                                        onClick={() => this.handleSetCover(id)}
+                                                        onClick={() => this.handleRemoveImage(id)}
                                                     >
                                                         Remove
                                                     </button>
