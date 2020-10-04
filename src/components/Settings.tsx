@@ -132,7 +132,7 @@ export class Settings extends Component {
                         },
 
                         '.settings__section': {
-                            'margin-bottom': '65px'
+                            'margin': '0 10px 65px'
                         },
 
                         '.settings__section + .settings__section': {
@@ -146,10 +146,28 @@ export class Settings extends Component {
                         },
 
                         '.settings__form': {
-                            'min-width': '500px'
+                            'width': '500px',
+                            'margin': 'auto'
+                        },
+
+                        '.width-1': {
+                            'width': '60%'
+                        },
+
+                        '.settings__flex': {
+                            'display': 'flex',
+                            'justify-content': 'center'
                         }
                     }
                 }
+
+                {`
+					@media screen and (max-width: 700px) {
+						.settings .settings__flex {
+							flex-direction: column;
+						}
+					}
+				`}
             </style>
         )
     }
@@ -158,94 +176,110 @@ export class Settings extends Component {
         return (
             <div className="settings">
                 <div className="setting__inner">
-                    <div className="settings__section">
-                        <div className="settings__head">
-                            <h2>Main Info</h2>
+                    <div className="settings__flex">
+                        <div className="settings__section">
+                            <div className="settings__head">
+                                <h2>Main Info</h2>
+                            </div>
+
+                            <div className="settings__form">
+                                <form onSubmit={this.handleSubmit}>
+                                    <div className="form__body">
+                                        <div className="form__row">
+                                            <div className="form__controls">
+                                                <input
+                                                    type="text"
+                                                    id="firstName"
+                                                    className="field"
+                                                    required
+                                                    value={this.firstName}
+                                                    onInput={(e: any) => this.handleInput(e, 'firstName')}
+                                                />
+
+                                                <label htmlFor="firstName">First Name</label>
+                                            </div>
+                                        </div>
+
+                                        <div className="form__row">
+                                            <div className="form__controls">
+                                                <input
+                                                    type="text"
+                                                    id="lastName"
+                                                    className="field"
+                                                    required
+                                                    value={this.lastName}
+                                                    onInput={(e: any) => this.handleInput(e, 'lastName')}
+                                                />
+
+                                                <label htmlFor="lastName">Last Name</label>
+                                            </div>
+                                        </div>
+
+                                        <div className="form__row">
+                                            <div className="form__controls">
+                                                <input
+                                                    type="text"
+                                                    id="devType"
+                                                    className="field"
+                                                    required
+                                                    value={this.devType}
+                                                    onInput={(e: any) => this.handleInput(e, 'devType')}
+                                                />
+
+                                                <label htmlFor="devType">Developer Type</label>
+                                            </div>
+                                        </div>
+
+                                        <div className="form__row">
+                                            <div className="form__controls">
+                                                <textarea
+                                                    id="about"
+                                                    className="field field--textarea"
+                                                    required
+                                                    value={this.about}
+                                                    onInput={(e: any) => this.handleInput(e, 'about')}
+                                                >
+                                                </textarea>
+
+                                                <label htmlFor="about">About</label>
+                                            </div>
+                                        </div>
+
+                                        <div className="form__row">
+                                            <div className="form__controls">
+                                                <textarea
+                                                    id="skills"
+                                                    className="field field--textarea"
+                                                    required
+                                                    value={this.skills}
+                                                    onInput={(e: any) => this.handleInput(e, 'skills')}
+                                                >
+                                                </textarea>
+
+                                                <label htmlFor="skills">Skills</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="form__actions">
+                                        <button>Update</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
 
-                        <div className="settings__form">
-                            <form onSubmit={this.handleSubmit}>
-                                <div className="form__body">
-                                    <div className="form__row">
-                                        <div className="form__controls">
-                                            <input
-                                                type="text"
-                                                id="firstName"
-                                                className="field"
-                                                required
-                                                value={this.firstName}
-                                                onInput={(e: any) => this.handleInput(e, 'firstName')}
-                                            />
+                        <div className="settings__section">
+                            <div className="settings__head">
+                                <h2>Contacts</h2>
+                            </div>
 
-                                            <label htmlFor="firstName">First Name</label>
-                                        </div>
-                                    </div>
-
-                                    <div className="form__row">
-                                        <div className="form__controls">
-                                            <input
-                                                type="text"
-                                                id="lastName"
-                                                className="field"
-                                                required
-                                                value={this.lastName}
-                                                onInput={(e: any) => this.handleInput(e, 'lastName')}
-                                            />
-
-                                            <label htmlFor="lastName">Last Name</label>
-                                        </div>
-                                    </div>
-
-                                    <div className="form__row">
-                                        <div className="form__controls">
-                                            <input
-                                                type="text"
-                                                id="devType"
-                                                className="field"
-                                                required
-                                                value={this.devType}
-                                                onInput={(e: any) => this.handleInput(e, 'devType')}
-                                            />
-
-                                            <label htmlFor="devType">Developer Type</label>
-                                        </div>
-                                    </div>
-
-                                    <div className="form__row">
-                                        <div className="form__controls">
-                                            <textarea
-                                                id="about"
-                                                className="field field--textarea"
-                                                required
-                                                value={this.about}
-                                                onInput={(e: any) => this.handleInput(e, 'about')}
-                                            >
-                                            </textarea>
-
-                                            <label htmlFor="about">About</label>
-                                        </div>
-                                    </div>
-
-                                    <div className="form__row">
-                                        <div className="form__controls">
-                                            <textarea
-                                                id="skills"
-                                                className="field field--textarea"
-                                                required
-                                                value={this.skills}
-                                                onInput={(e: any) => this.handleInput(e, 'skills')}
-                                            >
-                                            </textarea>
-
-                                            <label htmlFor="skills">Skills</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="form__actions">
-                                    <button>Update</button>
-                                </div>
-                            </form>
+                            <div className="settings__form">
+                                <exf-contacts-list
+                                    items={this.contacts}
+                                    onChange={this.handleContactsChange}
+                                    onRemove={this.handleContactRemove}
+                                />
+                            </div>
                         </div>
                     </div>
 
@@ -254,7 +288,7 @@ export class Settings extends Component {
                             <h2>Skills Timeline</h2>
                         </div>
 
-                        <div className="settings__form">
+                        <div className="settings__form width-1">
                             <div className="form__body">
                                 <div className="form__row">
                                     <exf-timeline
@@ -276,7 +310,7 @@ export class Settings extends Component {
                             <h2>About</h2>
                         </div>
 
-                        <div className="settings__form">
+                        <div className="settings__form width-1">
                             <div className="form__body">
                                 <div className="form__row">
                                     <exf-timeline
@@ -290,20 +324,6 @@ export class Settings extends Component {
                             <div className="form__actions">
                                 <button onClick={this.handleAboutSubmit}>Update</button>
                             </div>
-                        </div>
-                    </div>
-
-                    <div className="settings__section">
-                        <div className="settings__head">
-                            <h2>Contacts</h2>
-                        </div>
-
-                        <div className="settings__form">
-                            <exf-contacts-list
-                                items={this.contacts}
-                                onChange={this.handleContactsChange}
-                                onRemove={this.handleContactRemove}
-                            />
                         </div>
                     </div>
                 </div>

@@ -13,7 +13,7 @@ export const sectionPrimary = {
     },
 
     '.section__head': {
-        'max-width': '1200px',
+        'max-width': '80%',
         'margin': '0 auto 80px',
         'color': '#fff'
     },

@@ -218,10 +218,19 @@ export class Timeline extends Component {
 
                 {`
 					@media screen and (max-width: 700px) {
+                        .timeline-wrapper {
+                            margin-bottom: 115px;
+                        }
+
 						.timeline {
                             display: flex;
                             flex-direction: column;
                             align-items: center;
+                        }
+
+                        .timeline-wrapper .timeline__add {
+                            top: 99%;
+                            right: 102px;
                         }
 
                         .timeline .timeline__badge {
