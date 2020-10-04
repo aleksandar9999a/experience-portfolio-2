@@ -20,6 +20,7 @@ export class App extends Component {
 							'position': 'fixed',
 							'top': '0',
 							'left': '0',
+							'right': '0'
 						},
 
 						'exf-constellation': {

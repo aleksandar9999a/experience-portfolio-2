@@ -1,5 +1,8 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { store } from '../redux/store';
+import { buttons } from './../mixins/buttons';
+import { forms } from './../mixins/forms';
+import { fields } from './../mixins/fields';
 
 
 @CustomElement({
@@ -8,6 +11,18 @@ import { store } from '../redux/store';
 export class Login extends Component {
     @State('state') email: string = '';
     @State('state') password: string = '';
+
+    fields: object;
+    buttons: object;
+    forms: object;
+
+    constructor() {
+        super();
+
+        this.fields = fields;
+        this.buttons = buttons;
+        this.forms = forms;
+    }
 
     handleEmail = (e: any) => {
         this.email = e.target.value;
@@ -42,6 +57,7 @@ export class Login extends Component {
                                             className="field" 
                                             value={this.email}
                                             onInput={this.handleEmail}
+                                            required
                                         />
 
                                         <label htmlFor="email">Email</label>
@@ -55,6 +71,7 @@ export class Login extends Component {
                                             className="field" 
                                             value={this.password}
                                             onInput={this.handlePassword}
+                                            required
                                         />
 
                                         <label htmlFor="password">Password</label>
@@ -83,16 +100,16 @@ export class Login extends Component {
             <style>
                 .login {
                     {
+                        ...this.buttons,
+                        ...this.forms,
+                        ...this.fields,
+
                         'text-align': 'center',
                         'padding': '50px 0',
 
                         '.login__inner': {
                             'max-width': '600px',
                             'margin': '0 auto'
-                        },
-
-                        '.form__actions': {
-                            'margin': '25px 0'
                         },
 
                         'h2': {
@@ -102,64 +119,7 @@ export class Login extends Component {
                         'p': {
                             'margin': '0',
                             'font-size': '16px'
-                        },
-
-                        'button': {
-                            'height': '50px',
-                            'color': '#08fdd8',
-                            'font-size': '11px',
-                            'letter-spacing': '3px',
-                            'border': '1px solid #08fdd8',
-                            'border-radius': '4px',
-                            'background': 'transparent',
-                            'text-transform': 'uppercase',
-                            'padding': '15px 35px',
-                            'transition': 'box-shadow .15s',
-                            'cursor': 'pointer'
-                        },
-
-                        'button:hover': {
-                            'box-shadow': '1px 1px 20px #08fdd841'
-                        },
-
-                        '.form__controls': {
-							'position': 'relative',
-							'padding': '10px 0'
-						},
-
-						'.form__row + .form__row': {
-							'margin-top': '20px'
-						},
-
-						'.field': {
-							'display': 'flex',
-							'border': '1px solid transparent',
-							'background': '#2b2b2b',
-							'color': 'white',
-							'width': '100%',
-							'font-size': '16px',
-							'padding': '20px',
-							'transition': 'border-color .15s',
-							'outline': 'none',
-						},
-
-						'.field:focus': {
-							'border-color': '#08fdd8'
-						},
-
-						'.field:focus ~ label': {
-							'top': '-15px',
-							'left': '10px',
-							'color': '#08fdd8'
-						},
-
-						'label': {
-							'position': 'absolute',
-							'top': '27px',
-							'left': '21px',
-							'color': '#fff',
-							'transition': 'top .1s, left .1s, color .1s'
-						},
+                        }
                     }
                 }
             </style>

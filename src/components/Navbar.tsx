@@ -40,7 +40,7 @@ export class Navbar extends Component {
                             'position': 'absolute',
                             'left': '0',
                             'top': '0',
-                            'width': '100%',
+                            'right': '0',
                             'list-style-type': 'none',
                             'justify-content': 'center',
 
@@ -86,7 +86,7 @@ export class Navbar extends Component {
 
                         .navbar ul li {
                             background-color: #181818;
-                            padding: 24px 0;
+                            padding: 26px 0;
                             display: flex;
                             justify-content: center;
                             border-radius: 50%;

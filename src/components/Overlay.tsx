@@ -42,7 +42,7 @@ export class Overlay extends Component {
 
 					@media screen and (max-width: 700px) {
 						.overlay .container {
-							max-width: 1000vw;
+							max-width: 95vw;
 						}
 					}
 				`}

@@ -19,6 +19,7 @@
     "file-loader": "^6.1.0",
     "firebase": "^7.21.0",
     "html-webpack-plugin": "^4.4.1",
+    "macro-carousel": "^1.0.0",
     "path-to-regexp": "^6.1.0",
     "redux": "^4.0.5",
     "redux-saga": "^1.1.3",

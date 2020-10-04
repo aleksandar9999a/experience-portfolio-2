@@ -86,7 +86,13 @@ export class Details extends Component {
                     </div>
 
                     <div className="details__slideshow">
-                        <exf-slideshow images={images} />
+                        <macro-carousel pagination>
+                            <article class="slide">Slide 1</article>
+                            <article class="slide">Slide 2</article>
+                            <article class="slide">Slide 3</article>
+                            <article class="slide">Slide 4</article>
+                        </macro-carousel>
+                        {/* <exf-slideshow images={images} /> */}
                     </div>
 
                     <div className="details__body">

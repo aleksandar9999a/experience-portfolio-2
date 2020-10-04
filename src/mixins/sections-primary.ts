@@ -16,5 +16,10 @@ export const sectionPrimary = {
         'max-width': '1200px',
         'margin': '0 auto 80px',
         'color': '#fff'
+    },
+
+    '.section__body': {
+        'max-width': '80%',
+        'margin': 'auto'
     }
 }

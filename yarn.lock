@@ -1935,9 +1935,9 @@ execa@^1.0.0:
     strip-eof "^1.0.0"
 
 exf-ts@^1.1.7:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/exf-ts/-/exf-ts-1.2.4.tgz#1137b91e5903a4398180a76aaf972c8bd3f5a1b9"
-  integrity sha512-qu0IthphQWA50vlmTSquRreBa+jdUijaMBO6rS3rXj1Qz8EBV45+2DNxKgCY8a1ejno0v1SLbuhgf/OtiS7fzA==
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/exf-ts/-/exf-ts-1.2.5.tgz#1ab9ca6e10a68b04e9b07251cce1604485ef4245"
+  integrity sha512-6WKq8DyGGYfN6RyvfI0zgCiWB2MOBEKOhtC6USbJlRnR8qvz9T53zcWGorvHEieOQ8XsnN5sCKrd7JkIqe3GpA==
   dependencies:
     "@webcomponents/webcomponentsjs" "^2.4.3"
     custom-elements-es5-adapter "^1.0.0"
@@ -3131,6 +3131,11 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+macro-carousel@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/macro-carousel/-/macro-carousel-1.0.0.tgz#63f15cefc55a98b41f749e6a058cb0f1cb41fc4a"
+  integrity sha512-mf+ZyUKCUtbzKadtLfwtEa30FOvmJKnEQFfFS5Vwz0pWvaN4Z0Br4lDlbfNeYRksy53D2cGXlFFFnxoZw5tWkA==
 
 make-dir@^2.0.0:
   version "2.1.0"

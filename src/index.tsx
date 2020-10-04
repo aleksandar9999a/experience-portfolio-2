@@ -33,6 +33,7 @@ import { Notification } from './components/Notification';
 import { CreateProjectTile } from './components/CreateProjectTile';
 import { CreateProject } from './components/CreateProject';
 import { store } from './redux/store';
+import 'macro-carousel';
 
 
 store.dispatch({ type: 'AUTH_CHANGE' });

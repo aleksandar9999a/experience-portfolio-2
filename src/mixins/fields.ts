@@ -34,7 +34,6 @@ export const fields = {
     },
 
     '.field': {
-        'display': 'flex',
         'border': '1px solid transparent',
         'background': '#2b2b2b',
         'color': 'white',
@@ -43,10 +42,11 @@ export const fields = {
         'padding': '20px',
         'transition': 'border-color .15s',
         'outline': 'none',
+        'box-sizing': 'border-box'
     },
 
     '.field--textarea': {
-        'height': '150px',
+        'min-height': '150px',
         'padding': '20px 20px'
     },
 

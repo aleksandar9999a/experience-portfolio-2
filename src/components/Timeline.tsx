@@ -45,6 +45,10 @@ export class Timeline extends Component {
                         'list-style-type': 'none',
                         'padding': '20px',
                         'overflow-x': 'auto',
+                        'display': 'flex',
+                        'align-items': 'flex-end',
+                        'justify-content': 'flex-start',
+                        'margin': 'auto',
 
                         '.timeline__badge': {
                             'width': '30px',
@@ -211,6 +215,28 @@ export class Timeline extends Component {
                         },
                     }
                 }
+
+                {`
+					@media screen and (max-width: 700px) {
+						.timeline {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                        }
+
+                        .timeline .timeline__badge {
+                            display: none;
+                        }
+                        
+                        .timeline .timeline__badge:before {
+                            display: none;
+                        }
+
+                        .timeline li + li {
+                            margin-left: 0;
+                        }
+					}
+				`}
             </style>
         )
     }
