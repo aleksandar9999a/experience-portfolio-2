@@ -1,6 +1,7 @@
 import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
 import { IProject } from '../interfaces/interfaces';
 import { store } from '../redux/store';
+import { buttons } from './../mixins/buttons';
 
 
 @CustomElement({
@@ -19,6 +20,13 @@ export class Details extends Component {
         cover: '',
         images: []
     }
+    buttons: object = {};
+
+    constructor() {
+        super();
+
+        this.buttons = buttons;
+    }
 
     onCreate() {
         store.subscribe(() => {
@@ -35,6 +43,8 @@ export class Details extends Component {
             <style>
                 .details {
                     {
+                        ...this.buttons,
+
                         'display': 'flex',
                         'justify-content': 'center',
                         'text-align': 'center',
@@ -58,47 +68,6 @@ export class Details extends Component {
 
                         'h2': {
                             'font-size': '40px',
-                        },
-
-                        'a': {
-                            'color': 'inherit',
-                            'font-size': '16px',
-                            'transition': 'opacity .1s'
-                        },
-
-                        'a:hover': {
-                            'opacity': '0.8'
-                        },
-
-                        '.details__btn-link': {
-                            'padding': '15px 35px',
-                            'transition': 'transform .15s',
-                            'font-size': '11px',
-                            'margin-right': '25px',
-                            'text-transform': 'uppercase',
-                            'display': 'inline-block'
-                        },
-
-                        '.details__btn-link:hover': {
-                            'transform': 'scale(1.03)',
-                        },
-
-                        'button': {
-                            'height': '50px',
-                            'color': '#08fdd8',
-                            'font-size': '11px',
-                            'letter-spacing': '3px',
-                            'border': '1px solid #08fdd8',
-                            'border-radius': '4px',
-                            'background': 'transparent',
-                            'text-transform': 'uppercase',
-                            'padding': '15px 35px',
-                            'cursor': 'pointer',
-                            'transition': 'box-shadow .15s',
-                        },
-
-                        'button:hover': {
-                            'box-shadow': '1px 1px 20px #08fdd841'
                         }
                     }
                 }
@@ -131,7 +100,7 @@ export class Details extends Component {
                     {!!this.currentUser && this.currentUser.uid === this.project.creatorId
                         ? (
                             <div className="details__actions">
-                                <div className="details__btn-link">
+                                <div className="link">
                                     <exf-router-link>Edit</exf-router-link>
                                 </div>
 

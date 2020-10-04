@@ -1,5 +1,8 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { store } from '../redux/store';
+import { fields } from '../mixins/fields';
+import { buttons } from './../mixins/buttons';
+import { forms } from './../mixins/forms';
 
 
 @CustomElement({
@@ -10,6 +13,18 @@ export class Contacts extends Component {
 	@State('state') email: string = '';
 	@State('state') subject: string = '';
 	@State('state') message: string = '';
+
+	buttons: object;
+	fields: object;
+	forms: object;
+
+	constructor() {
+		super();
+
+		this.buttons = buttons;
+		this.fields = fields;
+		this.forms = forms;
+	}
 
 	handleInput(e: any, type: 'name' | 'email' | 'subject' | 'message') {
 		(this as any)[type] = e.target.value;
@@ -33,77 +48,15 @@ export class Contacts extends Component {
 			<style>
 				.contacts-form {
 					{
+						...this.buttons,
+						...this.fields,
+						...this.forms,
+
 						'padding': '50px 0 10px',
 						'text-align': 'center',
+
 						'h2': {
 							'font-size': '40px'
-						},
-
-						'.form__inner': {
-							'max-width': '500px',
-							'margin': '0 auto'
-						},
-
-						'.form__controls': {
-							'position': 'relative',
-							'padding': '10px 0'
-						},
-
-						'.form__row + .form__row': {
-							'margin-top': '20px'
-						},
-
-						'.field': {
-							'display': 'flex',
-							'border': '1px solid transparent',
-							'background': '#2b2b2b',
-							'color': 'white',
-							'width': '100%',
-							'font-size': '16px',
-							'padding': '20px',
-							'transition': 'border-color .15s',
-							'outline': 'none',
-						},
-
-						'.field--textarea': {
-							'height': '150px',
-							'padding': '20px 20px'
-						},
-
-						'.field:focus': {
-							'border-color': '#08fdd8'
-						},
-
-						'.field:focus ~ label, .field:valid ~ label': {
-							'top': '-15px',
-							'left': '10px',
-							'color': '#08fdd8'
-						},
-
-						'label': {
-							'position': 'absolute',
-							'top': '27px',
-							'left': '21px',
-							'color': '#fff',
-							'transition': 'top .1s, left .1s, color .1s'
-						},
-
-						'button': {
-							'height': '50px',
-							'color': '#08fdd8',
-							'font-size': '11px',
-							'letter-spacing': '3px',
-							'border': '1px solid #08fdd8',
-							'border-radius': '4px',
-							'background': 'transparent',
-							'text-transform': 'uppercase',
-							'padding': '15px 35px',
-							'transition': 'box-shadow .15s',
-							'cursor': 'pointer'
-						},
-
-						'button:hover': {
-							'box-shadow': '1px 1px 20px #08fdd841'
 						}
 					}
 				}

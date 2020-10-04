@@ -1,6 +1,7 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { ITimelineItems } from '../interfaces/interfaces';
 import { store } from '../redux/store';
+import { sectionPrimary } from './../mixins/sections-primary';
 
 
 @CustomElement({
@@ -9,6 +10,14 @@ import { store } from '../redux/store';
 export class Skills extends Component {
     @State('state') timeline: ITimelineItems[] = [];
     @State('state') description: string = '';
+
+    sectionPrimary: object;
+
+    constructor() {
+        super();
+
+        this.sectionPrimary = sectionPrimary;
+    }
 
     onCreate() {
         store.subscribe(() => {
@@ -23,43 +32,22 @@ export class Skills extends Component {
     stylize() {
         return (
             <style>
-                .skills {
-                    {
-                        'display': 'flex',
-                        'justify-content': 'center',
-                        'text-align': 'center',
-
-                        'h2': {
-                            'font-size': '40px',
-                            'color': '#08fdd8'
-						},
-
-                        '.skills__inner': {
-                            'margin-top': '50px'
-                        },
-
-                        '.skills__head': {
-                            'max-width': '1200px',
-                            'margin': '0 auto 80px',
-                            'color': '#fff'
-                        },
-                    }
-                }
+                .section {this.sectionPrimary}
             </style>
         )
     }
 
     render() {
         return (
-            <div className="skills">
-                <div className="skills__inner">
-                    <div className="skills__head">
+            <div className="section">
+                <div className="section__inner">
+                    <div className="section__head">
                         <h2>Skills</h2>
 
-                        <p>{this.description}</p>  
+                        <p>{this.description}</p>
                     </div>
-                    
-                    <div className="skills__body">
+
+                    <div className="section__body">
                         <exf-timeline items={this.timeline} />
                     </div>
                 </div>

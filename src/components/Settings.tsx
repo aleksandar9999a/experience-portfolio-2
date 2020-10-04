@@ -2,6 +2,9 @@ import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { IEmail, IProject, ISocials, ITimelineItems } from '../interfaces/interfaces';
 import { store } from '../redux/store';
 import { update_about_timeline, update_mydata, update_skills_timeline } from '../redux/symbols';
+import { fields } from '../mixins/fields';
+import { buttons } from './../mixins/buttons';
+import { forms } from './../mixins/forms';
 
 
 @CustomElement({
@@ -18,6 +21,18 @@ export class Settings extends Component {
     @State('state') skillsTimeline: ITimelineItems[] = [];
     @State('state') aboutTimeline: ITimelineItems[] = [];
     @State('state') contacts: IEmail[] = [];
+
+    fields: object;
+    buttons: object;
+    forms: object;
+
+    constructor() {
+        super();
+
+        this.fields = fields;
+        this.buttons = buttons;
+        this.forms = forms;
+    }
 
     onCreate() {
         store.subscribe(() => {
@@ -98,6 +113,10 @@ export class Settings extends Component {
             <style>
                 .settings {
                     {
+                        ...this.buttons,
+                        ...this.fields,
+                        ...this.forms,
+
                         'display': 'flex',
                         'justify-content': 'center',
                         'text-align': 'center',
@@ -127,73 +146,8 @@ export class Settings extends Component {
                         },
 
                         '.settings__form': {
-                            'min-width': '500px',
-
-                            '.form__control': {
-                                'position': 'relative',
-                                'padding': '10px 0'
-                            },
-
-                            '.form__row + .form__row': {
-                                'margin-top': '20px'
-                            },
-
-                            'button': {
-                                'height': '50px',
-                                'color': '#08fdd8',
-                                'font-size': '11px',
-                                'letter-spacing': '3px',
-                                'border': '1px solid #08fdd8',
-                                'border-radius': '4px',
-                                'background': 'transparent',
-                                'text-transform': 'uppercase',
-                                'padding': '15px 35px',
-                                'transition': 'box-shadow .15s',
-                            },
-
-                            'button:hover': {
-                                'box-shadow': '1px 1px 20px #08fdd841'
-                            },
-
-                            '.form__actions': {
-                                'margin-top': '55px'
-                            }
-                        },
-
-                        '.field': {
-                            'display': 'flex',
-                            'border': '1px solid transparent',
-                            'background': '#2b2b2b',
-                            'color': 'white',
-                            'width': '100%',
-                            'font-size': '16px',
-                            'padding': '20px',
-                            'transition': 'border-color .15s',
-                            'outline': 'none',
-                        },
-
-                        '.field--textarea': {
-                            'height': '150px',
-                            'padding': '20px 20px'
-                        },
-
-                        '.field:focus': {
-                            'border-color': '#08fdd8'
-                        },
-
-                        '.field:focus ~ label, .field:valid ~ label': {
-                            'top': '-15px',
-                            'left': '10px',
-                            'color': '#08fdd8'
-                        },
-
-                        'label': {
-                            'position': 'absolute',
-                            'top': '27px',
-                            'left': '21px',
-                            'color': '#fff',
-                            'transition': 'top .1s, left .1s, color .1s'
-                        },
+                            'min-width': '500px'
+                        }
                     }
                 }
             </style>
@@ -213,7 +167,7 @@ export class Settings extends Component {
                             <form onSubmit={this.handleSubmit}>
                                 <div className="form__body">
                                     <div className="form__row">
-                                        <div className="form__control">
+                                        <div className="form__controls">
                                             <input
                                                 type="text"
                                                 id="firstName"
@@ -228,7 +182,7 @@ export class Settings extends Component {
                                     </div>
 
                                     <div className="form__row">
-                                        <div className="form__control">
+                                        <div className="form__controls">
                                             <input
                                                 type="text"
                                                 id="lastName"
@@ -243,7 +197,7 @@ export class Settings extends Component {
                                     </div>
 
                                     <div className="form__row">
-                                        <div className="form__control">
+                                        <div className="form__controls">
                                             <input
                                                 type="text"
                                                 id="devType"
@@ -258,7 +212,7 @@ export class Settings extends Component {
                                     </div>
 
                                     <div className="form__row">
-                                        <div className="form__control">
+                                        <div className="form__controls">
                                             <textarea
                                                 id="about"
                                                 className="field field--textarea"
@@ -273,7 +227,7 @@ export class Settings extends Component {
                                     </div>
 
                                     <div className="form__row">
-                                        <div className="form__control">
+                                        <div className="form__controls">
                                             <textarea
                                                 id="skills"
                                                 className="field field--textarea"
@@ -345,10 +299,10 @@ export class Settings extends Component {
                         </div>
 
                         <div className="settings__form">
-                            <exf-contacts-list 
-                            items={this.contacts} 
-                            onChange={this.handleContactsChange}
-                            onRemove={this.handleContactRemove}
+                            <exf-contacts-list
+                                items={this.contacts}
+                                onChange={this.handleContactsChange}
+                                onRemove={this.handleContactRemove}
                             />
                         </div>
                     </div>
