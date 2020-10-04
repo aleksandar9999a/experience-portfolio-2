@@ -109,6 +109,8 @@ export class Settings extends Component {
     }
 
     stylize() {
+        const flex = this.projects.length !== 1 ? '0 0 calc(25% - 20px)' : '0';
+
         return (
             <style>
                 .settings {
@@ -152,6 +154,17 @@ export class Settings extends Component {
 
                         '.width-1': {
                             'width': '60%'
+                        },
+
+                        '.flex-body': {
+                            'display': 'flex',
+                            'justify-content': 'center',
+                            'flex-wrap': 'wrap',
+
+                            '.projects__item': {
+                                'flex': flex,
+                                'margin': '20px 10px'
+                            }
                         },
 
                         '.settings__flex': {
@@ -323,6 +336,30 @@ export class Settings extends Component {
 
                             <div className="form__actions">
                                 <button onClick={this.handleAboutSubmit}>Update</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="settings__section">
+                        <div className="settings__head">
+                            <h2>Projects</h2>
+                        </div>
+
+                        <div className="form__body flex-body">
+                            {this.projects.map(project => {
+                                return (
+                                    <div className="projects__item">
+                                        <exf-router-link route={`/details/${project.creatorId}/${project.id}`}>
+                                            <exf-project details={project} />
+                                        </exf-router-link>
+                                    </div>
+                                )
+                            })}
+                        </div>
+
+                        <div className="form__actions">
+                            <div className="link">
+                                <exf-router-link route="/create-project" >Create Project</exf-router-link>
                             </div>
                         </div>
                     </div>

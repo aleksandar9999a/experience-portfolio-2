@@ -7,13 +7,11 @@ import { store } from '../redux/store';
 })
 export class Projects extends Component {
     @State() projects: IProject[] = [];
-    @State('user') user: any = null;
 
     onCreate() {
         store.subscribe(() => {
-            const { mainInfo, user } = store.getState();
+            const { mainInfo } = store.getState();
             this.projects = mainInfo.projects;
-            this.user = user;
         })
 
         store.dispatch({ type: 'GET_MAININFO' })
@@ -50,18 +48,12 @@ export class Projects extends Component {
                             'flex-wrap': 'wrap',
                             'justify-content': 'center',
                             'width': '1200px',
-                            'margin': '0 -10px',
+                            'margin': '0 -10px 30px',
 
                             '.projects__item': {
                                 'flex': flex,
                                 'margin': '20px 10px'
                             }
-                        },
-
-                        '.projects__actions': {
-                            'display': 'flex',
-                            'margin': '35px 0',
-                            'justify-content': 'center'
                         }
                     }
                 }
@@ -87,16 +79,6 @@ export class Projects extends Component {
                                 </div>
                             )
                         })}
-                    </div>
-
-                    <div className="projects__actions">
-                        {!!this.user
-                            ? (
-                                <exf-router-link route="/create-project">
-                                    <exf-create-project-tile />
-                                </exf-router-link>
-                            )
-                            : null}
                     </div>
                 </div>
             </div>
