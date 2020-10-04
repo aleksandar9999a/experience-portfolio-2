@@ -38,6 +38,16 @@ export class Details extends Component {
         store.dispatch({ type: 'GET_PROJECT', payload: { creatorId: this.creatorId, id: this.id } })
     }
 
+    handleDelete = () => {
+        store.dispatch({
+            type: 'DELETE_PROJECT',
+            payload: {
+                creatorId: this.project.creatorId,
+                id: this.project.id
+            }
+        })
+    }
+
     stylize() {
         return (
             <style>
@@ -130,10 +140,10 @@ export class Details extends Component {
                         ? (
                             <div className="details__actions">
                                 <div className="link">
-                                    <exf-router-link>Edit</exf-router-link>
+                                    <exf-router-link route={`/create-project/${this.project.creatorId}/${this.project.id}`}>Edit</exf-router-link>
                                 </div>
 
-                                <button>Delete</button>
+                                <button onClick={this.handleDelete}>Delete</button>
                             </div>
                         )
                         : null}

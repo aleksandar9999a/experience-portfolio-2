@@ -2,8 +2,10 @@ import { handleGetMainInfo } from './mainInfoSaga';
 import { handleSendEmail } from './emailSaga';
 
 import {
+    handleDeleteProject,
     handleGetProject,
     handleGetProjects,
+    handleLoadCreateProject,
     handleSubmitProject,
     handleUploadImages
 } from './projectsSaga';
@@ -47,5 +49,7 @@ export default [
     handleSubmitSkillsTimeline,
     handleSubmitAboutTimeline,
     handleUpdateContact,
-    handleRemoveContact
+    handleRemoveContact,
+    handleLoadCreateProject,
+    handleDeleteProject
 ]

@@ -2,7 +2,7 @@ import { put, takeEvery, call } from 'redux-saga/effects';
 import uid from 'uid';;
 import { firestore, storage } from '../firebase';
 import { IProject } from '../interfaces/interfaces';
-import { add_images_create_project, update_loader, update_project } from '../redux/symbols';
+import { add_images_create_project, update_create_project, update_loader, update_project } from '../redux/symbols';
 import { eventChannel } from 'redux-saga';
 import { store } from '../redux/store';
 
@@ -138,4 +138,56 @@ function* submitProject({ payload }: { type: string, payload: IProject }) {
  */
 export function* handleSubmitProject() {
     yield takeEvery('SUBMIT_PROJECT', submitProject);
+}
+
+/**
+ * Load Created Project
+ * 
+ * @param {ReduxAction} action
+ * 
+ * @return {Void}
+ */
+function* loadCreatedProject({ payload }: { type: string, payload: { creatorId: string, id: string } }) {
+    yield put({ type: update_loader, payload: true });
+
+    const snapshot = yield call(firestore.getDocument, `users/${payload.creatorId}/projects/${payload.id}`);
+    const data = snapshot.data();
+
+    yield put({ type: update_create_project, payload: data });
+
+    yield put({ type: update_loader, payload: false });
+}
+
+/**
+ * Handle Load Created Project
+ */
+export function* handleLoadCreateProject() {
+    yield takeEvery('LOAD_CREATE_PROJECT', loadCreatedProject);
+}
+
+/**
+ * Delete Project
+ * 
+ * @param {ReduxAction} action
+ * 
+ * @return {Void}
+ */
+function* deleteProject({ payload }: { type: string, payload: { creatorId: string, id: string } }) {
+    yield put({ type: update_loader, payload: true });
+
+    yield call(firestore.deleteDocument, `users/${payload.creatorId}/projects/${payload.id}`);
+
+    yield put({ type: 'ADD_SUCCESS_NOTIFICATION', payload: 'Successful deleted!' });
+
+    window.history.pushState(null, '', '/');
+    window.dispatchEvent(new Event('locationchange'));
+
+    yield put({ type: update_loader, payload: false });
+}
+
+/**
+ * Handle Load Created Project
+ */
+export function* handleDeleteProject() {
+    yield takeEvery('DELETE_PROJECT', deleteProject);
 }

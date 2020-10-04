@@ -11,6 +11,7 @@ import { forms } from '../mixins/forms';
 })
 export class CreateProject extends Component {
     @Prop('state') id: string = '';
+    @Prop('state') creatorId: string = '';
     @State('state') title: string = '';
     @State('state') description: string = '';
     @State('state') link: string = '';
@@ -39,7 +40,13 @@ export class CreateProject extends Component {
         store.dispatch({ type: clear_create_project });
 
         if (this.id !== '') {
-            store.dispatch({ type: 'LOAD_CREATE_PROJECT', payload: this.id });
+            store.dispatch({
+                type: 'LOAD_CREATE_PROJECT',
+                payload: {
+                    creatorId: this.creatorId,
+                    id: this.id
+                }
+            });
         }
     }
 
