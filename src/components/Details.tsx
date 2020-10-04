@@ -68,9 +68,34 @@ export class Details extends Component {
 
                         'h2': {
                             'font-size': '40px',
+                        },
+
+                        'macro-carousel': {
+                            'height': '350px'
+                        },
+
+                        '.slide': {
+                            'display': 'flex',
+                            'align-items': 'center',
+                            'justify-content': 'center',
+                            'box-shadow': 'inset 0px 0px 20px 0px rgba(0, 0, 0, .05)'
                         }
                     }
                 }
+
+                {`
+					@media screen and (max-width: 1300px) {
+						.details macro-carousel {
+							height: 300px;
+						}
+					}
+
+					@media screen and (max-width: 700px) {
+						.details macro-carousel {
+							height: 200px;
+						}
+					}
+				`}
             </style>
         )
     }
@@ -87,12 +112,10 @@ export class Details extends Component {
 
                     <div className="details__slideshow">
                         <macro-carousel pagination>
-                            <article class="slide">Slide 1</article>
-                            <article class="slide">Slide 2</article>
-                            <article class="slide">Slide 3</article>
-                            <article class="slide">Slide 4</article>
+                            {images.map(img => {
+                                return <article id={img.id} class="slide"><img src={img.url} alt="" /></article>
+                            })}
                         </macro-carousel>
-                        {/* <exf-slideshow images={images} /> */}
                     </div>
 
                     <div className="details__body">
