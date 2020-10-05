@@ -81,7 +81,15 @@ export class Details extends Component {
                         },
 
                         'macro-carousel': {
-                            'height': '350px'
+                            'height': '450px',
+                            'width': '450px',
+                            'margin': 'auto',
+
+                            'img': {
+                                'width': 'auto',
+                                'height': '100%',
+                                'object-fit': 'cover'
+                            }
                         },
 
                         '.slide': {
