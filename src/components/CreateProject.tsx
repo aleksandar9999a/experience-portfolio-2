@@ -1,10 +1,11 @@
 import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
 import { IUploadedImage } from '../interfaces/interfaces';
 import { store } from '../redux/store';
-import { clear_create_project, remove_images_create_project, set_cover_create_project, update_create_project } from '../redux/symbols';
+import { add_images_create_project, clear_create_project, remove_images_create_project, set_cover_create_project, update_create_project } from '../redux/symbols';
 import { fields } from '../mixins/fields';
 import { buttons } from './../mixins/buttons';
 import { forms } from '../mixins/forms';
+import { uploadImages } from '../utils/storage';
 
 @CustomElement({
     selector: 'exf-create-project'
@@ -62,9 +63,15 @@ export class CreateProject extends Component {
     }
 
     handleAddImage = (e: any) => {
-        const files = Array.from(e.target.files);
+        const files = Array.from(e.target.files) as File[];
 
-        store.dispatch({ type: 'UPLOAD_IMAGES', payload: files });
+        uploadImages(files)
+            .then(images => {
+                store.dispatch({ type: add_images_create_project, payload: images });
+            })
+            .catch(err => {
+                store.dispatch({ type: 'ADD_ERROR_NOTIFICATION', payload: err.message })
+            })
     }
 
     handleRemoveImage = (id: string) => {

@@ -6,8 +6,7 @@ import {
     handleGetProject,
     handleGetProjects,
     handleLoadCreateProject,
-    handleSubmitProject,
-    handleUploadImages
+    handleSubmitProject
 } from './projectsSaga';
 
 import {
@@ -42,7 +41,6 @@ export default [
     handleAuthChange,
     handleLogout,
     handleSendEmail,
-    handleUploadImages,
     handleSubmitProject,
     handleGetMyData,
     handleSubmitUserdata,

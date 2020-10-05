@@ -1,7 +1,7 @@
 import { put, takeEvery, call } from 'redux-saga/effects';
 import uid from 'uid';;
 import { firestore, storage } from '../firebase';
-import { IProject } from '../interfaces/interfaces';
+import { IProject, IUploadedImage } from '../interfaces/interfaces';
 import { add_images_create_project, update_create_project, update_loader, update_project } from '../redux/symbols';
 import { eventChannel } from 'redux-saga';
 import { store } from '../redux/store';
@@ -54,51 +54,6 @@ function* getProject({ payload }: { type: string, payload: { creatorId: string, 
  */
 export function* handleGetProject() {
     yield takeEvery('GET_PROJECT', getProject);
-}
-
-/**
- * Upload Images
- * 
- * @param {ReduxAction} action
- * 
- * @return {Void}
- */
-function* uploadImages({ payload }: { type: string, payload: File[] }) {
-    for (let i = 0; i < payload.length; i++) {
-        const file = payload[i];
-        const id = uid();
-
-        const task = storage.uploadFile(id, file);
-        const channel = eventChannel(emit => {
-            task.on('state_changed', emit);
-            return () => { };
-        })
-
-        yield takeEvery(channel, addImage.bind(undefined, id));
-    }
-}
-
-/**
- * Add image
- * 
- * @param {String} id 
- * @param {UploadTaskSnapshot} shot 
- * 
- * @return {Void}
- */
-function* addImage(id: string, shot: firebase.storage.UploadTaskSnapshot) {
-    if (shot.bytesTransferred === shot.totalBytes) {
-        const url = yield call(storage.getDownloadURL, id);
-
-        yield put({ type: add_images_create_project, payload: { id, url } });
-    }
-}
-
-/**
- * Handle Upload Images
- */
-export function* handleUploadImages() {
-    yield takeEvery('UPLOAD_IMAGES', uploadImages);
 }
 
 /**

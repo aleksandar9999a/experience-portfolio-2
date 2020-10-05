@@ -20,7 +20,7 @@ const createProjectReducer = createReducer(initialState, {
     [add_images_create_project]: (state, { payload }) => {
         return {
             ...state,
-            images: [...state.images, payload]
+            images: [...state.images, ...payload]
         }
     },
     [remove_images_create_project]: (state, { payload }) => {
