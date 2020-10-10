@@ -77,23 +77,24 @@ export class Navbar extends Component {
 
 						.navbar ul {
                             display: ${this.isOpen ? 'block' : 'none'};
-                            top: 80px;
+                            position: relative;
+                            top: 0;
                             left: -28px;
-                            width: 80px;
                             z-index: 5;
                         }
 
                         .navbar ul li {
                             background-color: #181818;
-                            padding: 5px 0;
+                            padding: 0;
                             display: flex;
                             justify-content: center;
-                            border-radius: 50%;
-                            box-shadow: 0px 0px 1px 0px #08fdd841;
+                            position: relative;
+                            border-top: 1px solid #08fdd8;
+                            border-bottom: 1px solid #08fdd8;
                         }
 
                         .navbar ul li + li {
-							margin: 10px 0 0;
+                            margin: 0;
                         }
 					}
 				`}
@@ -117,7 +118,7 @@ export class Navbar extends Component {
                 <ul>
                     {tabs.map(({ route, name }) => {
                         return (
-                            <li>
+                            <li onClick={this.handleMenuOpen}>
                                 <exf-router-link route={route}>
                                     <exf-navbar-tab name={name} />
                                 </exf-router-link>

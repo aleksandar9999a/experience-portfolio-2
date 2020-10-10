@@ -110,7 +110,8 @@ export class Details extends Component {
 
 					@media screen and (max-width: 700px) {
 						.details macro-carousel {
-							height: 200px;
+                            height: 200px;
+                            width: 380px;
 						}
 					}
 				`}
