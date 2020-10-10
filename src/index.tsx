@@ -1,10 +1,13 @@
 import 'core-js';
+import 'macro-carousel';
 import './interfaces/interfaces';
 import './firebase';
 
 import './index.css';
 
 import { ExFModule } from 'exf-ts';
+import { Router, RouterLink } from 'exf-router';
+
 import { App } from './App';
 import { Navbar } from './components/Navbar';
 import { Overlay } from './components/Overlay';
@@ -13,8 +16,6 @@ import { NavbarTab } from './components/NavTab';
 import { Logo } from './components/Logo';
 import { Hero } from './components/Hero';
 import { Footer } from './components/Footer';
-import { RouterLink } from './Router/RouterLink';
-import { Router } from './Router/Router';
 import { Socials } from './components/Socials';
 import { Skills } from './components/Skills';
 import { Timeline } from './components/Timeline';
@@ -32,7 +33,6 @@ import { Notification } from './components/Notification';
 import { CreateProjectTile } from './components/CreateProjectTile';
 import { CreateProject } from './components/CreateProject';
 import { store } from './redux/store';
-import 'macro-carousel';
 
 
 store.dispatch({ type: 'AUTH_CHANGE' });

@@ -1934,6 +1934,14 @@ execa@^1.0.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
+exf-router@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/exf-router/-/exf-router-1.0.0.tgz#e01dac3416b4da4bd2ce343a2b4fe6f84ae2a505"
+  integrity sha512-EjFND0l2y4u6EtUSKltO3ndBEInmDd8Q/yFnnCgruYyGVQUEsqsX7idboW5iChdufFLh4rx40wOktXZt3KjZtQ==
+  dependencies:
+    exf-ts "^1.1.7"
+    path-to-regexp "^6.1.0"
+
 exf-ts@^1.1.7:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/exf-ts/-/exf-ts-1.2.5.tgz#1ab9ca6e10a68b04e9b07251cce1604485ef4245"

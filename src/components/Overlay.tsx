@@ -1,7 +1,7 @@
+import { IRoute } from 'exf-router/lib/interfaces/interfaces';
 import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { routes } from '../config/routes';
 import { store } from '../redux/store';
-import { IRoute } from '../Router/interfaces';
 
 @CustomElement({
 	selector: 'exf-overlay'

@@ -15,6 +15,7 @@
     "@webcomponents/shadydom": "^1.7.4",
     "core-js": "^3.6.5",
     "css-loader": "^4.3.0",
+    "exf-router": "^1.0.0",
     "exf-ts": "^1.1.7",
     "file-loader": "^6.1.0",
     "firebase": "^7.21.0",
