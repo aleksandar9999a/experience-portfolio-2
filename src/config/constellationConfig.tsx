@@ -12,7 +12,7 @@ const constellation_config = {
     width: window.innerWidth - 20,
     height: window.innerHeight,
     velocity: 0.2,
-    length: window.innerWidth < 500 ? 20 : 150,
+    length: window.innerWidth < 500 ? 50 : 150,
     distance: 80,
     radius: 200
 }
