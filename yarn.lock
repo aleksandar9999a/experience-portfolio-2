@@ -1934,10 +1934,10 @@ execa@^1.0.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
-exf-router@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/exf-router/-/exf-router-1.0.0.tgz#e01dac3416b4da4bd2ce343a2b4fe6f84ae2a505"
-  integrity sha512-EjFND0l2y4u6EtUSKltO3ndBEInmDd8Q/yFnnCgruYyGVQUEsqsX7idboW5iChdufFLh4rx40wOktXZt3KjZtQ==
+exf-router@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/exf-router/-/exf-router-1.0.1.tgz#52c9bb3682ca9999db8d7b18e46f6043bdb90580"
+  integrity sha512-KuV+YzGFpVKJO/+dYiG40ufdADsTIfeGh/zd+OmajCWLcjAB/20rNWp4OsAEG3tPE0mNDCOWH4ns88Qf8sncpA==
   dependencies:
     exf-ts "^1.1.7"
     path-to-regexp "^6.1.0"
@@ -3139,11 +3139,6 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
-
-macro-carousel@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/macro-carousel/-/macro-carousel-1.0.0.tgz#63f15cefc55a98b41f749e6a058cb0f1cb41fc4a"
-  integrity sha512-mf+ZyUKCUtbzKadtLfwtEa30FOvmJKnEQFfFS5Vwz0pWvaN4Z0Br4lDlbfNeYRksy53D2cGXlFFFnxoZw5tWkA==
 
 make-dir@^2.0.0:
   version "2.1.0"

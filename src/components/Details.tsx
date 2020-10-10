@@ -69,50 +69,39 @@ export class Details extends Component {
                         },
 
                         '.details__link': {
-                            'margin': '15px 0'
+                            'margin': '15px 0',
+
+                            'a': {
+                                'font-size': '15px'
+                            }
                         },
 
                         '.details__slideshow': {
-                            'margin': '10px 0'
+                            'margin': '10px 0',
+                            'display': 'flex',
+                            'justify-content': 'center'
                         },
 
                         'h2': {
                             'font-size': '40px',
-                        },
-
-                        'macro-carousel': {
-                            'height': '450px',
-                            'width': '450px',
-                            'margin': 'auto',
-
-                            'img': {
-                                'width': 'auto',
-                                'height': '100%',
-                                'object-fit': 'cover'
-                            }
-                        },
-
-                        '.slide': {
-                            'display': 'flex',
-                            'align-items': 'center',
-                            'justify-content': 'center',
-                            'box-shadow': 'inset 0px 0px 20px 0px rgba(0, 0, 0, .05)'
                         }
                     }
                 }
 
                 {`
-					@media screen and (max-width: 1300px) {
-						.details macro-carousel {
-							height: 300px;
-						}
-					}
-
 					@media screen and (max-width: 700px) {
-						.details macro-carousel {
-                            height: 200px;
-                            width: 380px;
-						}
+                        .details .details__inner {
+                            max-width: 350px;
+                            font-size: 15px;
+                        }
+
+                        .details h2 {
+                            font-size: 30px;
+                        }
+
+                        .details .details__link a {
+                            font-size: 13px;
+                        }
 					}
 				`}
             </style>
@@ -130,11 +119,7 @@ export class Details extends Component {
                     </div>
 
                     <div className="details__slideshow">
-                        <macro-carousel pagination>
-                            {images.map(img => {
-                                return <article id={img.id} class="slide"><img src={img.url} alt="" /></article>
-                            })}
-                        </macro-carousel>
+                        <exf-carousel images={images} />
                     </div>
 
                     <div className="details__body">

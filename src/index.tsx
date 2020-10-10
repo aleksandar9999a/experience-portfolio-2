@@ -1,5 +1,4 @@
 import 'core-js';
-import 'macro-carousel';
 import './interfaces/interfaces';
 import './firebase';
 
@@ -33,6 +32,7 @@ import { Notification } from './components/Notification';
 import { CreateProjectTile } from './components/CreateProjectTile';
 import { CreateProject } from './components/CreateProject';
 import { store } from './redux/store';
+import { Carousel } from './components/Carousel';
 
 
 store.dispatch({ type: 'AUTH_CHANGE' });
@@ -65,7 +65,8 @@ ExFModule({
         Notifications,
         Notification,
         CreateProjectTile,
-        CreateProject
+        CreateProject,
+        Carousel
     ],
     bootstraps: [
         App
