@@ -1,8 +1,6 @@
 import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
 import tabsConfig from '../config/navbar';
 import { store } from '../redux/store';
-import arrow from './../assets/arrow-bar-right.png'
-import bars from './../assets/bars.png'
 
 
 @CustomElement({
@@ -31,7 +29,7 @@ export class Navbar extends Component {
                         '.navbar__mobile': {
                             'display': 'none',
                             'position': 'absolute',
-                            'top': '20px',
+                            'top': '10px',
                             'left': this.isAuth ? '100px' : 'calc(100% - 50px)'
                         },
 
@@ -39,10 +37,11 @@ export class Navbar extends Component {
                             'display': 'flex',
                             'position': 'absolute',
                             'left': '0',
-                            'top': '0',
+                            'top': '10px',
                             'right': '0',
                             'list-style-type': 'none',
                             'justify-content': 'center',
+                            'margin': '0',
 
                             'li': {
                                 'position': 'relative',
@@ -56,7 +55,7 @@ export class Navbar extends Component {
 
                         '.navbar__logout': {
                             'position': 'absolute',
-                            'top': '20px',
+                            'top': '10px',
                             'right': '6px',
                             'min-width': '60px',
                             'cursor': 'pointer'
@@ -86,7 +85,7 @@ export class Navbar extends Component {
 
                         .navbar ul li {
                             background-color: #181818;
-                            padding: 26px 0;
+                            padding: 5px 0;
                             display: flex;
                             justify-content: center;
                             border-radius: 50%;
@@ -112,15 +111,15 @@ export class Navbar extends Component {
                 <exf-logo />
 
                 <div className="navbar__mobile" onClick={this.handleMenuOpen}>
-                    <exf-navbar-tab name="Menu" image={bars} />
+                    <exf-navbar-tab name="Menu" />
                 </div>
 
                 <ul>
-                    {tabs.map(({ route, name, icon }) => {
+                    {tabs.map(({ route, name }) => {
                         return (
                             <li>
                                 <exf-router-link route={route}>
-                                    <exf-navbar-tab name={name} image={icon} />
+                                    <exf-navbar-tab name={name} />
                                 </exf-router-link>
                             </li>
                         )
@@ -130,7 +129,7 @@ export class Navbar extends Component {
                 {this.isAuth
                     ? (
                         <div className="navbar__logout" onClick={this.handleLogOut}>
-                            <exf-navbar-tab name="Log Out" image={arrow} />
+                            <exf-navbar-tab name="Log Out" />
                         </div>
                     )
                     : null}

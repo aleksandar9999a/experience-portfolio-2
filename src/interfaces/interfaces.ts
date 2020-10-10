@@ -27,7 +27,7 @@ export interface ITab {
     id: number,
     name: string,
     route: string,
-    icon: string,
+    icon?: string,
     auth?: boolean
 }
 
