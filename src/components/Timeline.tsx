@@ -321,7 +321,7 @@ export class Timeline extends Component {
                                             <div className="timeline__foot">
                                                 <p>Start: <span>{start}</span></p>
 
-                                                <p>End: <span>{end}</span></p>
+                                                <p>Until: <span>{end}</span></p>
                                             </div>
                                         </div >
                                     )

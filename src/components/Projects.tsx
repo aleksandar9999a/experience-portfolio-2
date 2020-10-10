@@ -47,7 +47,6 @@ export class Projects extends Component {
                             'display': 'flex',
                             'flex-wrap': 'wrap',
                             'justify-content': 'center',
-                            'width': '1200px',
                             'margin': '0 -10px 30px',
 
                             '.projects__item': {
