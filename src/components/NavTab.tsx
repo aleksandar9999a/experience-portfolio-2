@@ -26,13 +26,6 @@ export class NavbarTab extends Component {
                         }
                     }
                 }
-
-                {`
-					@media screen and (max-width: 800px) {
-                        div p {
-                        }
-					}
-				`}
             </style>
         )
     }

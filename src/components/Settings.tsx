@@ -174,13 +174,15 @@ export class Settings extends Component {
                     }
                 }
 
-                {`
-					@media screen and (max-width: 700px) {
-						.settings .settings__flex {
-							flex-direction: column;
-						}
-					}
-				`}
+                @media screen and (max-width: 700px) {
+                    {
+                        '.settings': {
+                            '.settings__flex': {
+                                'flex-direction': 'column'
+                            }
+                        }
+                    }
+                }
             </style>
         )
     }

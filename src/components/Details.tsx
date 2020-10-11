@@ -88,22 +88,24 @@ export class Details extends Component {
                     }
                 }
 
-                {`
-					@media screen and (max-width: 700px) {
-                        .details .details__inner {
-                            max-width: 350px;
-                            font-size: 15px;
-                        }
+                @media screen and (max-width: 700px) {
+                    {
+                        '.details': {
+                            '.details__inner': {
+                                'max-width': '350px',
+                                'font-size': '15px'
+                            },
 
-                        .details h2 {
-                            font-size: 30px;
-                        }
+                            'h2': {
+                                'font-size': '30px'
+                            },
 
-                        .details .details__link a {
-                            font-size: 13px;
+                            '.details__link a': {
+                                'font-size': '13px'
+                            }
                         }
-					}
-				`}
+                    }
+                }
             </style>
         )
     }

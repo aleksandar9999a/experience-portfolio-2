@@ -63,41 +63,50 @@ export class Navbar extends Component {
                     }
                 }
 
-                {`
-					@media screen and (max-width: 1300px) {
-						.navbar ul li + li {
-							margin-left: 26px;
+                @media screen and (max-width: 1300px) {
+                    {
+                        '.navbar': {
+                            'ul': {
+                                'li + li': {
+                                    'margin-left': '26px'
+                                }
+                            }
                         }
-					}
+                    }
+                }
 
-					@media screen and (max-width: 800px) {
-                        .navbar .navbar__mobile {
-                            display: block;
-                        }
+                @media screen and (max-width: 800px) {
+                    {
+                        '.navbar': {
+                            '.navbar__mobile': {
+                                'display': 'block'
+                            },
 
-						.navbar ul {
-                            display: ${this.isOpen ? 'block' : 'none'};
-                            position: relative;
-                            top: 0;
-                            left: -28px;
-                            z-index: 5;
-                        }
+                            'ul': {
+                                'display': this.isOpen ? 'block' : 'none',
+                                'position': 'relative',
+                                'top': '0',
+                                'left': '-28px',
+                                'z-index': '5',
 
-                        .navbar ul li {
-                            background-color: #181818;
-                            padding: 0;
-                            display: flex;
-                            justify-content: center;
-                            position: relative;
-                            border-top: 1px solid #08fdd8;
-                            border-bottom: 1px solid #08fdd8;
-                        }
+                                'li': {
+                                    'background - color': '#181818',
+                                    'padding': '0',
+                                    'display': 'flex',
+                                    'justify-content': 'center',
+                                    'position': 'relative',
+                                    'border-top': '1px solid #08fdd8',
+                                    'border-bottom': '1px solid #08fdd8',
+                                },
 
-                        .navbar ul li + li {
-                            margin: 0;
+                                'li + li': {
+                                    'margin': '0'
+
+                                }
+                            }
                         }
-					}
-				`}
+                    }
+                }
             </style>
         )
     }

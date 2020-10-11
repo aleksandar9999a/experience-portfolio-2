@@ -216,36 +216,36 @@ export class Timeline extends Component {
                     }
                 }
 
-                {`
-					@media screen and (max-width: 700px) {
-                        .timeline-wrapper {
-                            margin-bottom: 115px;
-                        }
+                @media screen and (max-width: 700px) {
+                    {
+                        '.timeline-wrapper': {
+                            'margin-bottom': '115px',
 
-						.timeline {
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                        }
+                            '.timeline__add': {
+                                'top': '99%',
+                                'right': '102px'
+                            }
+                        },
 
-                        .timeline-wrapper .timeline__add {
-                            top: 99%;
-                            right: 102px;
-                        }
+                        '.timeline': {
+                            'display': 'flex',
+                            'flex-direction': 'column',
+                            'align-items': 'center',
 
-                        .timeline .timeline__badge {
-                            display: none;
-                        }
-                        
-                        .timeline .timeline__badge:before {
-                            display: none;
-                        }
+                            '.timeline__badge': {
+                                'display': 'none'
+                            },
 
-                        .timeline li + li {
-                            margin-left: 0;
+                            '.timeline__badge:before': {
+                                'display': 'none'
+                            },
+
+                            'li + li': {
+                                'margin-left': '0'
+                            }
                         }
-					}
-				`}
+                    }
+                }
             </style>
         )
     }

@@ -22,16 +22,19 @@ export class Notification extends Component {
     stylize() {
         return (
             <style>
-                {`@keyframes on-create {        
-					from {
-						opacity : 0;
-						right : -7%;
-					}
-					to {
-						opacity : 1;
-						right : 0;
-					}      
-				}`}
+                @keyframes on-create {
+                    {
+                        'from': {
+                            'opacity': '0',
+                            'right': '-7%',
+                        },
+
+                        'to': {
+                            'opacity': '1',
+                            'right': '0',
+                        }
+                    }
+                }
 
 				li {
                     {

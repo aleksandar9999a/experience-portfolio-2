@@ -78,27 +78,29 @@ export class Hero extends Component {
                     }
                 }
 
-                {`
-					@media screen and (max-width: 1300px) {
-						.hero {
-							padding: 80px 0;
-                        }
-                        
-                        .hero h1 {
-                            font-size: 45px;
-                        }
-					}
+                @media screen and (max-width: 1300px) {
+                    {
+                        '.hero': {
+                            'padding': '80px 0',
 
-					@media screen and (max-width: 800px) {
-						.hero {
-							padding: 50px 0;
+                            'h1': {
+                                'font-size': '45px'
+                            }
                         }
-                        
-                        .hero h1 {
-                            font-size: 40px;
+                    }
+                }
+
+                @media screen and (max-width: 800px) {
+                    {
+                        '.hero': {
+                            'padding': '50px 0',
+
+                            'h1': {
+                                'font-size': '40px'
+                            }
                         }
-					}
-				`}
+                    }
+                }
             </style>
         )
     }

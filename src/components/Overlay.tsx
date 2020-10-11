@@ -33,19 +33,25 @@ export class Overlay extends Component {
 					}
 				}
 
-				{`
-					@media screen and (max-width: 1300px) {
-						.overlay .container {
-							max-width: 90vw;
+				@media screen and (max-width: 1300px) {
+					{
+						'.overlay': {
+							'.container': {
+								'max-width': '90vw'
+							}
 						}
 					}
+				}
 
-					@media screen and (max-width: 700px) {
-						.overlay .container {
-							max-width: 95vw;
+				@media screen and (max-width: 700px) {
+					{
+						'.overlay': {
+							'.container': {
+								'max-width': '95vw'
+							}
 						}
 					}
-				`}
+				}
 			</style>
 		)
 	}

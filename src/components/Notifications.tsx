@@ -24,17 +24,6 @@ export class Notifications extends Component {
 	stylize() {
 		return (
 			<style>
-				{`@keyframes on-create {        
-					from {
-						opacity : 0;
-						right : -500px;
-					}
-					to {
-						opacity : 1;
-						right : 0;
-					}      
-				}`}
-
 				.notifications {
 					{
 						'ul': {

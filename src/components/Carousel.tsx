@@ -138,34 +138,36 @@ export class Carousel extends Component {
                     }
                 }
 
-                {`
-					@media screen and (max-width: 1300px) {
-						.carousel {
-                            height: 300px;
-                            width: 380px;
-                        }
-                        
-                        .carousel .carousel__images .carousel__image img {
-                            height: 300px;
-                        }
-					}
+                @media screen and (max-width: 1300px) {
+                    {
+                        '.carousel': {
+                            'height': '300px',
+                            'width': '380px',
 
-					@media screen and (max-width: 700px) {
-                        .carousel {
-                            height: 200px;
-                            width: 280px;
+                            '.carousel__images .carousel__image img': {
+                                'height': '300px'
+                            }
                         }
+                    }
+                }
 
-                        .carousel .carouser__actions {
-                            left: 0;
-                            right: 0;
+                @media screen and (max-width: 700px) {
+                    {
+                        '.carousel': {
+                            'height': '200px',
+                            'width': '280px',
+
+                            '.carouser__actions': {
+                                'left': '0',
+                                'right': '0'
+                            },
+
+                            '.carousel__images .carousel__image img': {
+                                'height': '200px'
+                            }
                         }
-                        
-                        .carousel .carousel__images .carousel__image img {
-                            height: 200px;
-                        }
-					}
-				`}
+                    }
+                }
             </style>
         )
     }
