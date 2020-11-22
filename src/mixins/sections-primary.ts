@@ -9,7 +9,9 @@ export const sectionPrimary = {
     },
 
     '.section__inner': {
-        'margin-top': '50px'
+        'margin-top': '50px',
+        'width': '100%',
+        'height': '100%'
     },
 
     '.section__head': {

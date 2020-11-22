@@ -1,5 +1,5 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
-import { IEmail, IProject, ISocials, ITimelineItems } from '../interfaces/interfaces';
+import { IEmail, IProject, ISocials, ITimelineItems, IAuthUser } from '../interfaces/interfaces';
 import { store } from '../redux/store';
 import { update_about_timeline, update_mydata, update_skills_timeline } from '../redux/symbols';
 import { fields } from '../mixins/fields';
@@ -22,6 +22,19 @@ export class Settings extends Component {
     @State('state') aboutTimeline: ITimelineItems[] = [];
     @State('state') contacts: IEmail[] = [];
 
+    @State('state') mainData: IAuthUser = {
+        firstName: '',
+        lastName: '',
+        devType: '',
+        about: '',
+        skills: '',
+        socials: [],
+        aboutTimeline: [],
+        skillsTimeline: [],
+        projects: [],
+        contacts: []
+    }
+
     fields: object;
     buttons: object;
     forms: object;
@@ -36,29 +49,7 @@ export class Settings extends Component {
 
     onCreate() {
         store.subscribe(() => {
-            const {
-                firstName,
-                lastName,
-                devType,
-                about,
-                skills,
-                socials,
-                aboutTimeline,
-                skillsTimeline,
-                projects,
-                contacts
-            } = store.getState().myData;
-
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.devType = devType;
-            this.about = about;
-            this.skills = skills;
-            this.socials = socials;
-            this.aboutTimeline = aboutTimeline;
-            this.skillsTimeline = skillsTimeline;
-            this.projects = projects;
-            this.contacts = contacts;
+            this.mainData = store.getState().myData;
         })
 
         if (!!store.getState().user) {
@@ -130,7 +121,9 @@ export class Settings extends Component {
 
                         '.settings__inner': {
                             'margin-top': '50px',
-                            'margin': '0 auto'
+                            'margin': '0 auto',
+                            'width': '100%',
+                            'height': '100%'
                         },
 
                         '.settings__section': {
@@ -188,9 +181,24 @@ export class Settings extends Component {
     }
 
     render() {
+        const {
+            firstName,
+            lastName,
+            devType,
+            about,
+            skills,
+            socials,
+            aboutTimeline,
+            skillsTimeline,
+            projects,
+            contacts
+        } = this.mainData
+
+        console.log('in')
+
         return (
             <div className="settings">
-                <div className="setting__inner">
+                <div className="settings__inner">
                     <div className="settings__flex">
                         <div className="settings__section">
                             <div className="settings__head">
@@ -207,7 +215,7 @@ export class Settings extends Component {
                                                     id="firstName"
                                                     className="field"
                                                     required
-                                                    value={this.firstName}
+                                                    value={firstName}
                                                     onInput={(e: any) => this.handleInput(e, 'firstName')}
                                                 />
 
@@ -222,7 +230,7 @@ export class Settings extends Component {
                                                     id="lastName"
                                                     className="field"
                                                     required
-                                                    value={this.lastName}
+                                                    value={lastName}
                                                     onInput={(e: any) => this.handleInput(e, 'lastName')}
                                                 />
 
@@ -237,7 +245,7 @@ export class Settings extends Component {
                                                     id="devType"
                                                     className="field"
                                                     required
-                                                    value={this.devType}
+                                                    value={devType}
                                                     onInput={(e: any) => this.handleInput(e, 'devType')}
                                                 />
 
@@ -251,7 +259,7 @@ export class Settings extends Component {
                                                     id="about"
                                                     className="field field--textarea"
                                                     required
-                                                    value={this.about}
+                                                    value={about}
                                                     onInput={(e: any) => this.handleInput(e, 'about')}
                                                 >
                                                 </textarea>
@@ -266,7 +274,7 @@ export class Settings extends Component {
                                                     id="skills"
                                                     className="field field--textarea"
                                                     required
-                                                    value={this.skills}
+                                                    value={skills}
                                                     onInput={(e: any) => this.handleInput(e, 'skills')}
                                                 >
                                                 </textarea>
@@ -290,7 +298,7 @@ export class Settings extends Component {
 
                             <div className="settings__form">
                                 <exf-contacts-list
-                                    items={this.contacts}
+                                    items={contacts}
                                     onChange={this.handleContactsChange}
                                     onRemove={this.handleContactRemove}
                                 />
@@ -307,7 +315,7 @@ export class Settings extends Component {
                             <div className="form__body">
                                 <div className="form__row">
                                     <exf-timeline
-                                        items={this.skillsTimeline}
+                                        items={skillsTimeline}
                                         editable={true}
                                         onChange={this.handleSkillsChange}
                                     />
@@ -329,7 +337,7 @@ export class Settings extends Component {
                             <div className="form__body">
                                 <div className="form__row">
                                     <exf-timeline
-                                        items={this.aboutTimeline}
+                                        items={aboutTimeline}
                                         editable={true}
                                         onChange={this.handleAboutChange}
                                     />
@@ -348,7 +356,7 @@ export class Settings extends Component {
                         </div>
 
                         <div className="form__body flex-body">
-                            {this.projects.map(project => {
+                            {projects.map(project => {
                                 return (
                                     <div className="projects__item">
                                         <exf-router-link route={`/details/${project.creatorId}/${project.id}`}>

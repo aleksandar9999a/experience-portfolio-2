@@ -71,7 +71,9 @@ export class Project extends Component {
         return (
             <div className="project">
                 <div className="project__image">
-                    <img src={cover || images[0].url} alt="" />
+                    {images[0]
+                        ? <img src={cover || images[0].url} alt="" />
+                        : <div></div>}
                 </div>
 
                 <div className="project__head">
