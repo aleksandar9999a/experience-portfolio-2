@@ -1,39 +1,10 @@
 import { put, takeEvery, call } from 'redux-saga/effects';
 import uid from 'uid';;
-import { firestore, storage } from '../firebase';
-import { IProject, IUploadedImage } from '../interfaces/interfaces';
-import { add_images_create_project, update_create_project, update_loader, update_project } from '../redux/symbols';
-import { eventChannel } from 'redux-saga';
+import { firestore } from '../firebase';
+import { IProject } from '../interfaces/interfaces';
+import {  update_create_project, update_loader, update_project } from '../redux/symbols';
 import { store } from '../redux/store';
 
-/**
- * Get Projects Information 
- */
-function* getProjects() {
-    yield put({ type: update_loader, payload: true });
-
-    const uid = (store as any).getState().user.uid;
-
-    const snapshot = yield call(firestore.getCollection, `users/${uid}/projects`);
-
-    let projects: IProject[] = [];
-
-    snapshot.forEach((doc: any) => {
-        const data = doc.data();
-        projects = [...projects, data];
-    })
-
-    // yield put({ type: update_projects, payload: projects });
-
-    yield put({ type: update_loader, payload: false });
-}
-
-/**
- * Handle Get Projects Information 
- */
-export function* handleGetProjects() {
-    yield takeEvery('GET_PROJECTS', getProjects);
-}
 
 /**
  * Get Project

@@ -1,6 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { IProject } from '../interfaces/interfaces';
-import { add_images_create_project, clear_create_project, remove_images_create_project, set_cover_create_project, update_create_project, } from './symbols';
+
+import {
+    add_images_create_project,
+    clear_create_project,
+    remove_images_create_project,
+    set_cover_create_project,
+    update_create_project
+} from './symbols';
 
 const initialState: IProject = {
     id: '',
@@ -16,7 +23,7 @@ const createProjectReducer = createReducer(initialState, {
     [update_create_project]: (state, { payload }) => {
         return { ...state, ...payload }
     },
-    [clear_create_project]: (_, action) => initialState,
+    [clear_create_project]: () => initialState,
     [add_images_create_project]: (state, { payload }) => {
         return {
             ...state,

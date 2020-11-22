@@ -1,14 +1,21 @@
 import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
 import { IUploadedImage } from '../interfaces/interfaces';
 import { store } from '../redux/store';
-import { add_images_create_project, clear_create_project, remove_images_create_project, set_cover_create_project, update_create_project } from '../redux/symbols';
-import { fields } from '../mixins/fields';
-import { buttons } from './../mixins/buttons';
-import { forms } from '../mixins/forms';
 import { uploadImages } from '../utils/storage';
+import Styles from '../services/styles';
+
+import {
+    add_images_create_project,
+    clear_create_project,
+    remove_images_create_project,
+    set_cover_create_project,
+    update_create_project
+} from '../redux/symbols';
+
 
 @CustomElement({
-    selector: 'exf-create-project'
+    selector: 'exf-create-project',
+    dependencyInjection: true
 })
 export class CreateProject extends Component {
     @Prop('state') id: string = '';
@@ -17,16 +24,9 @@ export class CreateProject extends Component {
     @State('state') description: string = '';
     @State('state') link: string = '';
     @State('state') images: IUploadedImage[] = [];
-    fields: object;
-    buttons: object;
-    forms: object;
 
-    constructor() {
+    constructor(private styles: Styles) {
         super();
-
-        this.fields = fields;
-        this.buttons = buttons;
-        this.forms = forms;
     }
 
     onCreate() {
@@ -196,9 +196,9 @@ export class CreateProject extends Component {
             <style>
                 .create-project {
                     {
-                        ...this.buttons,
-                        ...this.fields,
-                        ...this.forms,
+                        ...this.styles.buttons,
+						...this.styles.fields,
+						...this.styles.forms,
 
                         'padding': '50px 0 10px',
                         'text-align': 'center',

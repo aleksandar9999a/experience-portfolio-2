@@ -4,7 +4,6 @@ import { handleSendEmail } from './emailSaga';
 import {
     handleDeleteProject,
     handleGetProject,
-    handleGetProjects,
     handleLoadCreateProject,
     handleSubmitProject
 } from './projectsSaga';
@@ -32,7 +31,6 @@ import {
 
 export default [
     handleGetMainInfo,
-    handleGetProjects,
     handleGetProject,
     handleUserLogin,
     handleAddWarningNotification,

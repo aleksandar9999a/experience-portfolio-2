@@ -1,6 +1,11 @@
 import { IAuthUser } from "../interfaces/interfaces";
 import { createReducer } from '@reduxjs/toolkit';
-import { update_mydata, update_skills_timeline, update_about_timeline } from './symbols';
+
+import {
+    update_mydata,
+    update_skills_timeline,
+    update_about_timeline
+} from './symbols';
 
 const initialState: IAuthUser = {
     firstName: '',

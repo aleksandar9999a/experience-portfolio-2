@@ -1,22 +1,19 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { ITimelineItems } from '../interfaces/interfaces';
 import { store } from '../redux/store';
-import { sectionPrimary } from './../mixins/sections-primary';
+import Styles from '../services/styles';
 
 
 @CustomElement({
-    selector: 'exf-about'
+    selector: 'exf-about',
+    dependencyInjection: true
 })
 export class About extends Component {
     @State('state') timeline: ITimelineItems[] = [];
     @State('state') description: string = '';
 
-    sectionPrimary: object;
-
-    constructor() {
+    constructor(private styles: Styles) {
         super();
-
-        this.sectionPrimary = sectionPrimary;
     }
 
     onCreate() {
@@ -32,7 +29,7 @@ export class About extends Component {
     stylize() {
         return (
             <style>
-                .section {this.sectionPrimary}
+                .section {this.styles.sectionPrimary}
             </style>
         )
     }

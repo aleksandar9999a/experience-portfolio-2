@@ -9,7 +9,7 @@ const userReducer = createReducer(initialState, {
             ? { ...state as any, ...payload }
             : payload
     },
-    [remove_user]: (state, payload) => null
+    [remove_user]: () => null
 })
 
 export default userReducer;

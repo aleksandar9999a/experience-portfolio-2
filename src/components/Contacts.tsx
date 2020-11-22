@@ -1,12 +1,11 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { store } from '../redux/store';
-import { fields } from '../mixins/fields';
-import { buttons } from './../mixins/buttons';
-import { forms } from './../mixins/forms';
+import Styles from '../services/styles';
 
 
 @CustomElement({
-	selector: 'exf-contacts'
+	selector: 'exf-contacts',
+	dependencyInjection: true
 })
 export class Contacts extends Component {
 	@State('state') name: string = '';
@@ -14,16 +13,8 @@ export class Contacts extends Component {
 	@State('state') subject: string = '';
 	@State('state') message: string = '';
 
-	buttons: object;
-	fields: object;
-	forms: object;
-
-	constructor() {
+	constructor(private styles: Styles) {
 		super();
-
-		this.buttons = buttons;
-		this.fields = fields;
-		this.forms = forms;
 	}
 
 	handleInput(e: any, type: 'name' | 'email' | 'subject' | 'message') {
@@ -48,9 +39,9 @@ export class Contacts extends Component {
 			<style>
 				.contacts-form {
 					{
-						...this.buttons,
-						...this.fields,
-						...this.forms,
+						...this.styles.buttons,
+						...this.styles.fields,
+						...this.styles.forms,
 
 						'padding': '50px 0 10px',
 						'text-align': 'center',

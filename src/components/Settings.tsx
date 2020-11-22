@@ -2,13 +2,12 @@ import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { ITimelineItems, IAuthUser } from '../interfaces/interfaces';
 import { store } from '../redux/store';
 import { update_about_timeline, update_mydata, update_skills_timeline } from '../redux/symbols';
-import { fields } from '../mixins/fields';
-import { buttons } from './../mixins/buttons';
-import { forms } from './../mixins/forms';
+import Styles from '../services/styles';
 
 
 @CustomElement({
-    selector: 'exf-settings'
+    selector: 'exf-settings',
+    dependencyInjection: true
 })
 export class Settings extends Component {
     @State('state') mainData: IAuthUser = {
@@ -24,16 +23,8 @@ export class Settings extends Component {
         contacts: []
     }
 
-    fields: object;
-    buttons: object;
-    forms: object;
-
-    constructor() {
+    constructor(private styles: Styles) {
         super();
-
-        this.fields = fields;
-        this.buttons = buttons;
-        this.forms = forms;
     }
 
     onCreate() {
@@ -103,9 +94,9 @@ export class Settings extends Component {
             <style>
                 .settings {
                     {
-                        ...this.buttons,
-                        ...this.fields,
-                        ...this.forms,
+                        ...this.styles.buttons,
+						...this.styles.fields,
+						...this.styles.forms,
 
                         'display': 'flex',
                         'justify-content': 'center',
@@ -184,14 +175,11 @@ export class Settings extends Component {
             devType,
             about,
             skills,
-            socials,
             aboutTimeline,
             skillsTimeline,
             projects,
             contacts
         } = this.mainData
-
-        console.log('in')
 
         return (
             <div className="settings">

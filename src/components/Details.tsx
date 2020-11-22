@@ -1,11 +1,12 @@
 import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
 import { IProject } from '../interfaces/interfaces';
 import { store } from '../redux/store';
-import { buttons } from './../mixins/buttons';
+import Styles from '../services/styles';
 
 
 @CustomElement({
-    selector: 'exf-details'
+    selector: 'exf-details',
+    dependencyInjection: true
 })
 export class Details extends Component {
     @Prop('state') id!: string;
@@ -20,12 +21,9 @@ export class Details extends Component {
         cover: '',
         images: []
     }
-    buttons: object = {};
 
-    constructor() {
+    constructor(private styles: Styles) {
         super();
-
-        this.buttons = buttons;
     }
 
     onCreate() {
@@ -53,7 +51,7 @@ export class Details extends Component {
             <style>
                 .details {
                     {
-                        ...this.buttons,
+                        ...this.styles.buttons,
 
                         'display': 'flex',
                         'justify-content': 'center',

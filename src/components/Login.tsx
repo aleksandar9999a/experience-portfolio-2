@@ -1,8 +1,6 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
 import { store } from '../redux/store';
-import { buttons } from './../mixins/buttons';
-import { forms } from './../mixins/forms';
-import { fields } from './../mixins/fields';
+import Styles from '../services/styles';
 
 
 @CustomElement({
@@ -12,16 +10,8 @@ export class Login extends Component {
     @State('state') email: string = '';
     @State('state') password: string = '';
 
-    fields: object;
-    buttons: object;
-    forms: object;
-
-    constructor() {
+    constructor(private styles: Styles) {
         super();
-
-        this.fields = fields;
-        this.buttons = buttons;
-        this.forms = forms;
     }
 
     handleEmail = (e: any) => {
@@ -100,9 +90,9 @@ export class Login extends Component {
             <style>
                 .login {
                     {
-                        ...this.buttons,
-                        ...this.forms,
-                        ...this.fields,
+                        ...this.styles.buttons,
+						...this.styles.fields,
+						...this.styles.forms,
 
                         'text-align': 'center',
                         'padding': '50px 0',
