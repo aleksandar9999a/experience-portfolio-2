@@ -1,5 +1,5 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
-import { IEmail, IProject, ISocials, ITimelineItems, IAuthUser } from '../interfaces/interfaces';
+import { ITimelineItems, IAuthUser } from '../interfaces/interfaces';
 import { store } from '../redux/store';
 import { update_about_timeline, update_mydata, update_skills_timeline } from '../redux/symbols';
 import { fields } from '../mixins/fields';
@@ -11,17 +11,6 @@ import { forms } from './../mixins/forms';
     selector: 'exf-settings'
 })
 export class Settings extends Component {
-    @State('state') firstName: string = '';
-    @State('state') lastName: string = '';
-    @State('state') devType: string = '';
-    @State('state') about: string = '';
-    @State('state') skills: string = '';
-    @State('state') socials: ISocials[] = [];
-    @State('state') projects: IProject[] = [];
-    @State('state') skillsTimeline: ITimelineItems[] = [];
-    @State('state') aboutTimeline: ITimelineItems[] = [];
-    @State('state') contacts: IEmail[] = [];
-
     @State('state') mainData: IAuthUser = {
         firstName: '',
         lastName: '',
@@ -92,11 +81,11 @@ export class Settings extends Component {
     }
 
     handleSkillsSubmit = () => {
-        store.dispatch({ type: 'SKILLS_TIMELINE_SUBMIT', payload: this.skillsTimeline });
+        store.dispatch({ type: 'SKILLS_TIMELINE_SUBMIT', payload: this.mainData.skillsTimeline });
     }
 
     handleAboutSubmit = () => {
-        store.dispatch({ type: 'ABOUT_TIMELINE_SUBMIT', payload: this.aboutTimeline });
+        store.dispatch({ type: 'ABOUT_TIMELINE_SUBMIT', payload: this.mainData.aboutTimeline });
     }
 
     handleContactsChange = (contact: object) => {
@@ -108,7 +97,7 @@ export class Settings extends Component {
     }
 
     stylize() {
-        const flex = this.projects.length !== 1 ? '0 0 calc(25% - 20px)' : '0';
+        const flex = this.mainData.projects.length !== 1 ? '0 0 calc(25% - 20px)' : '0';
 
         return (
             <style>
