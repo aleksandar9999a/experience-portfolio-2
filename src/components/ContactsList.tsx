@@ -47,7 +47,8 @@ export class ContactsList extends Component {
                         },
 
                         'p': {
-                            'margin': '0 0 5px'
+                            'margin': '0 0 5px',
+                            'word-break': 'break-all'
                         },
 
                         'span': {
