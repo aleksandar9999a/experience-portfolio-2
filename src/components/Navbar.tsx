@@ -17,97 +17,102 @@ export class Navbar extends Component {
     handleMenuOpen = () => {
         this.isOpen = !this.isOpen;
     }
-
+    
     stylize() {
         return (
-            <style>
-                .navbar {
-                    {
-                        'position': 'relative',
-                        'background-color': '#181818',
+            <styles>
+                <style>
+                    .navbar {
+                        {
+                            'position': 'relative',
+                            'background-color': '#181818',
 
-                        '.navbar__mobile': {
-                            'display': 'none',
-                            'position': 'absolute',
-                            'top': '10px',
-                            'left': this.isAuth ? '100px' : 'calc(100% - 50px)'
-                        },
-
-                        'ul': {
-                            'display': 'flex',
-                            'position': 'absolute',
-                            'left': '0',
-                            'top': '10px',
-                            'right': '0',
-                            'list-style-type': 'none',
-                            'justify-content': 'center',
-                            'margin': '0',
-
-                            'li': {
-                                'position': 'relative',
-                                'min-width': '60px'
-                            }
-                        },
-
-                        'li + li': {
-                            'margin-left': '50px'
-                        },
-
-                        '.navbar__logout': {
-                            'position': 'absolute',
-                            'top': '10px',
-                            'right': '6px',
-                            'min-width': '60px',
-                            'cursor': 'pointer'
-                        }
-                    }
-                }
-
-                @media screen and (max-width: 1300px) {
-                    {
-                        '.navbar': {
-                            'ul': {
-                                'li + li': {
-                                    'margin-left': '26px'
-                                }
-                            }
-                        }
-                    }
-                }
-
-                @media screen and (max-width: 800px) {
-                    {
-                        '.navbar': {
                             '.navbar__mobile': {
-                                'display': 'block'
+                                'display': 'none',
+                                'position': 'absolute',
+                                'top': '10px',
+                                'left': this.isAuth ? '100px' : 'calc(100% - 50px)'
                             },
 
                             'ul': {
-                                'display': this.isOpen ? 'block' : 'none',
-                                'position': 'relative',
-                                'top': '0',
-                                'left': '-28px',
-                                'z-index': '5',
+                                'display': 'flex',
+                                'position': 'absolute',
+                                'left': '0',
+                                'top': '10px',
+                                'right': '0',
+                                'list-style-type': 'none',
+                                'justify-content': 'center',
+                                'margin': '0',
 
                                 'li': {
-                                    'background - color': '#181818',
-                                    'padding': '0',
-                                    'display': 'flex',
-                                    'justify-content': 'center',
                                     'position': 'relative',
-                                    'border-top': '1px solid #08fdd8',
-                                    'border-bottom': '1px solid #08fdd8',
-                                },
+                                    'min-width': '60px'
+                                }
+                            },
 
-                                'li + li': {
-                                    'margin': '0'
+                            'li + li': {
+                                'margin-left': '50px'
+                            },
 
+                            '.navbar__logout': {
+                                'position': 'absolute',
+                                'top': '10px',
+                                'right': '6px',
+                                'min-width': '60px',
+                                'cursor': 'pointer'
+                            }
+                        }
+                    }
+                </style>
+
+                <style>
+                    @media screen and (max-width: 1300px) {
+                        {
+                            '.navbar': {
+                                'ul': {
+                                    'li + li': {
+                                        'margin-left': '26px'
+                                    }
                                 }
                             }
                         }
                     }
-                }
-            </style>
+                </style>
+
+                <style>
+                    @media screen and (max-width: 800px) {
+                        {
+                            '.navbar': {
+                                '.navbar__mobile': {
+                                    'display': 'block'
+                                },
+
+                                'ul': {
+                                    'display': this.isOpen ? 'block' : 'none',
+                                    'position': 'relative',
+                                    'top': '0',
+                                    'left': '-28px',
+                                    'z-index': '5',
+
+                                    'li': {
+                                        'background - color': '#181818',
+                                        'padding': '0',
+                                        'display': 'flex',
+                                        'justify-content': 'center',
+                                        'position': 'relative',
+                                        'border-top': '1px solid #08fdd8',
+                                        'border-bottom': '1px solid #08fdd8',
+                                    },
+
+                                    'li + li': {
+                                        'margin': '0'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                </style>
+            </styles>
         )
     }
 

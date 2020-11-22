@@ -1951,9 +1951,9 @@ exf-ts@^1.1.7:
     custom-elements-es5-adapter "^1.0.0"
 
 exf-ts@^1.4.1:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/exf-ts/-/exf-ts-1.4.4.tgz#99ca851ff572fd3678e3dc39a7c99424b368f403"
-  integrity sha512-Afnl5P27dMj2/7roEe8GCIvS3lJNs6xypK6lPMT19GbglZ6h6v3yibAPHJixvBFUeijU+Wlfrj1C/bR8yuz32Q==
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/exf-ts/-/exf-ts-1.4.5.tgz#1ba12f63cb883de0f8cbf1fb3b77d83449c98e62"
+  integrity sha512-4JPjqcTCw+Q7UG12oj7KzQ9VBXoE9FJO78y7pb15m5gCmkIPhEc033TBIQkEIZImnGjAHdQ9Le3iw4mW8eNEjA==
   dependencies:
     "@webcomponents/webcomponentsjs" "^2.4.3"
     custom-elements-es5-adapter "^1.0.0"

@@ -32,7 +32,7 @@ export class Hero extends Component {
                         'justify-content': 'center',
                         'text-align': 'center',
                         'align-items': 'center',
-                        'padding': '170px 0',
+                        'padding': '5rem 0',
 
                         'h1': {
                             'color': '#fff',
