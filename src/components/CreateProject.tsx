@@ -11,6 +11,7 @@ import {
     set_cover_create_project,
     update_create_project
 } from '../redux/symbols';
+import { Unsubscribe } from 'redux';
 
 
 @CustomElement({
@@ -25,12 +26,14 @@ export class CreateProject extends Component {
     @State('state') link: string = '';
     @State('state') images: IUploadedImage[] = [];
 
+    unsubscribe!: Unsubscribe;
+
     constructor(private styles: Styles) {
         super();
     }
 
     onCreate() {
-        store.subscribe(() => {
+        this.unsubscribe = store.subscribe(() => {
             const { title, description, link, images } = store.getState().createProject;
             this.title = title;
             this.description = description;
@@ -49,6 +52,10 @@ export class CreateProject extends Component {
                 }
             });
         }
+    }
+
+    onDestroy() {
+		this.unsubscribe()
     }
 
     handleInput(e: any, type: 'title' | 'description' | 'link') {

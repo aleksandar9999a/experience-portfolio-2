@@ -1,5 +1,6 @@
 import { IRoute } from 'exf-router/lib/interfaces/interfaces';
 import ExF, { Component, CustomElement, State } from 'exf-ts';
+import { Unsubscribe } from 'redux';
 import { routes } from '../config/routes';
 import { store } from '../redux/store';
 
@@ -10,12 +11,18 @@ export class Overlay extends Component {
 	@State('state') isAuth: boolean = false;
 	@State('state') routes: IRoute[] = []
 
+	unsubscribe!: Unsubscribe;
+	
 	onCreate() {
-		store.subscribe(() => {
+		this.unsubscribe = store.subscribe(() => {
 			this.isAuth = !!store.getState().user;
 		})
 
 		this.routes = routes;
+	}
+
+	onDestroy() {
+		this.unsubscribe()
 	}
 
 	stylize() {

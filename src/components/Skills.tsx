@@ -1,4 +1,5 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
+import { Unsubscribe } from 'redux';
 import { ITimelineItems } from '../interfaces/interfaces';
 import { store } from '../redux/store';
 import Styles from '../services/styles';
@@ -12,18 +13,24 @@ export class Skills extends Component {
     @State('state') timeline: ITimelineItems[] = [];
     @State('state') description: string = '';
 
+    unsubscribe!: Unsubscribe;
+
     constructor(private styles: Styles) {
         super();
     }
 
     onCreate() {
-        store.subscribe(() => {
+        this.unsubscribe = store.subscribe(() => {
             const { skills, skillsTimeline } = store.getState().mainInfo;
             this.description = skills;
             this.timeline = skillsTimeline;
         })
 
         store.dispatch({ type: 'GET_MAININFO' });
+    }
+
+    onDestroy() {
+        this.unsubscribe()
     }
 
     stylize() {

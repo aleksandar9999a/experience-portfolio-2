@@ -1,4 +1,5 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
+import { Unsubscribe } from 'redux';
 import { IHeroContent } from '../interfaces/interfaces';
 import { store } from '../redux/store';
 
@@ -14,13 +15,19 @@ export class Hero extends Component {
         socials: []
     };
 
+    unsubscribe!: Unsubscribe;
+
     onCreate() {
-        store.subscribe(() => {
+        this.unsubscribe = store.subscribe(() => {
             const { firstName, lastName, devType, socials } = store.getState().mainInfo;
             this.user = { firstName, lastName, devType, socials };
         })
 
         store.dispatch({ type: 'GET_MAININFO' });
+    }
+
+    onDestroy() {
+        this.unsubscribe()
     }
 
     stylize() {

@@ -1,4 +1,5 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
+import { Unsubscribe } from 'redux';
 import { IProject } from '../interfaces/interfaces';
 import { store } from '../redux/store';
 
@@ -8,13 +9,19 @@ import { store } from '../redux/store';
 export class Projects extends Component {
     @State() projects: IProject[] = [];
 
+    unsubscribe!: Unsubscribe;
+
     onCreate() {
-        store.subscribe(() => {
+        this.unsubscribe = store.subscribe(() => {
             const { mainInfo } = store.getState();
             this.projects = mainInfo.projects;
         })
 
         store.dispatch({ type: 'GET_MAININFO' })
+    }
+
+    onDestroy() {
+        this.unsubscribe()
     }
 
     stylize() {

@@ -1,4 +1,5 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
+import { Unsubscribe } from 'redux';
 import { store } from '../redux/store';
 
 
@@ -8,11 +9,17 @@ import { store } from '../redux/store';
 export class Load extends Component {
     @State('style') isLoading: boolean = false;
 
+    unsubscribe!: Unsubscribe;
+
     onCreate() {
-        store.subscribe(() => {
+        this.unsubscribe = store.subscribe(() => {
 			const { load } = store.getState();
 			this.isLoading = load;
         })
+    }
+
+    onDestroy() {
+        this.unsubscribe()
     }
     
     stylize() {

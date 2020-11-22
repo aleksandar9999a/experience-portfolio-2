@@ -1,4 +1,5 @@
 import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
+import { Unsubscribe } from 'redux';
 import { IProject } from '../interfaces/interfaces';
 import { store } from '../redux/store';
 import Styles from '../services/styles';
@@ -22,12 +23,14 @@ export class Details extends Component {
         images: []
     }
 
+    unsubscribe!: Unsubscribe;
+
     constructor(private styles: Styles) {
         super();
     }
 
     onCreate() {
-        store.subscribe(() => {
+        this.unsubscribe = store.subscribe(() => {
             const { currentProject, user } = store.getState();
             this.project = currentProject;
             this.currentUser = user;
@@ -36,6 +39,10 @@ export class Details extends Component {
         store.dispatch({ type: 'GET_PROJECT', payload: { creatorId: this.creatorId, id: this.id } })
     }
 
+    onDestroy() {
+		this.unsubscribe()
+    }
+    
     handleDelete = () => {
         store.dispatch({
             type: 'DELETE_PROJECT',

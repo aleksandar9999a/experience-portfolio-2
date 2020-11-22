@@ -1,4 +1,5 @@
 import ExF, { Component, CustomElement, State } from 'exf-ts';
+import { Unsubscribe } from 'redux';
 import { ITimelineItems, IAuthUser } from '../interfaces/interfaces';
 import { store } from '../redux/store';
 import { update_about_timeline, update_mydata, update_skills_timeline } from '../redux/symbols';
@@ -23,18 +24,24 @@ export class Settings extends Component {
         contacts: []
     }
 
+    unsubscribe!: Unsubscribe;
+
     constructor(private styles: Styles) {
         super();
     }
 
     onCreate() {
-        store.subscribe(() => {
+        this.unsubscribe = store.subscribe(() => {
             this.mainData = store.getState().myData;
         })
 
         if (!!store.getState().user) {
             store.dispatch({ type: 'GET_MY_DATA' });
         }
+    }
+
+    onDestroy() {
+        this.unsubscribe()
     }
 
     handleInput(e: any, type: 'firstName' | 'lastName' | 'devType' | 'about' | 'skills') {
