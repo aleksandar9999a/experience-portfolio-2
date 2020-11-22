@@ -2,6 +2,7 @@ import { put, takeEvery, call } from 'redux-saga/effects'
 import { defaultUser } from '../config/firebase_config'
 import { firestore } from '../firebase'
 import { update_loader, update_maininfo } from '../redux/symbols';
+import { store } from './../redux/store';
 
 
 /**
@@ -10,28 +11,36 @@ import { update_loader, update_maininfo } from '../redux/symbols';
 function* getMainInfo() {
     yield put({ type: update_loader, payload: true });
 
-    const infoShot = yield call(firestore.getDocument, `users/${defaultUser}`);
-    const socialsShot = yield call(firestore.getCollection, `users/${defaultUser}/socials`);
-    const projectsShot = yield call(firestore.getCollection, `users/${defaultUser}/projects`);
-    const info = infoShot.data();
+    let state = store.getState().mainInfo
 
-    const payload = {
-        ...info,
-        socials: [],
-        projects: []
+    if (!state.firstName) {
+        const infoShot = yield call(firestore.getDocument, `users/${defaultUser}`);
+        const info = infoShot.data();
+
+        state = {
+            ...state,
+            ...info
+        }
     }
 
-    socialsShot.forEach((shot: any) => {
-        const data = shot.data();
-        payload.socials.push(data);
-    })
+    if (state.socials.length === 0) {
+        const socialsShot = yield call(firestore.getCollection, `users/${defaultUser}/socials`);
+        socialsShot.forEach((shot: any) => {
+            const data = shot.data();
+            state.socials.push(data);
+        })
+    }
 
-    projectsShot.forEach((shot: any) => {
-        const data = shot.data();
-        payload.projects.push(data);
-    })
+    if (state.projects.length === 0) {
+        const projectsShot = yield call(firestore.getCollection, `users/${defaultUser}/projects`);
+        projectsShot.forEach((shot: any) => {
+            const data = shot.data();
+            state.projects.push(data);
+        })
+    }
 
-    yield put({ type: update_maininfo, payload });
+
+    yield put({ type: update_maininfo, payload: state });
     
     yield put({ type: update_loader, payload: false });
 }
