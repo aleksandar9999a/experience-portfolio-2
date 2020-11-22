@@ -64,12 +64,20 @@ export class Settings extends Component {
     handleSubmit = (e: any) => {
         e.preventDefault();
 
+        const {
+            firstName,
+            lastName,
+            devType,
+            about,
+            skills
+        } = this.mainData
+
         const payload = {
-            firstName: this.firstName,
-            lastName: this.lastName,
-            devType: this.devType,
-            about: this.about,
-            skills: this.skills
+            firstName,
+            lastName,
+            devType,
+            about,
+            skills
         }
 
         store.dispatch({ type: 'SUBMIT_USERDATA', payload });
