@@ -4,7 +4,8 @@ import Styles from '../services/styles';
 
 
 @CustomElement({
-    selector: 'exf-login'
+    selector: 'exf-login',
+    dependencyInjection: true
 })
 export class Login extends Component {
     @State('state') email: string = '';
