@@ -85,6 +85,27 @@ export class Hero extends Component {
                     }
                 }
 
+                .socials {
+                    {
+                        'a': {
+                            'img': {
+                                'height': '40px',
+                                'transition': 'transform .15s'
+                            }
+                        },
+
+                        'a:hover': {
+                            'img': {
+                                'transform': 'scale(1.1)'
+                            }
+                        },
+
+                        'a + a': {
+                            'margin-left': '20px'
+                        }
+                    }
+                }
+
                 @media screen and (max-width: 1300px) {
                     {
                         '.hero': {
@@ -134,7 +155,15 @@ export class Hero extends Component {
                     </div>
 
                     <div className="hero__socials">
-                        <exf-socials contacts={socials} />
+                        <div className="socials">
+                            {socials.map(({ link, image, name }) => {
+                                return (
+                                    <a href={link} target="_blank" rel="noopener noreferrer">
+                                        <img src={image} alt={name}/>
+                                    </a>
+                                )
+                            })}
+                        </div>
                     </div>
                 </div>
             </div>

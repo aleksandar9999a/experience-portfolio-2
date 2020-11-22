@@ -15,7 +15,6 @@ import { NavbarTab } from './components/NavTab';
 import { Logo } from './components/Logo';
 import { Hero } from './components/Hero';
 import { Footer } from './components/Footer';
-import { Socials } from './components/Socials';
 import { Skills } from './components/Skills';
 import { Timeline } from './components/Timeline';
 import { About } from './components/About';
@@ -50,7 +49,6 @@ ExFModule({
         Footer,
         RouterLink,
         Router,
-        Socials,
         Skills,
         Timeline,
         About,
