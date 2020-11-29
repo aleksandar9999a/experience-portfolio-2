@@ -1,7 +1,6 @@
-import ExF, { Component, CustomElement, State } from 'exf-ts';
-import { Unsubscribe } from 'redux';
-import { ITimelineItems } from '../interfaces/interfaces';
-import { store } from '../redux/store';
+import ExF, { Component, CustomElement, Inject, State } from 'exf-ts';
+import { AnyAction, CombinedState, Store, Unsubscribe } from 'redux';
+import { IStore, ITimelineItems } from '../interfaces/interfaces';
 import Styles from '../services/styles';
 
 
@@ -12,6 +11,7 @@ import Styles from '../services/styles';
 export class Skills extends Component {
     @State('state') timeline: ITimelineItems[] = [];
     @State('state') description: string = '';
+    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
 
     unsubscribe!: Unsubscribe;
 
@@ -20,13 +20,13 @@ export class Skills extends Component {
     }
 
     onCreate() {
-        this.unsubscribe = store.subscribe(() => {
-            const { skills, skillsTimeline } = store.getState().mainInfo;
+        this.unsubscribe = this.store.subscribe(() => {
+            const { skills, skillsTimeline } = this.store.getState().mainInfo;
             this.description = skills;
             this.timeline = skillsTimeline;
         })
 
-        store.dispatch({ type: 'GET_MAININFO' });
+        this.store.dispatch({ type: 'GET_MAININFO' });
     }
 
     onDestroy() {

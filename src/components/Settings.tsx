@@ -1,7 +1,6 @@
-import ExF, { Component, CustomElement, State } from 'exf-ts';
-import { Unsubscribe } from 'redux';
-import { ITimelineItems, IAuthUser } from '../interfaces/interfaces';
-import { store } from '../redux/store';
+import ExF, { Component, CustomElement, Inject, State } from 'exf-ts';
+import { AnyAction, CombinedState, Store, Unsubscribe } from 'redux';
+import { ITimelineItems, IAuthUser, IStore } from '../interfaces/interfaces';
 import { update_about_timeline, update_mydata, update_skills_timeline } from '../redux/symbols';
 import Styles from '../services/styles';
 
@@ -23,6 +22,7 @@ export class Settings extends Component {
         projects: [],
         contacts: []
     }
+    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
 
     unsubscribe!: Unsubscribe;
 
@@ -31,12 +31,12 @@ export class Settings extends Component {
     }
 
     onCreate() {
-        this.unsubscribe = store.subscribe(() => {
-            this.mainData = store.getState().myData;
+        this.unsubscribe = this.store.subscribe(() => {
+            this.mainData = this.store.getState().myData;
         })
 
-        if (!!store.getState().user) {
-            store.dispatch({ type: 'GET_MY_DATA' });
+        if (!!this.store.getState().user) {
+            this.store.dispatch({ type: 'GET_MY_DATA' });
         }
     }
 
@@ -45,7 +45,7 @@ export class Settings extends Component {
     }
 
     handleInput(e: any, type: 'firstName' | 'lastName' | 'devType' | 'about' | 'skills') {
-        store.dispatch({ type: update_mydata, payload: { [type]: e.target.value } });
+        this.store.dispatch({ type: update_mydata, payload: { [type]: e.target.value } });
     }
 
     handleSubmit = (e: any) => {
@@ -67,31 +67,31 @@ export class Settings extends Component {
             skills
         }
 
-        store.dispatch({ type: 'SUBMIT_USERDATA', payload });
+        this.store.dispatch({ type: 'SUBMIT_USERDATA', payload });
     }
 
     handleSkillsChange = (data: ITimelineItems[]) => {
-        store.dispatch({ type: update_skills_timeline, payload: data });
+        this.store.dispatch({ type: update_skills_timeline, payload: data });
     }
 
     handleAboutChange = (data: ITimelineItems[]) => {
-        store.dispatch({ type: update_about_timeline, payload: data });
+        this.store.dispatch({ type: update_about_timeline, payload: data });
     }
 
     handleSkillsSubmit = () => {
-        store.dispatch({ type: 'SKILLS_TIMELINE_SUBMIT', payload: this.mainData.skillsTimeline });
+        this.store.dispatch({ type: 'SKILLS_TIMELINE_SUBMIT', payload: this.mainData.skillsTimeline });
     }
 
     handleAboutSubmit = () => {
-        store.dispatch({ type: 'ABOUT_TIMELINE_SUBMIT', payload: this.mainData.aboutTimeline });
+        this.store.dispatch({ type: 'ABOUT_TIMELINE_SUBMIT', payload: this.mainData.aboutTimeline });
     }
 
     handleContactsChange = (contact: object) => {
-        store.dispatch({ type: 'UPDATE_CONTACT', payload: contact });
+        this.store.dispatch({ type: 'UPDATE_CONTACT', payload: contact });
     }
 
     handleContactRemove = (id: string) => {
-        store.dispatch({ type: 'REMOVE_CONTACT', payload: id });
+        this.store.dispatch({ type: 'REMOVE_CONTACT', payload: id });
     }
 
     stylize() {

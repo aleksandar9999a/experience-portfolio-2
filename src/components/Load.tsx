@@ -1,6 +1,6 @@
-import ExF, { Component, CustomElement, State } from 'exf-ts';
-import { Unsubscribe } from 'redux';
-import { store } from '../redux/store';
+import ExF, { Component, CustomElement, Inject, State } from 'exf-ts';
+import { AnyAction, CombinedState, Store, Unsubscribe } from 'redux';
+import { IStore } from '../interfaces/interfaces';
 
 
 @CustomElement({
@@ -8,12 +8,13 @@ import { store } from '../redux/store';
 })
 export class Load extends Component {
     @State('style') isLoading: boolean = false;
+    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
 
     unsubscribe!: Unsubscribe;
 
     onCreate() {
-        this.unsubscribe = store.subscribe(() => {
-			const { load } = store.getState();
+        this.unsubscribe = this.store.subscribe(() => {
+			const { load } = this.store.getState();
 			this.isLoading = load;
         })
     }

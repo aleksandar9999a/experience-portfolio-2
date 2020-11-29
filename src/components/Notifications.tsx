@@ -1,7 +1,6 @@
-import ExF, { Component, CustomElement, State } from 'exf-ts';
-import { Unsubscribe } from 'redux';
-import { INotification } from '../interfaces/interfaces';
-import { store } from '../redux/store';
+import ExF, { Component, CustomElement, Inject, State } from 'exf-ts';
+import { AnyAction, CombinedState, Store, Unsubscribe } from 'redux';
+import { INotification, IStore } from '../interfaces/interfaces';
 import { remove_notification } from '../redux/symbols';
 
 
@@ -10,12 +9,13 @@ import { remove_notification } from '../redux/symbols';
 })
 export class Notifications extends Component {
 	@State('state') notifications: INotification[] = [];
+	@Inject() store!: Store<CombinedState<IStore>, AnyAction>;
 
 	unsubscribe!: Unsubscribe;
 	
 	onCreate() {
-		this.unsubscribe = store.subscribe(() => {
-			const { notifications } = store.getState();
+		this.unsubscribe = this.store.subscribe(() => {
+			const { notifications } = this.store.getState();
 			this.notifications = notifications;
 		})
 	}
@@ -25,7 +25,7 @@ export class Notifications extends Component {
 	}
 
 	handleRemove(id: string) {
-		store.dispatch({ type: remove_notification, payload: id })
+		this.store.dispatch({ type: remove_notification, payload: id })
 	}
 
 	stylize() {

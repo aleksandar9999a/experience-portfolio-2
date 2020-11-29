@@ -1,23 +1,23 @@
-import ExF, { Component, CustomElement, State } from 'exf-ts';
-import { Unsubscribe } from 'redux';
-import { IProject } from '../interfaces/interfaces';
-import { store } from '../redux/store';
+import ExF, { Component, CustomElement, Inject, State } from 'exf-ts';
+import { AnyAction, CombinedState, Store, Unsubscribe } from 'redux';
+import { IProject, IStore } from '../interfaces/interfaces';
 
 @CustomElement({
     selector: 'exf-projects'
 })
 export class Projects extends Component {
     @State() projects: IProject[] = [];
+    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
 
     unsubscribe!: Unsubscribe;
 
     onCreate() {
-        this.unsubscribe = store.subscribe(() => {
-            const { mainInfo } = store.getState();
+        this.unsubscribe = this.store.subscribe(() => {
+            const { mainInfo } = this.store.getState();
             this.projects = mainInfo.projects;
         })
 
-        store.dispatch({ type: 'GET_MAININFO' })
+        this.store.dispatch({ type: 'GET_MAININFO' })
     }
 
     onDestroy() {

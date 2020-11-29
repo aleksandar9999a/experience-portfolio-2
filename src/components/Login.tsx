@@ -1,5 +1,6 @@
-import ExF, { Component, CustomElement, State } from 'exf-ts';
-import { store } from '../redux/store';
+import ExF, { Component, CustomElement, Inject, State } from 'exf-ts';
+import { Store, CombinedState, AnyAction } from 'redux';
+import { IStore } from '../interfaces/interfaces';
 import Styles from '../services/styles';
 
 
@@ -10,6 +11,7 @@ import Styles from '../services/styles';
 export class Login extends Component {
     @State('state') email: string = '';
     @State('state') password: string = '';
+    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
 
     constructor(private styles: Styles) {
         super();
@@ -26,7 +28,7 @@ export class Login extends Component {
     handleSubmit = (e: any) => {
         e.preventDefault();
 
-        store.dispatch({ type: 'USER_LOGIN', payload: { email: this.email, password: this.password }});
+        this.store.dispatch({ type: 'USER_LOGIN', payload: { email: this.email, password: this.password }});
     }
 
     render() {

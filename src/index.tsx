@@ -38,6 +38,9 @@ store.dispatch({ type: 'AUTH_CHANGE' });
 
 
 ExFModule({
+    inject: {
+        store
+    },
     components: [
         Overlay,
         App,

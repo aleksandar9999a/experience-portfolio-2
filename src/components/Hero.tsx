@@ -1,8 +1,6 @@
-import ExF, { Component, CustomElement, State } from 'exf-ts';
-import { Unsubscribe } from 'redux';
-import { IHeroContent } from '../interfaces/interfaces';
-import { store } from '../redux/store';
-
+import ExF, { Component, CustomElement, Inject, State } from 'exf-ts';
+import { AnyAction, CombinedState, Store, Unsubscribe } from 'redux';
+import { IHeroContent, IStore } from '../interfaces/interfaces';
 
 @CustomElement({
     selector: 'exf-hero'
@@ -15,15 +13,17 @@ export class Hero extends Component {
         socials: []
     };
 
+    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
+
     unsubscribe!: Unsubscribe;
 
     onCreate() {
-        this.unsubscribe = store.subscribe(() => {
-            const { firstName, lastName, devType, socials } = store.getState().mainInfo;
+        this.unsubscribe = this.store.subscribe(() => {
+            const { firstName, lastName, devType, socials } = this.store.getState().mainInfo;
             this.user = { firstName, lastName, devType, socials };
         })
 
-        store.dispatch({ type: 'GET_MAININFO' });
+        this.store.dispatch({ type: 'GET_MAININFO' });
     }
 
     onDestroy() {

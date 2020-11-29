@@ -1,7 +1,6 @@
-import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
-import { Unsubscribe } from 'redux';
-import { IProject } from '../interfaces/interfaces';
-import { store } from '../redux/store';
+import ExF, { Component, CustomElement, Inject, Prop, State } from 'exf-ts';
+import { AnyAction, CombinedState, Store, Unsubscribe } from 'redux';
+import { IProject, IStore } from '../interfaces/interfaces';
 import Styles from '../services/styles';
 
 
@@ -22,6 +21,7 @@ export class Details extends Component {
         cover: '',
         images: []
     }
+    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
 
     unsubscribe!: Unsubscribe;
 
@@ -30,13 +30,13 @@ export class Details extends Component {
     }
 
     onCreate() {
-        this.unsubscribe = store.subscribe(() => {
-            const { currentProject, user } = store.getState();
+        this.unsubscribe = this.store.subscribe(() => {
+            const { currentProject, user } = this.store.getState();
             this.project = currentProject;
             this.currentUser = user;
         })
 
-        store.dispatch({ type: 'GET_PROJECT', payload: { creatorId: this.creatorId, id: this.id } })
+        this.store.dispatch({ type: 'GET_PROJECT', payload: { creatorId: this.creatorId, id: this.id } })
     }
 
     onDestroy() {
@@ -44,7 +44,7 @@ export class Details extends Component {
     }
     
     handleDelete = () => {
-        store.dispatch({
+        this.store.dispatch({
             type: 'DELETE_PROJECT',
             payload: {
                 creatorId: this.project.creatorId,

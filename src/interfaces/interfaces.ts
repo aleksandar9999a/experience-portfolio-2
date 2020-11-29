@@ -118,3 +118,13 @@ export interface IEmail {
     subject: string,
     message: string
 }
+
+export interface IStore {
+    mainInfo: IUser;
+    myData: IAuthUser;
+    user: null;
+    load: boolean;
+    notifications: INotification[];
+    currentProject: IProject;
+    createProject: IProject;
+}

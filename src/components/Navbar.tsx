@@ -1,17 +1,24 @@
-import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
-import tabsConfig from '../config/navbar';
-import { store } from '../redux/store';
+import ExF, { Component, CustomElement, Inject, Prop, State } from 'exf-ts';
+import { Store, CombinedState, AnyAction } from 'redux';
+import { IStore } from '../interfaces/interfaces';
+import { Routes } from '../services/routes';
 
 
 @CustomElement({
-    selector: 'exf-navbar'
+    selector: 'exf-navbar',
+    dependencyInjection: true
 })
 export class Navbar extends Component {
     @Prop() isAuth: boolean = false;
     @State('style') isOpen: boolean = false;
+    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
+
+    constructor (private routes: Routes) {
+        super();
+    }
 
     handleLogOut = () => {
-        store.dispatch({ type: 'USER_LOGOUT' });
+        this.store.dispatch({ type: 'USER_LOGOUT' });
     }
 
     handleMenuOpen = () => {
@@ -118,8 +125,8 @@ export class Navbar extends Component {
 
     render() {
         const tabs = this.isAuth
-            ? tabsConfig
-            : tabsConfig.filter(tab => !tab.auth)
+            ? this.routes.tabs
+            : this.routes.tabs.filter(tab => !tab.auth)
 
         return (
             <div className="navbar">

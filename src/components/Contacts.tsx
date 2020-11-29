@@ -1,5 +1,6 @@
-import ExF, { Component, CustomElement, State } from 'exf-ts';
-import { store } from '../redux/store';
+import ExF, { Component, CustomElement, Inject, State } from 'exf-ts';
+import { Store, CombinedState, AnyAction } from 'redux';
+import { IStore } from '../interfaces/interfaces';
 import Styles from '../services/styles';
 
 
@@ -12,6 +13,7 @@ export class Contacts extends Component {
 	@State('state') email: string = '';
 	@State('state') subject: string = '';
 	@State('state') message: string = '';
+	@Inject() store!: Store<CombinedState<IStore>, AnyAction>;
 
 	constructor(private styles: Styles) {
 		super();
@@ -31,7 +33,7 @@ export class Contacts extends Component {
 			message: this.message
 		}
 
-		store.dispatch({ type: 'SEND_EMAIL', payload });
+		this.store.dispatch({ type: 'SEND_EMAIL', payload });
 	}
 
 	stylize() {

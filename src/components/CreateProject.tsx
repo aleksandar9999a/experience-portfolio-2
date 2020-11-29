@@ -1,6 +1,5 @@
-import ExF, { Component, CustomElement, Prop, State } from 'exf-ts';
-import { IUploadedImage } from '../interfaces/interfaces';
-import { store } from '../redux/store';
+import ExF, { Component, CustomElement, Inject, Prop, State } from 'exf-ts';
+import { IStore, IUploadedImage } from '../interfaces/interfaces';
 import { uploadImages } from '../utils/storage';
 import Styles from '../services/styles';
 
@@ -11,7 +10,8 @@ import {
     set_cover_create_project,
     update_create_project
 } from '../redux/symbols';
-import { Unsubscribe } from 'redux';
+
+import { AnyAction, CombinedState, Store, Unsubscribe } from 'redux';
 
 
 @CustomElement({
@@ -25,6 +25,7 @@ export class CreateProject extends Component {
     @State('state') description: string = '';
     @State('state') link: string = '';
     @State('state') images: IUploadedImage[] = [];
+    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
 
     unsubscribe!: Unsubscribe;
 
@@ -33,18 +34,18 @@ export class CreateProject extends Component {
     }
 
     onCreate() {
-        this.unsubscribe = store.subscribe(() => {
-            const { title, description, link, images } = store.getState().createProject;
+        this.unsubscribe = this.store.subscribe(() => {
+            const { title, description, link, images } = this.store.getState().createProject;
             this.title = title;
             this.description = description;
             this.link = link;
             this.images = images;
         })
 
-        store.dispatch({ type: clear_create_project });
+        this.store.dispatch({ type: clear_create_project });
 
         if (this.id !== '') {
-            store.dispatch({
+            this.store.dispatch({
                 type: 'LOAD_CREATE_PROJECT',
                 payload: {
                     creatorId: this.creatorId,
@@ -59,14 +60,14 @@ export class CreateProject extends Component {
     }
 
     handleInput(e: any, type: 'title' | 'description' | 'link') {
-        store.dispatch({ type: update_create_project, payload: { [type]: e.target.value } });
+        this.store.dispatch({ type: update_create_project, payload: { [type]: e.target.value } });
     }
 
     handleSubmit = (e: any) => {
         e.preventDefault();
 
-        const payload = store.getState().createProject;
-        store.dispatch({ type: 'SUBMIT_PROJECT', payload });
+        const payload = this.store.getState().createProject;
+        this.store.dispatch({ type: 'SUBMIT_PROJECT', payload });
     }
 
     handleAddImage = (e: any) => {
@@ -74,19 +75,19 @@ export class CreateProject extends Component {
 
         uploadImages(files)
             .then(images => {
-                store.dispatch({ type: add_images_create_project, payload: images });
+                this.store.dispatch({ type: add_images_create_project, payload: images });
             })
             .catch(err => {
-                store.dispatch({ type: 'ADD_ERROR_NOTIFICATION', payload: err.message })
+                this.store.dispatch({ type: 'ADD_ERROR_NOTIFICATION', payload: err.message })
             })
     }
 
     handleRemoveImage = (id: string) => {
-        store.dispatch({ type: remove_images_create_project, payload: id });
+        this.store.dispatch({ type: remove_images_create_project, payload: id });
     }
 
     handleSetCover = (id: string) => {
-        store.dispatch({ type: set_cover_create_project, payload: id });
+        this.store.dispatch({ type: set_cover_create_project, payload: id });
     }
 
     render() {
