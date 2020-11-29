@@ -36,28 +36,7 @@ export class Overlay extends Component {
 
 						'.container': {
 							'min-height': '86vh',
-							'max-width': '80vw',
 							'margin': '0 auto'
-						}
-					}
-				}
-
-				@media screen and (max-width: 1300px) {
-					{
-						'.overlay': {
-							'.container': {
-								'max-width': '90vw'
-							}
-						}
-					}
-				}
-
-				@media screen and (max-width: 700px) {
-					{
-						'.overlay': {
-							'.container': {
-								'max-width': '95vw'
-							}
 						}
 					}
 				}

@@ -209,14 +209,20 @@ export default class Styles {
     },
 
     '.section__head': {
-        'max-width': '80%',
+        'max-width': '70vw',
         'margin': '0 auto 80px',
         'color': '#fff'
     },
 
     '.section__body': {
-        'max-width': '80%',
-        'margin': 'auto'
+        'margin': 'auto',
+        'display': 'flex',
+        'justify-content': 'center',
+        'max-width': '100vw'
+    },
+
+    'exf-timeline': {
+        'max-width': '100%'
     }
   }
 }

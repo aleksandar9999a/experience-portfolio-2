@@ -43,12 +43,13 @@ export class Timeline extends Component {
                 .timeline {
                     {
                         'list-style-type': 'none',
+                        'margin': '0 20px',
                         'padding': '20px',
                         'overflow-x': 'auto',
                         'display': 'flex',
                         'align-items': 'flex-end',
                         'justify-content': 'flex-start',
-                        'margin': 'auto',
+                        'max-width': '98%',
 
                         '.timeline__badge': {
                             'width': '30px',
@@ -65,7 +66,7 @@ export class Timeline extends Component {
                             'content': '""',
                             'background-color': '#eeeeee',
                             'height': '2px',
-                            'width': '235px',
+                            'width': '245px',
                             'bottom': '50%',
                             'right': '30px',
                         },
@@ -100,7 +101,7 @@ export class Timeline extends Component {
                         'li': {
                             'position': 'relative',
                             'display': 'inline-block',
-                            'padding-bottom': '60px',
+                            'padding': '0 5px 60px',
 
                             'h4': {
                                 'font-size': '20px'
