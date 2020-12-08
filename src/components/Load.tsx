@@ -1,4 +1,4 @@
-import ExF, { Component, CustomElement, Inject, State } from 'exf-ts';
+import ExF, { Component, CustomElement, ModuleInjected, State } from 'exf-ts';
 import { AnyAction, CombinedState, Store, Unsubscribe } from 'redux';
 import { IStore } from '../interfaces/interfaces';
 
@@ -8,7 +8,7 @@ import { IStore } from '../interfaces/interfaces';
 })
 export class Load extends Component {
     @State('style') isLoading: boolean = false;
-    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
+    @ModuleInjected() store!: Store<CombinedState<IStore>, AnyAction>;
 
     unsubscribe!: Unsubscribe;
 

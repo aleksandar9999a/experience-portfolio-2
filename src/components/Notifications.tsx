@@ -1,4 +1,4 @@
-import ExF, { Component, CustomElement, Inject, State } from 'exf-ts';
+import ExF, { Component, CustomElement, ModuleInjected, State } from 'exf-ts';
 import { AnyAction, CombinedState, Store, Unsubscribe } from 'redux';
 import { INotification, IStore } from '../interfaces/interfaces';
 import { remove_notification } from '../redux/symbols';
@@ -9,7 +9,7 @@ import { remove_notification } from '../redux/symbols';
 })
 export class Notifications extends Component {
 	@State('state') notifications: INotification[] = [];
-	@Inject() store!: Store<CombinedState<IStore>, AnyAction>;
+	@ModuleInjected() store!: Store<CombinedState<IStore>, AnyAction>;
 
 	unsubscribe!: Unsubscribe;
 	

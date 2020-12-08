@@ -1,4 +1,4 @@
-import ExF, { Component, CustomElement, Inject, Prop, State } from 'exf-ts';
+import ExF, { Component, CustomElement, ModuleInjected, Prop, State } from 'exf-ts';
 import { AnyAction, CombinedState, Store, Unsubscribe } from 'redux';
 import { IProject, IStore } from '../interfaces/interfaces';
 import Styles from '../services/styles';
@@ -21,7 +21,7 @@ export class Details extends Component {
         cover: '',
         images: []
     }
-    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
+    @ModuleInjected() store!: Store<CombinedState<IStore>, AnyAction>;
 
     unsubscribe!: Unsubscribe;
 

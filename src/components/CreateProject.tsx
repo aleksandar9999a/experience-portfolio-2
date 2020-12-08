@@ -1,4 +1,4 @@
-import ExF, { Component, CustomElement, Inject, Prop, State } from 'exf-ts';
+import ExF, { Component, CustomElement, ModuleInjected, Prop, State } from 'exf-ts';
 import { IStore, IUploadedImage } from '../interfaces/interfaces';
 import { uploadImages } from '../utils/storage';
 import Styles from '../services/styles';
@@ -25,7 +25,7 @@ export class CreateProject extends Component {
     @State('state') description: string = '';
     @State('state') link: string = '';
     @State('state') images: IUploadedImage[] = [];
-    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
+    @ModuleInjected() store!: Store<CombinedState<IStore>, AnyAction>;
 
     unsubscribe!: Unsubscribe;
 

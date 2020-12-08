@@ -1,4 +1,4 @@
-import ExF, { Component, CustomElement, Inject, Prop, State } from 'exf-ts';
+import ExF, { Component, CustomElement, ModuleInjected, Prop, State } from 'exf-ts';
 import { Store, CombinedState, AnyAction } from 'redux';
 import { IStore } from '../interfaces/interfaces';
 import { Routes } from '../services/routes';
@@ -11,7 +11,7 @@ import { Routes } from '../services/routes';
 export class Navbar extends Component {
     @Prop() isAuth: boolean = false;
     @State('style') isOpen: boolean = false;
-    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
+    @ModuleInjected() store!: Store<CombinedState<IStore>, AnyAction>;
 
     constructor (private routes: Routes) {
         super();

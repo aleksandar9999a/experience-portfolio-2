@@ -1,4 +1,4 @@
-import ExF, { Component, CustomElement, Inject, State } from 'exf-ts';
+import ExF, { Component, CustomElement, ModuleInjected, State } from 'exf-ts';
 import { AnyAction, CombinedState, Store, Unsubscribe } from 'redux';
 import { IStore, ITimelineItems } from '../interfaces/interfaces';
 import Styles from '../services/styles';
@@ -11,7 +11,7 @@ import Styles from '../services/styles';
 export class Skills extends Component {
     @State('state') timeline: ITimelineItems[] = [];
     @State('state') description: string = '';
-    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
+    @ModuleInjected() store!: Store<CombinedState<IStore>, AnyAction>;
 
     unsubscribe!: Unsubscribe;
 

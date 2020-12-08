@@ -1,4 +1,4 @@
-import ExF, { Component, CustomElement, Inject, State } from 'exf-ts';
+import ExF, { Component, CustomElement, ModuleInjected, State } from 'exf-ts';
 import { AnyAction, CombinedState, Store, Unsubscribe } from 'redux';
 import { IProject, IStore } from '../interfaces/interfaces';
 
@@ -7,7 +7,7 @@ import { IProject, IStore } from '../interfaces/interfaces';
 })
 export class Projects extends Component {
     @State() projects: IProject[] = [];
-    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
+    @ModuleInjected() store!: Store<CombinedState<IStore>, AnyAction>;
 
     unsubscribe!: Unsubscribe;
 

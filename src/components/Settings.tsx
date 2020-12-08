@@ -1,4 +1,4 @@
-import ExF, { Component, CustomElement, Inject, State } from 'exf-ts';
+import ExF, { Component, CustomElement, ModuleInjected, State } from 'exf-ts';
 import { AnyAction, CombinedState, Store, Unsubscribe } from 'redux';
 import { ITimelineItems, IAuthUser, IStore } from '../interfaces/interfaces';
 import { update_about_timeline, update_mydata, update_skills_timeline } from '../redux/symbols';
@@ -22,7 +22,7 @@ export class Settings extends Component {
         projects: [],
         contacts: []
     }
-    @Inject() store!: Store<CombinedState<IStore>, AnyAction>;
+    @ModuleInjected() store!: Store<CombinedState<IStore>, AnyAction>;
 
     unsubscribe!: Unsubscribe;
 

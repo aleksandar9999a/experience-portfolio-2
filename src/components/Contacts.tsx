@@ -1,4 +1,4 @@
-import ExF, { Component, CustomElement, Inject, State } from 'exf-ts';
+import ExF, { Component, CustomElement, ModuleInjected, State } from 'exf-ts';
 import { Store, CombinedState, AnyAction } from 'redux';
 import { IStore } from '../interfaces/interfaces';
 import Styles from '../services/styles';
@@ -13,7 +13,7 @@ export class Contacts extends Component {
 	@State('state') email: string = '';
 	@State('state') subject: string = '';
 	@State('state') message: string = '';
-	@Inject() store!: Store<CombinedState<IStore>, AnyAction>;
+	@ModuleInjected() store!: Store<CombinedState<IStore>, AnyAction>;
 
 	constructor(private styles: Styles) {
 		super();

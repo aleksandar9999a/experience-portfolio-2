@@ -1,4 +1,4 @@
-import ExF, { Component, CustomElement, Inject, Prop } from 'exf-ts';
+import ExF, { Component, CustomElement, ModuleInjected, Prop } from 'exf-ts';
 import { Store, CombinedState, AnyAction } from 'redux';
 import { INotification, IStore } from '../interfaces/interfaces';
 import { remove_notification } from '../redux/symbols';
@@ -14,7 +14,7 @@ export class Notification extends Component {
         type: 'success'
     };
     @Prop('style') index: number = 0;
-	@Inject() store!: Store<CombinedState<IStore>, AnyAction>;
+	@ModuleInjected() store!: Store<CombinedState<IStore>, AnyAction>;
 
     handleRemove = () => {
         this.store.dispatch({ type: remove_notification, payload: this.data.id })
